@@ -1,0 +1,221 @@
+# 使用Arch Linux
+
+## 1、文件操作
+
+查看当前工作目录的路径
+```
+pwd
+```
+
+列出当前目录中的文件
+```
+ls
+ls -l
+```
+
+> drwxr-xr-x 7 root root 4096 Aug 11 01:22 app
+
+第一个字符的含义:
+\- regular file<br />
+c character special file<br />
+d directory<br />
+l link<br />
+
+修改文件属主
+```
+chown -R root:mfadmin Model/001/XJ-02
+```
+
+修改文件权限
+```
+chmod -R 3770 Model
+```
+
+4 = r (read)           list files inside the directory, only read the names of files<br />
+2 = w (write/modify)   modify entries in the directory(create, delete, and rename files).<br />
+1 = x (execute)        grants the ability to access file contents and meta-information if its name is known
+
+To represent r-- triplet use 4+0+0=4<br />
+To represent r-x triplet use 4+0+1=5<br />
+To represent rw- triplet use 4+2+0=6<br />
+To represent rwx triplet use 4+2+1=7
+
+4 Octal Mode Numbers<br />
+mode owner group others<br />
+ugs  rwx   rwx   rwx
+
+1000  Sets the sticky bit, only the file's owner, the directory's owner, or root user can rename or delete the file.<br />
+2000  Sets the setgid bit, set group ID on execution<br />
+4000  Sets the setuid bit, set user ID on execution
+
+Symbolic modes<br />
+u user  the owner of the file<br />
+g group users who are members of the file's group<br />
+o others  users who are neither the owner of the file nor members of the file's group<br />
+a all     all three of the above, same as ugo
+
++ adds the specified modes to the specified classes<br />
+- removes the specified modes from the specified classes<br />
+= the modes specified are to be made the exact modes for the specified classes
+
+获取和设置额外的文件权限
+```
+getfacl dir
+setfacl -R -m u:user:rwx dir
+setfacl -R -d --set g:group:rwx dir
+```
+
+查看文件内容并显示行号
+```
+less -N /path/to/text/file
+```
+
+将压缩文件text.zip在当前目录下解压缩。
+```
+unzip test.zip
+```
+
+将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件。
+```
+unzip -n test.zip -d /tmp
+```
+
+将压缩文件test.zip在指定目录tmp下解压缩，如果已有相同的文件存在，要求unzip命令覆盖原先的文件。
+```
+unzip -o test.zip -d tmp/
+```
+
+查看压缩文件目录，但不解压。
+```
+unzip -v test.zip
+```
+
+## 2、帐号管理
+
+查看帐号id及所在的用户组
+```
+id
+id user_name
+```
+
+查看用户列表
+```
+less /etc/passwd
+```
+
+查看用户组
+```
+less /etc/group
+```
+
+新建用户组，比如gituser
+```
+groupadd gituser
+```
+
+将用户加入用户组
+```
+usermod -aG group user
+```
+
+列出属于某个用户组的用户
+```
+pacman -S libuser
+lid -g group
+```
+
+查看当前已登录的用户
+```
+who
+```
+
+## 3、网络配置
+
+查看端口
+```
+netstat -an | grep 8080
+ss -tnlp
+```
+
+启动防火墙
+```
+cp /etc/iptables/empty.rules /etc/iptables/iptables.rules
+systemctl enable iptables
+```
+
+查看防火墙
+```
+iptables -nvL
+```
+打开防火墙80端口(cat /etc/sysconfig/iptables):
+```
+iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 587 -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 587 -m state --state ESTABLISHED,RELATED -j ACCEPT
+systemctl reload iptables
+```
+
+## 4、其他
+
+查看系统信息
+```
+uname -a
+cat /proc/cpuinfo
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+cat /proc/meminfo
+fdisk -l
+lsblk -f
+free -h 查看内存状态
+df -h -a 查看磁盘剩余空间
+du -sh /image 查看文件夹占用空间
+du -kh --max-depth=1 /image
+ps auxww 列出进程及其命令
+ps aux | grep {{string}}
+pstree -p 展示进程树
+```
+
+查看Shell程序
+```
+echo $SHELL
+```
+
+默认的编辑器
+```
+echo $EDITOR
+export EDITOR=/usr/bin/nano
+```
+
+设置PATH变量和alias
+```
+nano /etc/profile
+```
+
+> ```
+  PATH=$PATH:/home/vagrant/.gem/ruby/2.2.0/bin
+  alias ll='ls -l --color=auto'
+  ```
+
+```
+source /etc/profile
+```
+
+查看命令的文件路径
+```
+which <cmd>
+```
+在全部路径中查找
+```
+which -a <cmd>
+whereis <cmd>
+```
+
+&& chain tasks (Run one task after another)<br />
+& run two commands at the same time<br />
+< input file contents to a command<br />
+\> redirect command output to a file<br />
+| redirect command output to another command
+
+查看ASCII表
+```
+man ascii
+```
