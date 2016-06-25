@@ -1,0 +1,9 @@
+{
+  "title": "程序员的工具箱",
+  "lang":"zh-cn",
+  "pluginsConfig": {
+    "theme-default": {
+        "showLevel": true
+      }
+  }
+}

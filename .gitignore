@@ -1,0 +1,11 @@
+# Built files
+_book/
+
+# Node-related ignoring, copied from https://github.com/github/gitignore/blob/master/Node.gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+node_modules
