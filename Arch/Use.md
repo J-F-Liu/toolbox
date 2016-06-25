@@ -15,7 +15,7 @@ ls -l
 
 > drwxr-xr-x 7 root root 4096 Aug 11 01:22 app
 
-第一个字符的含义:
+第一个字符的含义:<br />
 \- regular file<br />
 c character special file<br />
 d directory<br />

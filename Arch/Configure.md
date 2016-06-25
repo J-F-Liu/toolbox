@@ -212,6 +212,11 @@ pacman -S ranger krusader
 pacman -S ark
 ```
 
+剪贴板管理器
+```
+pacman -S clipit
+```
+
 网页浏览器
 ```
 pacman -S chromium
@@ -228,20 +233,46 @@ PDF阅读器
 pacman -S zathura evince
 ```
 
-办公软件
-```
-pacman -S libreoffice-fresh libreoffice-fresh-zh-CN clipit
-```
-
 音乐、视频播放器
 ```
 pacman -S audacious smplayer
+```
+
+办公软件
+```
+pacman -S libreoffice-fresh libreoffice-fresh-zh-CN
+```
+
+图像编辑
+```
+pacman -S krita
+```
+
+脑图创作
+```
+pacman -S xmind
+```
+
+电子邮件客户端
+```
+pacman -S n1
+```
+
+FTP客户端
+```
+pacman -S filezilla
 ```
 
 挂载NTFS分区
 ```
 pacman -S ntfs-3g
 mount -t ntfs-3g /dev/sda1 /mnt/windows
+```
+
+挂载共享目录
+```
+pacman -S smbclient
+mount -t cifs -o username=username,password="password" //16.187.190.50/test /mnt/
 ```
 
 虚拟机

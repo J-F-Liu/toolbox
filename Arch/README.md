@@ -1,12 +1,15 @@
 # Arch Linux
 
-## 一、安装
+Arch Linux是一份致力于使用简单、系统轻量、软件更新速度快的GNU/Linux发行版。
 
-### 1.制作优盘启动盘
+主要优点有：
 
-1. Windows系统
-2. Linux系统
+- 滚动更新，软件更新速度快
+- 包管理简易高效
+- 可定制性高，用户自己决定让它变成什么样子
+- 文档精良
+- 庞大且友好的社区
 
-## 二、配置
+推荐一个Linux教程：
 
-## 三、使用
+- [Linux Fundamentals](http://www.funtoo.org/Linux_Fundamentals,_Part_1)

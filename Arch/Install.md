@@ -73,6 +73,8 @@ elinks wiki.archlinux.org
 
 ## 3、给硬盘分区
 
+> 警告: 分区操作可能会清除数据，请确保已备份重要的数据。
+
 3.1 显示所有连接到系统的存储设备和分区状况
 ```
 lsblk --paths
@@ -116,10 +118,11 @@ mount /dev/sda3 /mnt/home
 ## 4、安装系统
 
 4.1 选择镜像服务器
+
 ```
 nano /etc/pacman.d/mirrorlist
 ```
-将传输速度较快的服务器排到前面。
+可参照[MirrorStatus](https://www.archlinux.org/mirrors/status/#successful)页面将传输速度较快的服务器排到前面。
 
 4.2 安装基本软件包
 ```
