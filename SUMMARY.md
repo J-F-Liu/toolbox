@@ -1,7 +1,5 @@
 # Summary
 
-## [程序员的工具箱](https://github.com/J-F-Liu)
-
 * [前言](README.md)
 
 * [Arch Linux](Arch/README.md)
