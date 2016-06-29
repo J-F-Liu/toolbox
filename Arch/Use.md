@@ -155,7 +155,22 @@ iptables -A OUTPUT -p tcp --sport 587 -m state --state ESTABLISHED,RELATED -j AC
 systemctl reload iptables
 ```
 
-## 4、其他
+下载文件
+```
+curl url -o file
+```
+
+## 4、进程管理
+```
+ps auxww 列出进程及其命令
+ps aux | grep {{string}}
+pstree -p 展示进程树
+kill pid 停止进程
+time cmd 执行命令，并计算执行时间
+```
+
+
+## 5、其他
 
 查看系统信息
 ```
@@ -169,9 +184,6 @@ free -h 查看内存状态
 df -h -a 查看磁盘剩余空间
 du -sh /image 查看文件夹占用空间
 du -kh --max-depth=1 /image
-ps auxww 列出进程及其命令
-ps aux | grep {{string}}
-pstree -p 展示进程树
 ```
 
 查看Shell程序
@@ -215,7 +227,7 @@ whereis <cmd>
 \> redirect command output to a file<br />
 | redirect command output to another command
 
-查看ASCII表
 ```
-man ascii
+man ascii 查看ASCII表
+cal 日历
 ```

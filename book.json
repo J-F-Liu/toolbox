@@ -1,9 +1,13 @@
 {
   "title": "程序员的工具箱",
   "lang":"zh-cn",
+  "plugins": ["github"],
   "pluginsConfig": {
     "theme-default": {
-        "showLevel": true
-      }
+      "showLevel": true
+    },
+    "github": {
+      "url": "https://github.com/J-F-Liu/toolbox"
+    }
   }
 }
