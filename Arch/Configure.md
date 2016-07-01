@@ -156,20 +156,7 @@ passwd junfeng
 reboot
 ```
 
-修改i3的配置
-```
-nano ~/.config/i3/config
-```
-加入
-> exec --no-startup-id fcitx
-
-编辑完成后，$mod+shift+c重新加载i3配置
-
-修改i3status的配置
-```
-mkdir ~/.config/i3status && cp /etc/i3status.conf ~/.config/i3status/config
-nano ~/.config/i3status/config
-```
+初次进入i3的界面，按Enter键生成配置文件并设置选项，然后按$mod+Enter打开终端窗口。
 
 安装packer，用于从AUR安装软件
 ```
@@ -192,6 +179,21 @@ Ctrl + Space 激活输入法<br />
 Ctrl + Shift 输入法间切换（全拼\双拼\表音）<br />
 -/= ↑↓ 向前/向后翻页<br />
 Shift + Space 全角、半角切换
+
+修改i3的配置
+```
+nano ~/.config/i3/config
+```
+加入
+> exec --no-startup-id fcitx
+
+编辑完成后，$mod+shift+c重新加载i3配置
+
+修改i3status的配置
+```
+mkdir ~/.config/i3status && cp /etc/i3status.conf ~/.config/i3status/config
+nano ~/.config/i3status/config
+```
 
 ## 5、常用软件
 

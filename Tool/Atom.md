@@ -2,6 +2,10 @@
 
 网站：https://atom.io/
 
+## 安装
+```
+packer -S atom-editor
+```
 
 ## 快捷键
 ```
