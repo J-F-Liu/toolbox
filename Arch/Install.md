@@ -77,7 +77,7 @@ elinks wiki.archlinux.org
 
 3.1 显示所有连接到系统的存储设备和分区状况
 ```
-lsblk --paths
+lsblk --fs --paths
 ```
 
 3.2 编辑硬盘分区表，指定所需的目标设备
@@ -93,7 +93,7 @@ UEFI的主板，需要一个EFI系统分区，容量为512MiB或更大。
 
 3.3 格式化分区
 
-EFI分区 (sda1) 须使用FAT32格式。
+EFI分区 (sda1) 须使用FAT32格式，分区类型设成**EFI System**。
 ```
 mkfs.fat -F32 /dev/sda1
 ```
@@ -155,9 +155,9 @@ bootctl install
 nano /boot/loader/loader.conf
 ```
 > ```
-  default  arch
   timeout  3
   editor   0
+  default  arch
   ```
 
 查看硬盘分区的UUID
@@ -183,6 +183,18 @@ pacman -S grub
 grub-install --recheck /dev/sda
 pacman -S os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+4.6 如果需要使用无线网卡，安装wifi-menu的依赖包
+```
+pacman -S iw wpa_supplicant dialog
+```
+
+如果需要连接蓝牙设备
+```
+pacman -S bluez bluez-utils
+systemctl start bluetooth
+systemctl enable bluetooth
 ```
 
 ## 5、完成安装

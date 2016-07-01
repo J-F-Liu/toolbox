@@ -110,23 +110,6 @@ EDITOR=nano visudo
 pacman -S htop
 ```
 
-安装yaourt，用于从AUR安装软件
-```
-nano /etc/pacman.conf
-```
-加入
-> ```
-  [archlinuxfr]
-  SigLevel = Never
-  Server = http://repo.archlinux.fr/$arch
-  ```
-
-运行
-```
-pacman -Sy yaourt
-yaourt -Syy
-```
-
 ## 2、命令解析器(shell)
 ```
 pacman -S zsh
@@ -162,12 +145,6 @@ pacman -S i3 dmenu termite
 pacman -S ttf-dejavu wqy-zenhei wqy-microhei
 ```
 
-安装输入法
-```
-pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin
-yaourt -S fcitx-sogoupinyin
-```
-
 ## 4、创建一个新的帐号，比如junfeng
 ```
 useradd -m -G users,wheel -s /usr/bin/zsh junfeng
@@ -194,6 +171,22 @@ mkdir ~/.config/i3status && cp /etc/i3status.conf ~/.config/i3status/config
 nano ~/.config/i3status/config
 ```
 
+安装packer，用于从AUR安装软件
+```
+sudo pacman -S curl git expac jshon
+mkdir packer && cd packer
+curl https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer -o PKGBUILD
+makepkg
+sudo pacman -U packer-*.pkg.tar.xz
+cd ..
+sudo rm -dR packer
+```
+
+安装输入法
+```
+pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin
+packer -S fcitx-sogoupinyin
+```
 Ctrl + Space 激活输入法<br />
 左Shift 临时切换到英文<br />
 Ctrl + Shift 输入法间切换（全拼\双拼\表音）<br />
@@ -220,7 +213,7 @@ pacman -S clipit
 网页浏览器
 ```
 pacman -S chromium
-yaourt -S chromium-pepper-flash
+packer -S chromium-pepper-flash
 ```
 
 图片浏览器
