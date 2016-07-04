@@ -136,3 +136,36 @@ Just as in the subject, use the imperative, present tense
 
 ### footer
 The footer should contain any information about Breaking Changes and is also the place to reference GitHub issues that this commit closes.
+
+## 启动Gogs自助式Git服务
+```
+docker pull gogs/gogs
+docker volume create --name gogs-data
+docker run -d --name=gogs -p 10022:22 -p 10080:3000 -v gogs-data:/data gogs/gogs
+less /var/lib/docker/volumes/gogs-data/_data/gogs/log/gogs.log
+ls /var/lib/docker/volumes/gogs-data/_data/git/gogs-repositories
+```
+
+开机自动运行Gogs
+```
+nano /etc/systemd/system/gogs.service
+```
+```
+[Unit]
+Description=Go Git Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill gogs
+ExecStartPre=-/usr/bin/docker rm gogs
+ExecStart=/usr/bin/docker run -d --name=gogs -p 10022:22 -p 10080:3000 -v gogs-data:/data gogs/gogs
+ExecStop=/usr/bin/docker stop gogs
+
+[Install]
+WantedBy=multi-user.target
+```
+```
+systemctl enable gogs.service
+```

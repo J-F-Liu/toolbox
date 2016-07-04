@@ -169,8 +169,18 @@ kill pid 停止进程
 time cmd 执行命令，并计算执行时间
 ```
 
+## 5、内核模块
+```
+lsmod 显示当前装入的内核模块
+modinfo module_name 显示模块信息
+modprobe -c | grep module_name 显示某个模块的配置信息
+modprobe --show-depends module_name 显示模块的依赖关系
+modprobe module_name 手动装入模块的话
+rmmod module_name 
+```
+使用 /etc/modprobe.d/中的文件配置内核模块参数
 
-## 5、其他
+## 6、其他
 
 查看系统信息
 ```
