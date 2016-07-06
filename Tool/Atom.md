@@ -39,5 +39,5 @@ file-icons 给文件加上好看的图标
 minimap 方便美观的缩略滚动图
 
 atom-ternjs js代码提示很强大，高度定制化
-React React支持
+react React支持
 ```

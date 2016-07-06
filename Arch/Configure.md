@@ -92,6 +92,13 @@ nano /etc/resolv.conf
   nameserver 8.8.4.4
   ```
 
+自动连WiFi
+```
+pacman -S networkmanager network-manager-applet
+systemctl start NetworkManager
+systemctl enable NetworkManager
+nm-applet
+```
 # 工作站{#workstation}
 
 ## 1、常用命令
@@ -171,8 +178,9 @@ sudo rm -dR packer
 
 安装输入法
 ```
-pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin
+pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin fcitx-configtool
 packer -S fcitx-sogoupinyin
+fcitx-config-gtk3
 ```
 Ctrl + Space 激活输入法<br />
 左Shift 临时切换到英文<br />
