@@ -1,5 +1,10 @@
 # Git
 
+## Install
+```
+pacman -S git gitg
+```
+
 ## Configuration
 ```
 git config --global user.email "china.liujunfeng@gmail.com"
