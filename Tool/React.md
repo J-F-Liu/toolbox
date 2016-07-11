@@ -18,3 +18,22 @@
 ## 范例代码
 
 - [webpack-react-boilerplate](https://github.com/J-F-Liu/webpack-react-boilerplate)
+
+## JSX的优点
+React’s JSX is fundamentally superior for a few simple reasons:
+- Leverage the Full Power of JavaScript
+- Compile-time Errors
+- Intellisense Support
+
+## 基本概念
+An element is a plain object describing what you want to appear on the screen in terms of the DOM nodes or other components.
+Elements can contain other elements in their props. Creating a React element is cheap. Once an element is created, it is never mutated.
+
+A component can be declared in several different ways. It can be a class with a render() method.
+Alternatively, in simple cases, it can be defined as a function. In either case, it takes props as an input, and returns an element tree as the output.
+
+When a component receives some props as an input, it is because a particular parent component returned an element with its type and these props.
+This is why people say that the props flows one way in React: from parents to children.
+
+An instance is what you refer to as this in the component class you write. It is useful for storing local state and reacting to the lifecycle events.
+Functional components don’t have instances at all. Class components have instances, but you never need to create a component instance directly—React takes care of this.
