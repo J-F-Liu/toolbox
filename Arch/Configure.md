@@ -224,6 +224,7 @@ pacman -S clipit
 ```
 pacman -S chromium
 packer -S chromium-pepper-flash
+chromium --proxy-server="socks5://127.0.0.1:1080"
 ```
 
 图片浏览器
