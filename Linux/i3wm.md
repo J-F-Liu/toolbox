@@ -2,7 +2,7 @@
 
 ## 常用快捷键
 $mod一般为Alt或Win键，初次启动i3时可进行设置。
-* $mod + return: opens a new terminal
+* $mod + enter: opens a new terminal
 * $mod + d: open application launcher (dmenu)
 * $mod + shift + q: kill a window
 * $mod + shift + e: exit i3

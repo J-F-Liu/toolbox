@@ -150,6 +150,7 @@ pacman -S i3 dmenu termite
 安装字体
 ```
 pacman -S ttf-dejavu wqy-zenhei wqy-microhei
+packer -S ttf-ms-fonts ttf-google-fonts-git
 ```
 
 ## 4、创建一个新的帐号，比如junfeng
@@ -249,7 +250,7 @@ pacman -S libreoffice-fresh libreoffice-fresh-zh-CN
 
 图像编辑
 ```
-pacman -S krita
+pacman -S krita shutter
 ```
 
 脑图创作
@@ -259,7 +260,7 @@ pacman -S xmind
 
 电子邮件客户端
 ```
-pacman -S n1
+packer -S n1
 ```
 
 FTP客户端

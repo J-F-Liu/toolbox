@@ -36,6 +36,7 @@ git commit --amend --reset-author
 ## Remote Repository
 ```
 git remote -v
+git remote remove origin
 git remote add origin https://github.com/J-F-Liu/toolbox.git
 git branch --set-upstream-to=origin/master master
 git push --set-upstream origin master

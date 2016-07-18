@@ -25,6 +25,11 @@ pacman -Qe
 pacman -Qs string1 string2
 ```
 
+列出软件包所包含的文件
+```
+pacman -Ql package_name
+```
+
 搜索服务器上的软件包
 ```
 pacman -Ss string1 string2
