@@ -112,9 +112,9 @@ EDITOR=nano visudo
 
 执行大量pacman等需要超级用户权限的命令时，也可以用`su`切换到root帐号。
 
-进程管理
+进程管理、域名信息
 ```
-pacman -S htop
+pacman -S htop whois
 ```
 
 ## 2、命令解析器(shell)
@@ -151,6 +151,41 @@ pacman -S i3 dmenu termite
 ```
 pacman -S ttf-dejavu wqy-zenhei wqy-microhei
 packer -S ttf-ms-fonts ttf-google-fonts-git
+```
+
+配置termite
+```
+nano ~/.config/termite/config
+```
+> ```
+[options]
+font = DejaVu Sans Mono 12
+
+[colors]
+foreground = #dcdccc
+foreground_bold = #ffffff
+background = #3f3f3f
+
+# if unset, will reverse foreground and background
+highlight = #2f2f2f
+
+# colors from color0 to color254 can be set
+color0 = #3f3f3f
+color1 = #705050
+color2 = #60b48a
+color3 = #dfaf8f
+color4 = #506070
+color5 = #dc8cc3
+color6 = #8cd0d3
+color7 = #dcdccc
+color8 = #709080
+color9 = #dca3a3
+color10 = #c3bf9f
+color11 = #f0dfaf
+color12 = #94bff3
+color13 = #ec93d3
+color14 = #93e0e3
+color15 = #ffffff
 ```
 
 ## 4、创建一个新的帐号，比如junfeng
@@ -248,7 +283,7 @@ pacman -S audacious smplayer
 pacman -S libreoffice-fresh libreoffice-fresh-zh-CN
 ```
 
-图像编辑
+图像编辑、屏幕截图
 ```
 pacman -S krita shutter
 ```
