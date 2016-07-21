@@ -23,6 +23,7 @@ ctrl-d 选取文档中和当前单词相同的下一处
 ctrl-shift-u 调出切换编码选项
 ctrl-shift-L 选择语法类型
 ctrl-space 提示补全信息
+alt-shift-↑↓ 按列选择多行同时编辑
 ```
 
 ## 插件

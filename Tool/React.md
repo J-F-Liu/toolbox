@@ -3,6 +3,9 @@
 ## 官方文档
 - https://facebook.github.io/react/docs/getting-started.html
 - https://facebook.github.io/react/blog/
+- [React Components, Elements, and Instances](https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html)
+- [React.cloneElement](https://facebook.github.io/react/blog/2015/03/03/react-v0.13-rc2.html#react.cloneelement)
+- [Mixins Considered Harmful](https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html)
 
 ## 学习资料
 
@@ -14,6 +17,7 @@
 - [React Router 使用教程](http://www.ruanyifeng.com/blog/2016/05/react_router.html)
 - [前后端分离系列文章](http://bbear.me/tag/qian-hou-duan-fen-chi/)
 - [ES2015实战——面向未来编程](http://yanhaijing.com/javascript/2016/04/27/es2015-practice/)
+- [React 相关经验及发展动态](https://zhuanlan.zhihu.com/purerender)
 
 ## 范例代码
 
