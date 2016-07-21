@@ -153,41 +153,6 @@ pacman -S ttf-dejavu wqy-zenhei wqy-microhei
 packer -S ttf-ms-fonts ttf-google-fonts-git
 ```
 
-配置termite
-```
-nano ~/.config/termite/config
-```
-> ```
-[options]
-font = DejaVu Sans Mono 12
-
-[colors]
-foreground = #dcdccc
-foreground_bold = #ffffff
-background = #3f3f3f
-
-# if unset, will reverse foreground and background
-highlight = #2f2f2f
-
-# colors from color0 to color254 can be set
-color0 = #3f3f3f
-color1 = #705050
-color2 = #60b48a
-color3 = #dfaf8f
-color4 = #506070
-color5 = #dc8cc3
-color6 = #8cd0d3
-color7 = #dcdccc
-color8 = #709080
-color9 = #dca3a3
-color10 = #c3bf9f
-color11 = #f0dfaf
-color12 = #94bff3
-color13 = #ec93d3
-color14 = #93e0e3
-color15 = #ffffff
-```
-
 ## 4、创建一个新的帐号，比如junfeng
 ```
 useradd -m -G users,wheel -s /usr/bin/zsh junfeng
@@ -216,13 +181,14 @@ sudo rm -dR packer
 ```
 pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin fcitx-configtool
 packer -S fcitx-sogoupinyin
+fcitx -r 安装搜狗拼音后重启动fcitx
 fcitx-config-gtk3
 ```
 Ctrl + Space 激活输入法<br />
-左Shift 临时切换到英文<br />
-Ctrl + Shift 输入法间切换（全拼\双拼\表音）<br />
--/= ↑↓ 向前/向后翻页<br />
-Shift + Space 全角、半角切换
+Ctrl + Shift 切换输入法<br />
+Shift + Space 全角、半角切换<br />
+左Shift 切换中英文<br />
+-/= ↑↓ 向前/向后翻页
 
 修改i3的配置
 ```
@@ -243,17 +209,17 @@ nano ~/.config/i3status/config
 
 文件管理器
 ```
-pacman -S ranger krusader
+pacman -S mc krusader
 ```
 
 压缩软件
 ```
-pacman -S ark
+pacman -S ark unrar p7zip
 ```
 
-剪贴板管理器
+文本编辑器、剪贴板管理器
 ```
-pacman -S clipit
+pacman -S medit clipit
 ```
 
 网页浏览器
@@ -293,9 +259,9 @@ pacman -S krita shutter
 pacman -S xmind
 ```
 
-电子邮件客户端
+电子邮件客户端、编程文档
 ```
-packer -S n1
+packer -S n1 zeal
 ```
 
 FTP客户端
