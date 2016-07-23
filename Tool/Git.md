@@ -3,6 +3,7 @@
 ## Install
 ```
 pacman -S git gitg
+packer -S gitkraken
 ```
 
 ## Configuration

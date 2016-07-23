@@ -20,3 +20,17 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * /etc/i3/config
 * ~/.i3/config
 * ~/.config/i3/config
+
+
+```
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+        status_command i3status
+}
+
+bindsym $mod+l exec /bin/bash -c 'i3lock -i <(import -window root - | convert -blur -5x5 - png:-)'
+
+exec --no-startup-id fcitx
+exec --no-startup-id clipit
+```

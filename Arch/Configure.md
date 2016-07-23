@@ -144,7 +144,7 @@ systemctl enable lightdm.service
 
 安装窗口管理器(window manager)
 ```
-pacman -S i3 dmenu termite
+pacman -S i3 i3lock dmenu termite
 ```
 
 安装字体
@@ -236,7 +236,7 @@ pacman -S gpicview
 
 PDF阅读器
 ```
-pacman -S zathura evince
+pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
 ```
 
 音乐、视频播放器
@@ -251,7 +251,7 @@ pacman -S libreoffice-fresh libreoffice-fresh-zh-CN
 
 图像编辑、屏幕截图
 ```
-pacman -S krita shutter
+pacman -S krita scrot shutter
 ```
 
 脑图创作
@@ -283,7 +283,7 @@ mount -t cifs -o username=username,password="password" //16.187.190.50/test /mnt
 
 虚拟机
 ```
-pacman -S virtualbox
+pacman -S virtualbox virtualbox-guest-iso
 ```
 创建一个虚拟机，安装Windows10系统，将某个本地目录映射为虚拟机的一个分区。<br />
 目前需要在Windows中运行的软件有QQ、迅雷、百度云同步盘。

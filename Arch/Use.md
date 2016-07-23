@@ -176,7 +176,7 @@ modinfo module_name 显示模块信息
 modprobe -c | grep module_name 显示某个模块的配置信息
 modprobe --show-depends module_name 显示模块的依赖关系
 modprobe module_name 手动装入模块的话
-rmmod module_name 
+rmmod module_name
 ```
 使用 /etc/modprobe.d/中的文件配置内核模块参数
 
@@ -240,4 +240,5 @@ whereis <cmd>
 ```
 man ascii 查看ASCII表
 cal 日历
+date 日期和时间
 ```
