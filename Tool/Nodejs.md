@@ -24,8 +24,6 @@ npm dedupe                   重新计算依赖关系，优化模块的存放结
 
 - 使用国内的镜像服务
 ```
-npm config set strict-ssl false
-npm config set registry http://registry.cnpmjs.org
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-cnpm install [name]
+npm config ls
+npm config set registry https://registry.npm.taobao.org
 ```

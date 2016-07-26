@@ -29,7 +29,7 @@ bar {
         status_command i3status
 }
 
-bindsym $mod+l exec /bin/bash -c 'i3lock -i <(import -window root - | convert -blur -5x5 - png:-)'
+bindsym $mod+End exec /bin/bash -c 'i3lock -i <(import -window root - | convert -blur -5x5 - png:-)'
 
 exec --no-startup-id fcitx
 exec --no-startup-id clipit

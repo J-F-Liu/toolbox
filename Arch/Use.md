@@ -212,10 +212,12 @@ export EDITOR=/usr/bin/nano
 nano /etc/profile
 ```
 
-> ```
-  PATH=$PATH:/home/vagrant/.gem/ruby/2.2.0/bin
-  alias ll='ls -l --color=auto'
-  ```
+>
+```
+PATH=$PATH:/home/vagrant/.gem/ruby/2.2.0/bin
+alias ll='ls -l --color=auto'
+alias ssh="TERM=xterm ssh"
+```
 
 ```
 source /etc/profile

@@ -25,6 +25,11 @@ pacman -Qe
 pacman -Qs string1 string2
 ```
 
+查询软件包的基本信息
+```
+pacman -Qi package_name
+```
+
 列出软件包所包含的文件
 ```
 pacman -Ql package_name
@@ -43,7 +48,7 @@ reflector --verbose -l 5 -p http --sort rate --save /etc/pacman.d/mirrorlist
 
 每周自动运行一次reflector
 ```
-yaourt -S reflector-timer-weekly
+packer -S reflector-timer-weekly
 systemctl enable reflector.timer
 nano /etc/reflector.conf
 ```
