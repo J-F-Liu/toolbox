@@ -28,7 +28,7 @@ systemctl start unit
 
 立即停止某个单元：
 ```
-systemctl stopt unit
+systemctl stop unit
 ```
 
 重新启动某个单元：

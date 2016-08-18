@@ -20,6 +20,7 @@ IPForward=kernel
 
 ## 常用命令
 ```
+docker version 查看docker的版本信息
 docker pull image_name 从仓库获取所需要的镜像
 docker images 列出镜像
 docker ps -a 列出容器
