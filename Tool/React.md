@@ -13,6 +13,7 @@
 - [React’s JSX: The Other Side of the Coin](https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98)
 - [You’re Missing the Point of React](https://medium.com/@dan_abramov/youre-missing-the-point-of-react-a20e34a51e1a)
 - [Navigating the React.JS Ecosystem](https://www.toptal.com/react/navigating-the-react-ecosystem)
+- [React组件的生命周期](https://segmentfault.com/a/1190000006807631)
 - [ReactJS组件间沟通的一些方法](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/)
 - [React Router 使用教程](http://www.ruanyifeng.com/blog/2016/05/react_router.html)
 - [前后端分离系列文章](http://bbear.me/tag/qian-hou-duan-fen-chi/)

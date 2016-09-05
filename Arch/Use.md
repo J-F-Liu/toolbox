@@ -90,6 +90,11 @@ unzip -o test.zip -d tmp/
 unzip -v test.zip
 ```
 
+计算MD5校验码
+```
+md5sum /path/to/file
+```
+
 ## 2、帐号管理
 
 查看帐号id及所在的用户组
@@ -171,7 +176,7 @@ time cmd 执行命令，并计算执行时间
 
 ## 5、内核模块
 ```
-lsmod 显示当前装入的内核模块
+lsmod | sort 显示当前装入的内核模块
 modinfo module_name 显示模块信息
 modprobe -c | grep module_name 显示某个模块的配置信息
 modprobe --show-depends module_name 显示模块的依赖关系
@@ -243,4 +248,6 @@ whereis <cmd>
 man ascii 查看ASCII表
 cal 日历
 date 日期和时间
+uptime 系统已运行了多长时间
+last -x | less 系统登录和重启的记录
 ```

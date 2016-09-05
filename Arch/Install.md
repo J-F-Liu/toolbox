@@ -139,7 +139,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-4.5 安装 bootloader
+4.5 安装 bootloader，分两种情况
 
 - EFI启动
 

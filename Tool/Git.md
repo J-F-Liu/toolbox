@@ -2,7 +2,7 @@
 
 ## Install
 ```
-pacman -S git gitg
+pacman -S git
 packer -S gitkraken
 ```
 

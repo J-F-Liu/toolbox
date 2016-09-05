@@ -27,6 +27,7 @@ pacman -Qs string1 string2
 
 查询软件包的基本信息
 ```
+pacman -Si package_name
 pacman -Qi package_name
 ```
 
@@ -58,3 +59,8 @@ nano /etc/reflector.conf
   --sort rate
   --save /etc/pacman.d/mirrorlist
   ```
+
+删除packer缓存的文件
+```
+rm -rf /tmp/packerbuild-*
+```
