@@ -176,3 +176,5 @@ WantedBy=multi-user.target
 ```
 systemctl enable gogs.service
 ```
+
+- [30 分钟 git 命令入门](http://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/)

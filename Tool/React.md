@@ -19,6 +19,7 @@
 - [前后端分离系列文章](http://bbear.me/tag/qian-hou-duan-fen-chi/)
 - [ES2015实战——面向未来编程](http://yanhaijing.com/javascript/2016/04/27/es2015-practice/)
 - [React 相关经验及发展动态](https://zhuanlan.zhihu.com/purerender)
+- [高性能 React 组件](http://taobaofed.org/blog/2016/08/12/optimized-react-components/)
 
 ## 范例代码
 

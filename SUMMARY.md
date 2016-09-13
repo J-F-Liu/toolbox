@@ -25,4 +25,5 @@
 * [Markdown](Tool/Markdown.md)
 * [Node.js](Tool/Nodejs.md)
 * [React](Tool/React.md)
+* [Web技术](Tool/Web.md)
 * [CoreOS](CoreOS/README.md)
