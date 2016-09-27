@@ -2,6 +2,7 @@
 
 ## HTTP
 - [互联网协议入门](http://www.ruanyifeng.com/blog/2012/05/internet_protocol_suite_part_i.html)
+- [99%的人都理解错了HTTP中GET与POST的区别](https://zhuanlan.zhihu.com/p/22536382)
 - [聊聊HTTPS和SSL/TLS协议](http://mp.weixin.qq.com/s?__biz=MjM5ODE0MTM1MA==&mid=204884896&idx=1&sn=039ecac06ffc7e57e3d38f6d54480492#rd)
 
 ## HTML
@@ -16,10 +17,12 @@
 - [CSS魔法堂：Box-Shadow没那么简单啦:)](http://web.jobbole.com/86168/)
 
 ## JavaScript
+- [总结ES6常用的新特性](http://luckykun.com/work/2016-05-10/es6-feature.html)
 - [30行代码实现Javascript中的MVC](http://www.cnblogs.com/front-end-ralph/p/5190442.html)
 - [JavaScript 节流函数 Throttle 详解](https://keelii.github.io/2016/06/11/javascript-throttle/)
 - [用 ParallelJS 并行处理 JavaScript](http://web.jobbole.com/86557/)
 - [JavaScript 资源大全中文版](https://github.com/jobbole/awesome-javascript-cn)
+- [让 Javascript 优雅如诗](http://www.ycwalker.com/2016/09/19/elegant-javascript/)
 
 ## Design
 - [解读设计风格的变迁史](http://www.jianshu.com/p/3bb4f671094f)

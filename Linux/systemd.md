@@ -51,6 +51,11 @@ systemctl enable unit
 systemctl disable unit
 ```
 
+重置运行失败的单元状态：
+```
+systemctl reset-failed
+```
+
 读取某个单元的日志：
 ```
 journalctl -u unit

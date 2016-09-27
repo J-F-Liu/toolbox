@@ -5,6 +5,12 @@
 pacman -S nodejs npm python2
 ```
 
+- 调试
+```
+npm install -g node-inspector
+node-debug app.js
+```
+
 - 升级npm
 ```
 npm -v
@@ -21,6 +27,7 @@ npm update <packageName>     更新已安装模块
 npm rebuild node-sass        重新编译node-sass
 npm outdated                 检测当前安装的所有模块是否有更新
 npm dedupe                   重新计算依赖关系，优化模块的存放结构
+npm run                      列出在package.json文件中定义的脚本命令
 ```
 - 卸载模块
 ```
