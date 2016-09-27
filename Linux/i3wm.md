@@ -33,4 +33,5 @@ bindsym $mod+End exec /bin/bash -c 'i3lock -i <(import -window root - | convert 
 
 exec --no-startup-id fcitx
 exec --no-startup-id clipit
+exec --no-startup-id volwheel
 ```

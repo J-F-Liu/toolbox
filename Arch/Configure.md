@@ -153,6 +153,28 @@ pacman -S ttf-dejavu wqy-zenhei wqy-microhei
 packer -S ttf-ms-fonts ttf-google-fonts-git
 ```
 
+开启声音
+```
+pacman -S alsa-utils volumeicon
+amixer sset Master unmute 解除各声道的静音
+alsamixer
+speaker-test -c 2 测试声卡是否工作
+```
+
+```
+aplay -l 获取声卡的声卡ID和对应的输出设备ID
+aplay -D plughw:0,3 /usr/share/sounds/alsa/Front_Center.wav 测试HDMI输出声音（在该例中，0是声卡编号，3是设备编号）
+nano ~/.asoundrc 修改配置文件把HDMI设置成默认设备
+alsactl kill rescan 重新加载配置文件，然后重新打开播放声音的程序
+```
+```
+pcm.!default {
+  type hw
+  card 0
+  device 3
+}
+```
+
 ## 4、创建一个新的帐号，比如junfeng
 ```
 useradd -m -G users,wheel -s /usr/bin/zsh junfeng
@@ -251,7 +273,7 @@ pacman -S libreoffice-fresh libreoffice-fresh-zh-CN
 
 图像编辑、屏幕截图
 ```
-pacman -S krita scrot shutter
+pacman -S pinta scrot shutter
 ```
 
 脑图创作
@@ -353,6 +375,7 @@ nano /etc/bftpd.conf
 ```
 systemctl start bftpd
 less /var/log/bftpd.log
+bftpd start -d
 ```
 
 # 网站服务
