@@ -144,7 +144,7 @@ systemctl enable lightdm.service
 
 安装窗口管理器(window manager)
 ```
-pacman -S i3 i3lock dmenu termite
+pacman -S i3-wm i3lock i3blocks dmenu termite
 ```
 
 安装字体
@@ -217,15 +217,14 @@ Shift + Space 全角、半角切换<br />
 nano ~/.config/i3/config
 ```
 加入
-> exec --no-startup-id fcitx
+> ```
+  bar {
+          status_command i3blocks
+  }
+  exec --no-startup-id fcitx
+```
 
 编辑完成后，$mod+shift+c重新加载i3配置
-
-修改i3status的配置
-```
-mkdir ~/.config/i3status && cp /etc/i3status.conf ~/.config/i3status/config
-nano ~/.config/i3status/config
-```
 
 ## 5、常用软件
 

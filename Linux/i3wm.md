@@ -7,6 +7,7 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * $mod + shift + q: kill a window
 * $mod + shift + e: exit i3
 * $mod + shift + c: reload i3 configuration
+* $mod + shift + r: restart i3
 * $mod + number: switch to another work space
 * $mod + shift + number: move a window to another work space
 * $mod + e: default container layout
@@ -20,13 +21,13 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * /etc/i3/config
 * ~/.i3/config
 * ~/.config/i3/config
-
+* /etc/i3blocks.conf
+* ~/.i3blocks.conf
 
 ```
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Start i3blocks to display a workspace bar
 bar {
-        status_command i3status
+        status_command i3blocks
 }
 
 bindsym $mod+End exec /bin/bash -c 'i3lock -i <(import -window root - | convert -blur -5x5 - png:-)'

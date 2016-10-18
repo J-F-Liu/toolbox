@@ -32,6 +32,14 @@ git status
 git commit
 git commit --amend
 git commit --amend --reset-author
+
+git stash list
+git stash save
+git stash pop
+
+git reflog 查看所有分支的操作记录，包括已经被删除的commit记录
+git fsck --lost-found
+git cherry-pick 从不同的分支中捡出一个单独的commit，并把它和你当前的分支合并
 ```
 
 ## Remote Repository
@@ -81,9 +89,6 @@ Branch
 git branch -v
 
 git diff --check
-
-git stash save
-git stash pop
 
 git checkout <commit>
 git checkout master

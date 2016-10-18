@@ -1,6 +1,11 @@
 # .NET Core
 
-## Install
+## Install from AUR
+```
+packer -S dotnet-cli
+```
+
+## Install from Docker
 ```
 docker run -it  -v /work/dotnet:/root/dotnet microsoft/dotnet:latest
 ```
@@ -15,3 +20,6 @@ dotnet run – Runs the application from source.
 dotnet test – Runs tests using a test runner specified in the project.json.
 dotnet pack – Creates a NuGet package of your code.
 ```
+
+## Books
+- [Fundamentals of Computer Programming with C#](http://www.introprogramming.info/english-intro-csharp-book/read-online/chapter-preface/)

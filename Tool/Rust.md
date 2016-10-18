@@ -9,7 +9,7 @@ cargo -V
 
 - [rustup](https://rustup.rs/)
 ```
-curl https://sh.rustup.rs -sSf | sh
+pacman -S rustup
 rustup install nightly
 rustup default nightly
 rustup update
@@ -107,6 +107,11 @@ let mut p = Node {
                 left:None, right: None,
             };
 ```
+
+## Articles
+- [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
+- [Implementing Finite Automata](https://apanatshka.github.io/compsci/2016/10/03/implementing-finite-automata-part-1/)
+- [Rusty Dynamic Loading](https://damienradtke.com/post/rusty-dynamic-loading/)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)

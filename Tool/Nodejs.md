@@ -39,3 +39,23 @@ npm uninstall <packageName> -S 卸载并更新package.json文件
 npm config ls
 npm config set registry https://registry.npm.taobao.org
 ```
+
+- Yarn
+```
+packer -S yarn
+yarn init
+yarn info <package>
+yarn add [package]
+yarn add [package] --dev
+yarn add [package] --peer
+yarn add [package]@[version]
+yarn add [package]@[tag]
+yarn upgrade [package]
+yarn remove [package]
+yarn outdated
+yarn ls
+yarn
+yarn start
+yarn test
+yarn run [script]
+```

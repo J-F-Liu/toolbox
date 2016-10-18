@@ -1,15 +1,10 @@
 # 使用Arch Linux
 
 ## 1、文件操作
-
-查看当前工作目录的路径
 ```
-pwd
-```
-
-列出当前目录中的文件
-```
-ls
+pwd 查看当前工作目录的路径
+cd  更改当前工作目录
+ls 列出当前目录中的文件
 ls -l
 ```
 
@@ -172,6 +167,8 @@ ps aux | grep {{string}}
 pstree -p 展示进程树
 kill pid 停止进程
 time cmd 执行命令，并计算执行时间
+top      显示进程列表
+shutdown 关机
 ```
 
 ## 5、内核模块
@@ -228,14 +225,15 @@ alias ssh="TERM=xterm ssh"
 source /etc/profile
 ```
 
-查看命令的文件路径
+识别命令
 ```
-which <cmd>
-```
-在全部路径中查找
-```
-which -a <cmd>
-whereis <cmd>
+type <cmd>  显示命令的类型
+which <cmd> 查看命令的文件路径
+whatis <cmd> 显示非常简洁的命令说明
+man <cmd> 显示命令手册
+info <cmd> 显示程序 Info 条目
+which -a <cmd> 显示所有匹配的可执行文件
+whereis <cmd>  在全部路径中查找
 ```
 
 && chain tasks (Run one task after another)<br />
