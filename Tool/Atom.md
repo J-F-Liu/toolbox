@@ -29,7 +29,7 @@ alt-shift-↑↓ 按列选择多行同时编辑
 ## 插件
 ```
 markdown-writer 提供书写 Markdown 快捷键
-terminal-panel 直接在atom里面写命令
+tokamak-terminal 在atom里打开终端面板
 color-picker 取色器 必备插件
 svg-preview svg预览
 

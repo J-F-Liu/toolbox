@@ -262,7 +262,7 @@ pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
 
 音乐、视频播放器
 ```
-pacman -S audacious smplayer
+pacman -S audacious smplayer mkvtoolnix
 ```
 
 办公软件
