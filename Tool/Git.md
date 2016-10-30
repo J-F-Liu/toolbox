@@ -152,11 +152,19 @@ The footer should contain any information about Breaking Changes and is also the
 ## 启动Gogs自助式Git服务
 ```
 docker pull gogs/gogs
+docker run -d --name=gogs -p 10022:22 -p 10080:3000 -v /repo:/data gogs/gogs
+# or use volume
 docker volume create --name gogs-data
 docker run -d --name=gogs -p 10022:22 -p 10080:3000 -v gogs-data:/data gogs/gogs
 less /var/lib/docker/volumes/gogs-data/_data/gogs/log/gogs.log
 ls /var/lib/docker/volumes/gogs-data/_data/git/gogs-repositories
 ```
+
+首次运行后打开网页进行配置
+- 域名: IP
+- SSH端口: 10022
+- HTTP端口: 3000
+- 应用 URL: http://<IP>:10080/
 
 开机自动运行Gogs
 ```
