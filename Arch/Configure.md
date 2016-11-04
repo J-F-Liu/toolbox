@@ -314,9 +314,11 @@ pacman -S virtualbox virtualbox-guest-iso
 
 ## 创建虚拟内存
 ```
-dd if=/dev/zero of=/swap bs=1M count=1024
-mkswap /swap
-swapon /swap
+fallocate -l 2G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 ```
 
 ## RAID磁盘阵列

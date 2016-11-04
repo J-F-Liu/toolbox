@@ -25,7 +25,12 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * ~/.i3blocks.conf
 
 ```
-# Start i3blocks to display a workspace bar
+# run `xprop` and click target window to get class name
+assign [class="chromium"]  →  3: chromium
+assign [class="Krusader"]  →  4: krusader
+assign [class="google-chrome"]  →  5: chrome
+
+# Dsplay a workspace bar
 bar {
         status_command i3blocks
 }

@@ -23,6 +23,7 @@ npm install <packageName>    安装package
 npm install <packageName> -S 安装并保存到package.json文件
 npm install <packageName> -D 安装并保存到package.json文件的devDependencies部分
 npm install <packageName> -f 强制重新安装
+npm install githubname/reponame 从Github上的项目源代码安装package
 npm update <packageName>     更新已安装模块
 npm rebuild node-sass        重新编译node-sass
 npm outdated                 检测当前安装的所有模块是否有更新
@@ -45,17 +46,18 @@ npm config set registry https://registry.npm.taobao.org
 packer -S yarn
 yarn init
 yarn info <package>
-yarn add [package]
-yarn add [package] --dev
-yarn add [package] --peer
-yarn add [package]@[version]
-yarn add [package]@[tag]
-yarn upgrade [package]
-yarn remove [package]
+yarn add <package>
+yarn add <package> --dev
+yarn add <package> --peer
+yarn add <package>@<version>
+yarn add <package>@<tag>
+yarn upgrade <package>
+yarn remove <package>
+yarn why <query>
 yarn outdated
 yarn ls
 yarn
 yarn start
 yarn test
-yarn run [script]
+yarn run <script>
 ```

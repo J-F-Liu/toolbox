@@ -28,6 +28,7 @@
 
 ## Design
 - [解读设计风格的变迁史](http://www.jianshu.com/p/3bb4f671094f)
+- [色彩想象力－迷之渐变色](https://blog.maxleap.cn/archives/1201)
 
-## 开源项目
+## Open Source
 - [Art of README](https://github.com/noffle/art-of-readme/blob/master/README-zh.md)

@@ -116,3 +116,4 @@ let mut p = Node {
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
 - [slog-rs - Structured, composable logging for Rust](https://github.com/dpc/slog-rs)
+- [Put your Rust app's data in the right place on every platform](https://github.com/AndyBarron/app-dirs-rs)
