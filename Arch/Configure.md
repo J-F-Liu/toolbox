@@ -19,6 +19,11 @@ nano /etc/locale.gen
 locale-gen
 ```
 
+创建locale.conf文件
+```
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+```
+
 ## 2、设置时区
 ```
 echo Asia/Shanghai > /etc/timezone

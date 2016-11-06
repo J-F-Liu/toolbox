@@ -44,7 +44,7 @@ pacman -Ss string1 string2
 下载最新的镜像服务器列表并且按照速度排序
 ```
 pacman -S reflector
-reflector --verbose -l 5 -p http --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose --latest 5 --protocol http --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
 每周自动运行一次reflector
