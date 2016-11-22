@@ -37,7 +37,7 @@ MACHINE ID
 在/etc/coreos/update.conf中设置升级参数：
 ```
 GROUP=Stable
-REBOOT_STRATEGY=best-effort
+REBOOT_STRATEGY=off
 SERVER=https://example.update.core-os.net
 ```
 每次修改完成后执行`sudo systemctl restart update-engine`命令使配置生效。
@@ -60,12 +60,48 @@ Environment=ALL_PROXY=http://your.proxy.address:port
 
 将ALL_PROXY的值换成实际的代理服务器地址，重启一下update-engine服务。
 
+## 配置docker国内镜像
+```
+echo 'DOCKER_OPTS="--registry-mirror=http://aad0405c.m.daocloud.io"' > /etc/default/docker
+systemctl restart docker
+```
+
 ## 安装nano
 ```
 mkdir -p /opt/bin
 docker run -d --name arch base/archlinux:latest sleep
 docker cp arch:/usr/bin/nano /opt/bin
 docker rm arch
+```
+or in local computer run
+```
+scp /usr/bin/nano root@<server address>:/opt/bin
+```
+
+## 运行htop
+```
+alias htop='docker run --rm -it --pid host tehbilly/htop'
+htop
+```
+
+## 开机时启用swap文件
+```
+fallocate -l 2G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+nano /etc/systemd/system/swapon.service
+systemctl enable --runtime /etc/systemd/system/swapon.service
+```
+> ```
+[Unit]
+Description=Turn on swap
+>
+[Service]
+Type=oneshot
+ExecStart=/sbin/swapon /swapfile
+>
+[Install]
+WantedBy=local.target
 ```
 
 ## etcd

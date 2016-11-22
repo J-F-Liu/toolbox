@@ -4,7 +4,7 @@
 
 ## 安装
 ```
-packer -S atom-editor
+packer -S atom-editor-bin
 ```
 
 ## 快捷键

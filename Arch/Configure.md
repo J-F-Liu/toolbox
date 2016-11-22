@@ -117,9 +117,9 @@ EDITOR=nano visudo
 
 执行大量pacman等需要超级用户权限的命令时，也可以用`su`切换到root帐号。
 
-进程管理、域名信息
+进程管理、域名信息、测量网站延迟
 ```
-pacman -S htop whois
+pacman -S htop whois httping
 ```
 
 ## 2、命令解析器(shell)
@@ -268,6 +268,7 @@ pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
 音乐、视频播放器
 ```
 pacman -S audacious smplayer mkvtoolnix
+packer -S netease-cloud-music
 ```
 
 办公软件
@@ -288,6 +289,11 @@ pacman -S xmind
 电子邮件客户端、编程文档
 ```
 packer -S n1 zeal
+```
+
+文件下载
+```
+pacman -S aria2 uget
 ```
 
 FTP客户端

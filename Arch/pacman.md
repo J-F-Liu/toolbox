@@ -15,6 +15,11 @@ pacman -Rs package_name
 pacman -Syu
 ```
 
+同步所有软件包数据
+```
+pacman -Sy
+```
+
 列出显式安装的软件包
 ```
 pacman -Qe
