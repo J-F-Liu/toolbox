@@ -49,9 +49,7 @@ systemctl enable dhcpcd
 ```
 
 配置静态IP
-```
-nano /etc/systemd/network/enp5s0.network
-```
+> nano /etc/systemd/network/enp5s0.network
 > ```
   [Match]
   Name=enp5s0
@@ -88,9 +86,7 @@ systemctl enable systemd-networkd
 ```
 
 设置域名解析
-```
-nano /etc/resolv.conf
-```
+> nano /etc/resolv.conf
 > ```
   # Google nameservers
   nameserver 8.8.8.8
@@ -104,6 +100,7 @@ systemctl start NetworkManager
 systemctl enable NetworkManager
 nm-applet
 ```
+
 # 工作站{#workstation}
 
 ## 1、常用命令
@@ -235,7 +232,7 @@ nano ~/.config/i3/config
 
 文件管理器
 ```
-pacman -S mc krusader
+pacman -S mc pcmanfm-gtk3
 ```
 
 压缩软件
@@ -257,12 +254,20 @@ chromium --proxy-server="socks5://127.0.0.1:1080"
 
 图片浏览器
 ```
-pacman -S gpicview
+pacman -S gthumb
 ```
 
 PDF阅读器
 ```
 pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
+```
+> nano ~/.config/zathura/zathurarc
+> ```
+set window-title-basename "true"
+set selection-clipboard clipboard
+set recolor true
+set recolor-darkcolor "#93A1A1"
+set recolor-lightcolor "#002B36"
 ```
 
 音乐、视频播放器
@@ -301,10 +306,15 @@ FTP客户端
 pacman -S filezilla
 ```
 
+创建、编辑、刻录光盘文件
+```
+pacman -S brasero
+```
+
 挂载NTFS分区
 ```
 pacman -S ntfs-3g
-mount -t ntfs-3g /dev/sda1 /mnt/windows
+ntfs-3g /dev/sda1 /mnt/windows
 ```
 
 挂载共享目录
@@ -315,9 +325,9 @@ mount -t cifs -o username=username,password="password" //16.187.190.50/test /mnt
 
 虚拟机
 ```
-pacman -S virtualbox virtualbox-guest-iso
+pacman -S virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
 ```
-创建一个虚拟机，安装Windows10系统，将某个本地目录映射为虚拟机的一个分区。<br />
+创建一个虚拟机，安装Windows10系统，将某个本地目录配置成虚拟机中的共享目录。<br />
 目前需要在Windows中运行的软件有QQ、迅雷、百度云同步盘。
 
 
@@ -399,6 +409,20 @@ nano /etc/nginx/nginx.conf
 less /etc/nginx/nginx.conf
 systemctl reload nginx
 ```
+> ```
+    gzip  on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_min_length 2048;
+    gzip_types text/plain text/css application/javascript application/json;
+>
+    # Default server block for undefined domains
+    server {
+        listen 80;
+        return 404;
+    }
+```
 
 ## Samba服务
 
@@ -461,8 +485,6 @@ net use /del [连接名]
 也可以通过net use /del * 选择删除
 
 3. 指定登录帐号
-
 ```
 net use [共享文件夹路径] /user:帐号名 密码
-
 ```

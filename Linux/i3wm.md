@@ -8,6 +8,7 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * $mod + shift + e: exit i3
 * $mod + shift + c: reload i3 configuration
 * $mod + shift + r: restart i3
+* $mod + shift + arrow keys: move window
 * $mod + number: switch to another work space
 * $mod + shift + number: move a window to another work space
 * $mod + e: default container layout

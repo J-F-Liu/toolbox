@@ -117,3 +117,5 @@ let mut p = Node {
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
 - [slog-rs - Structured, composable logging for Rust](https://github.com/dpc/slog-rs)
 - [Put your Rust app's data in the right place on every platform](https://github.com/AndyBarron/app-dirs-rs)
+- [An ergonomic HTTP Client for Rust](https://github.com/seanmonstar/reqwest)
+- [Task Scheduler](https://github.com/dbeck/acto-rs)

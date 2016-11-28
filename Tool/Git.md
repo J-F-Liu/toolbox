@@ -51,6 +51,8 @@ git branch --set-upstream-to=origin/master master
 git push --set-upstream origin master
 git push
 git pull
+git checkout -t origin/another
+git checkout another #Git versions ≥ 1.6.6
 ```
 
 list all the files currently being tracked under the branch master
@@ -86,7 +88,7 @@ git clean -xdf
 
 Branch
 ```
-git branch -v
+git branch -v -a
 
 git diff --check
 

@@ -21,6 +21,7 @@ IPForward=kernel
 ## 常用命令
 ```
 docker version 查看docker的版本信息
+docker info 列出全局信息
 docker run hello-world 测试docker能否正常运行
 
 docker pull image_name 从仓库获取所需要的镜像
