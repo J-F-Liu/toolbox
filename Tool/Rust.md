@@ -12,7 +12,8 @@ cargo -V
 pacman -S rustup
 rustup install nightly
 rustup default nightly
-rustup update
+rustup update nightly
+rustup self update
 ```
 
 - cargo用法

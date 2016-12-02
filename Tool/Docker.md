@@ -7,6 +7,12 @@ systemctl start docker
 systemctl enable docker
 ```
 
+## 普通用户使用docker
+```
+sudo usermod -aG docker $(whoami)
+```
+logout & login again
+
 ## allows IP forwarding from the container
 ```
 nano /etc/systemd/network/<interface>.network

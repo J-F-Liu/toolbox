@@ -11,8 +11,11 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * $mod + shift + arrow keys: move window
 * $mod + number: switch to another work space
 * $mod + shift + number: move a window to another work space
-* $mod + e: default container layout
+* $mod + v: split a window vertically
+* $mod + h: split a window horizontally
+* $mod + e: toggle container layout between horizontally and vertically
 * $mod + w: tabbed container layout
+* $mod + w: stacking container layout
 * $mod + f: toggle fullscreen
 * $mod + shift + space: toggle floating
 * $mod + mouse left button: drag floating

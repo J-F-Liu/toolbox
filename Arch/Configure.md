@@ -110,7 +110,7 @@ sudo用于执行需要超级用户权限的命令
 pacman -S sudo
 EDITOR=nano visudo
 ```
-> %wheel ALL=(ALL) ALL
+> %wheel ALL=(ALL) NOPASSWD: ALL
 
 执行大量pacman等需要超级用户权限的命令时，也可以用`su`切换到root帐号。
 
@@ -146,7 +146,8 @@ systemctl enable lightdm.service
 
 安装窗口管理器(window manager)
 ```
-pacman -S i3-wm i3lock i3blocks dmenu termite
+pacman -S i3-wm i3lock dmenu termite
+packer -S i3blocks
 ```
 
 安装字体
