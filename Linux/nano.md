@@ -13,8 +13,8 @@ Ctrl+V Next Page
 
 Alt+U Undo the last operation
 Alt+E Redo the last undone operation
-Alt+} Indent Text
-Alt+{ Unindent Text
+Alt+Shift+} Indent Text
+Alt+Shift+{ Unindent Text
 Alt+M Mouse support enable/disable
 Alt+X Help mode enable/disable
 Alt+$ Soft wrapping of overlong lines enable/disable

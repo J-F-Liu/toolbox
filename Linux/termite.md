@@ -9,9 +9,18 @@ pacman -S termite
 
 ## 快捷键
 ```
+tab         auto-complete files and folder names
 ctrl-shift-r	reload configuration file
 ctrl-shift-c	copy to CLIPBOARD
 ctrl-shift-v	paste from CLIPBOARD
+ctrl-l  clear the Screen, similar to the clear command
+ctrl-u  clear the line before the cursor position
+ctrl-k  clear the line after the cursor
+ctrl-y  paste the deleted command
+ctrl-a,Home  go to the beginning of the line you are currently typing on
+ctrl-e,End   go to the end of the line you are currently typing on
+ctrl-c  kill whatever you are running or start a new prompt
+ctrl-\  abort current program when terminal doesn't respond
 shift-pageup	scroll up a page
 shift-pagedown	scroll down a page
 ctrl-shift-space	start selection mode

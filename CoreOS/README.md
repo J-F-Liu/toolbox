@@ -104,6 +104,16 @@ ExecStart=/sbin/swapon /swapfile
 WantedBy=local.target
 ```
 
+## 申请网站SSL证书
+```
+docker run -it \
+           --rm \
+           --net host \
+            -v /etc/letsencrypt:/etc/letsencrypt \
+            -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+            gzm55/certbot certonly --standalone --text -d www.yunluwang.com "$@"
+```
+
 ## etcd
 etcd is a distributed, consistent key-value store, written in Go.
 

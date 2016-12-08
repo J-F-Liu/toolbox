@@ -45,3 +45,10 @@ exec --no-startup-id fcitx
 exec --no-startup-id clipit
 exec --no-startup-id volwheel
 ```
+
+## 指定终端模拟器程序
+```
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
+```

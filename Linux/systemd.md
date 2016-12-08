@@ -61,6 +61,11 @@ systemctl reset-failed
 journalctl -u unit
 ```
 
+统计日志占用的磁盘空间：
+```
+journalctl --disk-usage
+```
+
 ### 电源管理
 
 ```
@@ -100,7 +105,7 @@ systemd单元文件可以从两个地方加载，优先级从低到高分别是�
 
 定时器是以.timer为后缀的配置文件，记录由system的里面由时间触发的动作, 定时器可以替代cron的大部分功能。
 
-重新加载配置文件
+修改单元文件之后重新加载
 ```
 systemctl daemon-reload
 ```

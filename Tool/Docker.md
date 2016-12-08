@@ -35,6 +35,8 @@ docker images 列出镜像
 docker ps -a 列出容器
 docker ps --format "{{.ID}}: {{.Command}}"
 
+docker create --name string -p host_port:container_port -v host_path:contain_path IMAGE [COMMAND] [ARG...] 新建一个容器
+
 # 新建并启动容器，-t分配一个伪终端并绑定到容器的标准输入上， -i则让容器的标准输入保持打开，-d则进入后台运行
 docker run -it image_name:tag_name /bin/bash
 
@@ -57,6 +59,11 @@ docker volume ls 列出分卷
 docker volume create --name volume_name 创建分卷
 docker volume inspect volume_name 查看分卷
 docker volume rm volume_name 删除分卷
+
+docker save -o busybox.tar busybox 导出image为tar文件
+gzip busybox.tar 压缩tar文件
+docker save busybox | gzip > busybox.tar.gz 导出并压缩image
+docker load -i busybox.tar.gz 从tar.gzi文件导入image
 ```
 
 ## Swarm 集群

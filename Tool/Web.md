@@ -32,3 +32,18 @@
 
 ## Open Source
 - [Art of README](https://github.com/noffle/art-of-readme/blob/master/README-zh.md)
+
+# Web协议
+
+Ocsp stapling
+Ocsp 全称在线证书状态检查协议 (rfc6960)，用来向 CA 站点查询证书状态，比如是否撤销。通常情况下，浏览器使用 OCSP 协议发起查询请求，CA 返回证书状态内容，然后浏览器接受证书是否可信的状态。
+
+这个过程非常消耗时间，因为 CA 站点有可能在国外，网络不稳定，RTT 也比较大。那有没有办法不直接向 CA 站点请求 OCSP 内容呢？ocsp stapling 就能实现这个功能。
+
+详细介绍参考 RFC6066 第 8 节。简述原理就是浏览器发起 client hello 时会携带一个 certificate status request 的扩展，服务端看到这个扩展后将 OCSP 内容直接返回给浏览器，完成证书状态检查。
+
+由于浏览器不需要直接向 CA 站点查询证书状态，这个功能对访问速度的提升非常明显。
+
+Nginx 目前已经支持这个 ocsp stapling file，只需要配置 ocsp stapling file 的指令就能开启这个功能：
+
+ssl_stapling on;ssl_stapling_file ocsp.staple;
