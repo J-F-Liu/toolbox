@@ -4,7 +4,7 @@
   "plugins": ["github"],
   "pluginsConfig": {
     "theme-default": {
-      "showLevel": true
+      "showLevel": false
     },
     "github": {
       "url": "https://github.com/J-F-Liu/toolbox"

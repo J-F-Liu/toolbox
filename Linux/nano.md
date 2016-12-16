@@ -8,6 +8,7 @@ Ctrl+X Exit
 Ctrl+K Cut the current line and store it in the cutbuffer
 Ctrl+U Paste from the cutbuffer into the current line
 Ctrl+W Search for a string or a regular expression
+Alt+W  Repeat last search
 Ctrl+Y Prev Page
 Ctrl+V Next Page
 

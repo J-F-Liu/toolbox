@@ -1,6 +1,6 @@
 # 使用Arch Linux
 
-## 1、文件操作
+## 1、文件目录操作
 ```
 pwd 查看当前工作目录的路径
 cd  更改当前工作目录
@@ -60,9 +60,20 @@ setfacl -R -m u:user:rwx dir
 setfacl -R -d --set g:group:rwx dir
 ```
 
-查看文件内容并显示行号
+清空文件内容
 ```
-less -N /path/to/text/file
+echo -n > /path/to/file
+```
+
+用less查看文件内容，h帮助信息，-N显示行号，/搜索，v编辑，R重新加载，q退出
+```
+less /path/to/text/file
+```
+
+用十六进制方式查看或编辑文件
+```
+pacman -S hexedit
+hexedit /path/to/file
 ```
 
 将压缩文件text.zip在当前目录下解压缩。
