@@ -140,8 +140,23 @@ pacman -S xorg-server xorg-server-utils
 
 安装显示管理器(display manager)，用于显示登录界面和进入桌面
 ```
-pacman -S lightdm lightdm-gtk-greeter
+pacman -S lightdm lightdm-gtk-greeter numlockx
 systemctl enable lightdm.service
+dm-tool lock 锁屏
+```
+设置登录界面背景图片
+> nano /etc/lightdm/lightdm-gtk-greeter.conf
+```
+[greeter]
+background=/usr/share/pixmaps/backgrounds/gnome/background-default.jpg
+```
+
+自动打开NumLock
+> nano /etc/lightdm/lightdm.conf
+```
+[Seat:*]
+...
+greeter-setup-script=/usr/bin/numlockx on
 ```
 
 安装窗口管理器(window manager)
@@ -271,7 +286,7 @@ chromium --proxy-server="socks5://127.0.0.1:1080"
 pacman -S gthumb
 ```
 
-PDF阅读器
+PDF阅读器，zathura中按Tab键显示目录
 ```
 pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
 ```

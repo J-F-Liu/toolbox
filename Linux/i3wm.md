@@ -40,6 +40,8 @@ bar {
 }
 
 bindsym $mod+End exec /bin/bash -c 'i3lock -i <(import -window root - | convert -blur -5x5 - png:-)'
+bindsym $mod+b border toggle
+hide_edge_borders smart
 
 exec --no-startup-id fcitx
 exec --no-startup-id clipit
