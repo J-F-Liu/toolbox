@@ -30,3 +30,4 @@
 * [React](Tool/React.md)
 * [Web技术](Tool/Web.md)
 * [CoreOS](CoreOS/README.md)
+* [Ansible](Tool/Ansible.md)
