@@ -269,9 +269,9 @@ pacman -S mc pcmanfm-gtk3
 pacman -S ark unrar p7zip
 ```
 
-文本编辑器、剪贴板管理器
+文本编辑器、剪贴板管理器、文本搜索
 ```
-pacman -S medit clipit
+pacman -S medit clipit ripgrep
 ```
 
 网页浏览器
@@ -286,7 +286,8 @@ chromium --proxy-server="socks5://127.0.0.1:1080"
 pacman -S gthumb
 ```
 
-PDF阅读器，zathura中按Tab键显示目录
+PDF阅读器
+zathura快捷键: Tab显示目录，r旋转，q退出，/?搜索，as缩放，^d向下半页，^u向上半页，^n显隐状态栏
 ```
 pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
 ```

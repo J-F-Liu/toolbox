@@ -19,6 +19,9 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * $mod + f: toggle fullscreen
 * $mod + shift + space: toggle floating
 * $mod + mouse left button: drag floating
+* $mod + r: enter resize mode
+  * arrow keys: resize window
+  * Esc: exit resize mode
 
 ## 配置文件的路径
 

@@ -21,6 +21,7 @@
 - [React 相关经验及发展动态](https://zhuanlan.zhihu.com/purerender)
 - [高性能 React 组件](http://taobaofed.org/blog/2016/08/12/optimized-react-components/)
 - [React入门与进阶之路由](http://blog.codingplayboy.com/2016/10/24/react_router/)
+- [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e)
 
 ## 范例代码
 

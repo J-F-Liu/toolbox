@@ -53,6 +53,14 @@ docker logs container_id 查看容器的日志
 docker attach container_id 进入运行中的容器
 exit 从容器中退出
 
+docker exec CONTAINER COMMAND 在容器内执行任意command
+docker run -it --entrypoint /bin/bash CONTAINER 在运行时指定entrypoint
+# entrypoint作为容器中pid为1的进程运行，未指定时缺省为 /bin/sh -c，cmd只是entrypoint的参数。
+
+docker pause CONTAINER 暂停容器中所有进程
+docker unpause CONTAINER 继续容器中所有进程
+docker top CONTAINER 和在容器里执行 top 的效果类似
+
 docker rm 删除容器
 docker rmi 删除镜像
 
