@@ -1,6 +1,6 @@
 # Summary
 
-* [前言](README.md)
+[前言](README.md)
 
 * [Arch Linux](Arch/README.md)
   * [安装](Arch/Install.md)

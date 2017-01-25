@@ -47,6 +47,7 @@ git cherry-pick 从不同的分支中捡出一个单独的commit，并把它和�
 git remote -v
 git remote remove origin
 git remote add origin https://github.com/J-F-Liu/toolbox.git
+git pull origin master
 git branch --set-upstream-to=origin/master master
 git push --set-upstream origin master
 git push

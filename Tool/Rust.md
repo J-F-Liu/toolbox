@@ -177,6 +177,10 @@ fn main() {
 - FnMut are closures that modify data, e.g. by writing to a captured mut variable. They may also be called multiple times, but not in parallel. (Calling a FnMut closure from multiple threads would lead to a data race, so it can only be done with the protection of a mutex.) The closure object must be declared mutable by the caller.
 - FnOnce are closures that consume the data they capture, e.g. by moving it to a function that owns them. As the name implies, these may be called only once, and the caller must own them.
 
+There's 2 different types of move when discussing closures:
+- moving into the closure which is what the move keyword is doing to let the closure own the data
+- moving out of a captured variable, which can only be done in an FnOnce/FnBox
+
 The above code requires each Processor instance to be parameterized with a concrete callback type, which means that a single Processor can only deal with one callback type.
 If Processor stores Box<FnMut()>, it no longer needs to be generic, but the set_callback method is now generic.
 ```
@@ -214,7 +218,7 @@ fn frequency(s: &str) -> HashMap<char, i32> {
     let mut freqs = HashMap::new();
     for ch in s.chars() {
         let counter = freqs.entry(ch).or_insert(0);
-        *counter += 1;  
+        *counter += 1;
     }
     freqs
 }
@@ -275,6 +279,31 @@ There are four places where a lifetime can appear in a type:
 
 Box<Trait> is normally equivalent to Box<Trait + 'static> and &'a Trait to &'a (Trait + 'a).
 
+- Sizedness
+Sized is a special compiler built-in trait that is automatically implemented or not based on the sizedness of a type.
+Types for which the size is not known are called dynamically sized types (DSTs), and there’s two classes of examples in current Rust1: [T] and Trait.
+Unsized values must always appear behind a pointer at runtime, like &[T] or Box<Trait>, putting an unsized type behind a pointer effectively makes it sized.
+```
+fn foo<T>() {} // can only be used with sized T
+fn bar<T: ?Sized>() {} // can be used with both sized and unsized T
+```
+
+- TypeID
+```
+use std::any::{Any, TypeId};
+
+fn type_of<T: ?Sized + Any>(_s: &T) -> TypeId {
+    TypeId::of::<T>()
+}
+
+fn type_id<E: 'static + ?Sized>() -> TypeId {
+    TypeId::of::<E>()
+}
+
+fn main() {
+    println!("{:?}", type_of(b"c") == type_id::<[u8;1]>());
+}
+```
 
 ## Articles
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
@@ -284,10 +313,14 @@ Box<Trait> is normally equivalent to Box<Trait + 'static> and &'a Trait to &'a (
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
+- [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
 - [Implementing Finite Automata](https://apanatshka.github.io/compsci/2016/10/03/implementing-finite-automata-part-1/)
 - [Rusty Dynamic Loading](https://damienradtke.com/post/rusty-dynamic-loading/)
 - [Abstracting over mutability in Rust](https://lab.whitequark.org/notes/2016-12-13/abstracting-over-mutability-in-rust/)
 - [Rust futures at a glance](https://daiheitan.github.io/blog/2016/12/07/Rust-futures-at-a-glance/)
+- [Getting Started with Tokio](https://lukesteensen.com/2016/12/getting-started-with-tokio/)
+- [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
+- [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
@@ -298,8 +331,89 @@ Box<Trait> is normally equivalent to Box<Trait + 'static> and &'a Trait to &'a (
 - [Rust compiler plugin for reading and using a TOML configuration file at compile-time](https://github.com/Luthaf/confy)
 - [Consistent error handling for Rust](https://github.com/brson/error-chain)
 - [The mathematical constant tau](https://github.com/FranklinChen/rust-tau/)
+- [Sorted key-value map](https://github.com/toffaletti/flat_map)
+- [Insertion order preserved key-value map](https://github.com/contain-rs/linked-hash-map)
+- [Multiple values for the same key](https://github.com/havarnov/multimap)
+- [safe and convenient store for one value of each type](https://github.com/chris-morgan/anymap)
+- [A map containing varying types of values with compact storage](https://github.com/murarth/polymap)
+- [Construct JSON objects in Rust from JSON-like literals](https://github.com/tomjakubowski/json_macros)
+- [A small macro for defining lazy evaluated static variables in Rust](https://github.com/rust-lang-nursery/lazy-static.rs)
+- [Container / collection literal macros for HashMap, HashSet, BTreeMap, BTreeSet](https://github.com/bluss/maplit)
+- [Unicode Grapheme Cluster and Word boundaries](https://github.com/unicode-rs/unicode-segmentation)
 
 ## Notes
+
+* Goal: memory safety and data-race-free concurrency.
+* Strategy: establishes a clear lifetime for each value.
+* Method: ownership, borrow checker, lifetime parameters, static type system.
+
+If a program has been written so that no possible execution can exhibit undefined behavior, we say that program is well defined.
+If a language’s type system ensures that every program is well defined, we say that language is type safe.
+
+Rust is both type safe and a systems programming language.
+Rust does provide for unsafe code, the great majority of programs do not require unsafe code, and Rust programmers generally avoid it, since it must be reviewed with special care.
+
+Three key promises Rust makes about every program that passes its compile-time checks:
+• No null pointer dereferences. Your program will not crash because you tried to dereference a null pointer.
+• No dangling pointers. Every value will live as long as it must. Your program will never use a heap-allocated value after it has been freed.
+• No buffer overruns. Your program will never access elements beyond the end or before the start of an array.
+
+The problem with null pointers is that it’s easy to forget to check for them. Rus simply doesn’t provide a way to introduce null pointers.
+When we need an optional argument, return value, or so on of some pointer type P, we use Option<P>.
+
+The Box type is Rust’s simplest form of heap allocation: a Box<T> is an owning pointer to a heap-allocated value of type T.
+When the box is dropped, the value in the heap it refers to is freed along with it.
+
+When a Rust program indexes an array a with an expression like a[i], the program first checks that i falls within the array’s size n.
+Sometimes the compiler recognizes that this check can be safely omitted, but when it can’t, Rust generates code to check the array’s index at runtime.
+If the index is out of bounds, the thread panics.
+
+Rust programs never try to access a heap-allocated value after it has been freed. What is unusual is that Rust does so without resorting to garbage collection or reference counting.
+Rust has three rules that specify when each value is freed, and ensure all pointers to it are gone by that point. Rust enforces these rules entirely at compile time.
+• Rule 1: Every value has a single owner at any given time. You can move a value from one owner to another, but when a value’s owner goes away, the value is freed along with it.
+• Rule 2: You can borrow a reference to a value, so long as the reference doesn’t outlive the value (or equivalently, its owner). Borrowed references are temporary pointers; they allow you to operate on values you don’t own.
+• Rule 3: You can only modify a value when you have exclusive access to it.
+
+In Rust, for most types (including any type that owns resources like a heap-allocated buffer), assignment moves the value: the destination takes ownership, and the source is no longer considered initialized.
+Passing arguments to a function and returning values from a function are handled like assignment: they also move such types, rather than copying.
+
+• Some types can be copied bit-for-bit, without the need for any special treatment; Rust permits such types to implement the special trait Copy.
+  Assignment copies Copy types, rather than moving them: the source of the assignment retains its value.
+• All other types are moved by assignment, never implicitly copied.
+
+Rust permits Copy implementations only for types that qualify: all the values your type comprises must be Copy themselves, and your type must not require custom behavior when it is dropped.
+The Rust standard library includes a related trait, Clone, for types that can be copied explicitly. Its definition is simple:
+```
+pub trait Copy: Clone { }
+
+pub trait Clone {
+    fn clone(&self) -> Self;
+    fn clone_from(&mut self, source: &Self) { ... }
+}
+```
+Clone is a supertrait of Copy, so everything which is Copy must also implement Clone.
+In other words, if something implements Copy, it is also cloneable.
+Cloning a vector entails cloning each of its elements in turn, so Vec<T> implements Clone whenever T does so; the other container types behave similarly.
+
+When we take a reference to a value, Rust looks at how we use it (Is it passed to function? Stored in a local variable? Saved in a data structure?) and assesses how long it could live.
+Since these checks are all done at compile time, Rust can’t always be exact, and must sometimes err on the side of caution.
+Then, it compares the lifetime of the value with the lifetime of the reference: if the reference could possibly outlive the value it points to, Rust complains, and refuses to compile the program.
+Rust’s borrow checking has improved over time, and will continue to do so.
+
+While a value is borrowed, it musn’t be moved to a new owner. **A variable must not go out of scope while it’s borrowed**.
+
+References always have lifetimes associated with them; Rust simply lets us omit them when the situation is unambigous.
+
+Rust’s ownership, moves, and borrows end up being a reasonably pleasant way to express resource management.
+
+
+How Rust innovates the greatest is by statically tracking ownership and lifetimes of all variables and their references. The ownership system enables Rust to automatically deallocate and run destructors on all values immediately when they go out of scope, and prevents values from being accessed after they are destroyed. It is what makes Rust memory safe and thread safe, and why it doesn't need a GC to accomplish that.
+
+Rust, through ownership, effectively enforces the higher-level single responsibility principle that sometimes is a struggle to be consistent about in other languages. That alone is amazing.
+
+It does make hard things easy, but only after you've fully embraced Rust.
+
+If you want to learn a language you don't know already, one very educational way to do it is to rewrite some piece of software you already understand.
 
 A crate is a unit of compilation and linking, as well as versioning, distribution and runtime loading.
 A crate contains a tree of nested module scopes.
@@ -718,4 +832,35 @@ CONSTANT = INT
          | Struct { (f: CONSTANT)... }  // aggregates...
          | (CONSTANT...)                //
          | [CONSTANT...]                //
+```
+
+## Nighly rust
+what is suggested a generic closure should desugar to.
+```
+#![feature(unboxed_closures)]
+#![feature(fn_traits)]
+
+use std::ops::{FnOnce, FnMut, Fn};
+
+struct Id;
+
+impl<T> FnOnce<(T,)> for Id {
+    type Output = T;
+    extern "rust-call" fn call_once(self, (t,): (T,)) -> T { t }
+}
+
+impl<T> FnMut<(T,)> for Id {
+    extern "rust-call" fn call_mut(&mut self, (t,): (T,)) -> T { t }
+}
+
+impl<T> Fn<(T,)> for Id {
+    extern "rust-call" fn call(&self, (t,): (T,)) -> T { t }
+}
+
+fn main() {
+    let id = Id;
+    println!("{}", id(4));
+    println!("{}", id(true));
+    println!("{}", id("hello"));
+}
 ```

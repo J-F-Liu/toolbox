@@ -192,7 +192,7 @@ pacman -S iw wpa_supplicant dialog
 
 如果需要连接蓝牙设备
 ```
-pacman -S bluez bluez-utils
+pacman -S bluez bluez-libs bluez-utils
 systemctl start bluetooth
 systemctl enable bluetooth
 ```

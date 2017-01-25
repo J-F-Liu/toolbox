@@ -223,6 +223,7 @@ export EDITOR=/usr/bin/nano
 设置PATH变量和alias
 ```
 nano /etc/profile
+nano ~/.profile
 ```
 
 >

@@ -177,6 +177,9 @@ pacman -S alsa-utils volumeicon
 amixer sset Master unmute 解除各声道的静音
 alsamixer
 speaker-test -c 2 测试声卡是否工作
+pacman -S pulseaudio pavucontrol 管理所有的声卡，对多个程序输出的声音混合处理
+pulseaudio --start
+pulseaudio --kill
 ```
 
 ```
