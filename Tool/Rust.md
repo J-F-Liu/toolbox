@@ -56,7 +56,7 @@ fn main() {
 }
 ```
 
-- concatenate strings
+### concatenate strings
 ```
 // String + &str -> String
 "hello ".to_owned() + "world" + "!";
@@ -68,7 +68,7 @@ text.push_str("Hello world");
 text.push_str("!");
 println!("{}", text)
 ```
-- format numbers
+### format numbers
 ```
 format_spec := [[fill]align][sign]['#'][0][width]['.' precision][type]
 fill := character
@@ -79,7 +79,7 @@ precision := count | '*'
 type := identifier | ''
 count := parameter | integer
 parameter := argument '$'
-```
+
 mapping of types to traits is:
 nothing ⇒ Display
 ? ⇒ Debug
@@ -97,7 +97,7 @@ E ⇒ UpperExp
 #X - precedes the argument with a 0x
 #b - precedes the argument with a 0b
 #o - precedes the argument with a 0o
-```
+
 println!("{:b} of {:x}", 10, 10); // binary and hexical number
 format!("{:04}", 42);             // => "0042" with leading zeros
 
@@ -108,7 +108,7 @@ println!("{number:>width$}", number=1, width=6);
 // You can pad numbers with extra zeroes. This will output "000001".
 println!("{number:>0width$}", number=1, width=6);
 ```
-- read user input from stdin
+### read user input from stdin
 ```
 use std::io;
 use std::io::prelude::*;
@@ -128,7 +128,7 @@ fn main() {
     }
 }
 ```
-- function/closure as input parameter
+### function/closure as input parameter
 Closures are more complicated than functions: it's basically a regular function pointer + the closure environment.
 A named function's name can be used wherever you'd use a closure.
 ```
@@ -150,7 +150,7 @@ fn main() {
 }
 ```
 
-- Pass closures as callbacks.
+### Pass closures as callbacks.
 ```
 struct Processor<CB> where CB: FnMut() {
     callback: CB,
@@ -270,7 +270,7 @@ fn main() {
   println!("{:?}", r);
 }
 ```
-- Lifetime
+### Lifetime
 There are four places where a lifetime can appear in a type:
 - `&'a Type`: the lifetime of an immutable reference;
 - `&'a mut Type`: the lifetime of a mutable reference;
@@ -279,7 +279,7 @@ There are four places where a lifetime can appear in a type:
 
 Box<Trait> is normally equivalent to Box<Trait + 'static> and &'a Trait to &'a (Trait + 'a).
 
-- Sizedness
+### Sizedness
 Sized is a special compiler built-in trait that is automatically implemented or not based on the sizedness of a type.
 Types for which the size is not known are called dynamically sized types (DSTs), and there’s two classes of examples in current Rust1: [T] and Trait.
 Unsized values must always appear behind a pointer at runtime, like &[T] or Box<Trait>, putting an unsized type behind a pointer effectively makes it sized.
@@ -288,7 +288,7 @@ fn foo<T>() {} // can only be used with sized T
 fn bar<T: ?Sized>() {} // can be used with both sized and unsized T
 ```
 
-- TypeID
+### TypeID
 ```
 use std::any::{Any, TypeId};
 
@@ -309,6 +309,7 @@ fn main() {
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
+- [An Overview of Macros in Rust](http://words.steveklabnik.com/an-overview-of-macros-in-rust)
 - [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
