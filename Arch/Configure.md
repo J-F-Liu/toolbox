@@ -260,6 +260,12 @@ pacman -S arc-gtk-theme lxappearance-gtk3
 ```
 运行lxappearance，然后选择Arc-Dark主题。
 
+### Increasing the amount of inotify watchers
+```
+cat /proc/sys/fs/inotify/max_user_watches
+echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-watches.conf && sudo sysctl --system
+```
+
 ## 5、常用软件
 
 文件管理器

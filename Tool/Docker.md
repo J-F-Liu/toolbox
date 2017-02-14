@@ -73,6 +73,10 @@ docker save -o busybox.tar busybox 导出镜像为tar文件
 gzip busybox.tar 压缩tar文件
 docker save busybox | gzip > busybox.tar.gz 导出并压缩镜像
 docker load -i busybox.tar.gz 从tar.gzi文件导入镜像
+
+docker system df 查看 Docker 使用了多少资源
+docker system prune 删除当前没有被使用的一切项目
+docker volume prune 删除所有（本地）没有被容器使用的 volume
 ```
 
 ## 构建image文件

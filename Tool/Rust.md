@@ -28,6 +28,7 @@ cargo update
 cargo doc --open
 cargo test
 cargo bench
+CARGO_INCREMENTAL=1 cargo build
 ```
 
 
@@ -288,6 +289,9 @@ fn foo<T>() {} // can only be used with sized T
 fn bar<T: ?Sized>() {} // can be used with both sized and unsized T
 ```
 
+In Rust traits are types, but they are “unsized”, which roughly means that they are only allowed to show up behind a pointer like Box (which points onto the heap) or & (which can point anywhere).
+A type like `&Trait` or `Box<Trait>` is called a “trait object”, and includes a pointer to an instance of a type T implementing `Trait`, and a vtable: a pointer to T’s implementation of each method in the trait.
+
 ### TypeID
 ```
 use std::any::{Any, TypeId};
@@ -304,17 +308,35 @@ fn main() {
     println!("{:?}", type_of(b"c") == type_id::<[u8;1]>());
 }
 ```
+### Deref Box
+```
+use std::any;
+trait Foo {
+    fn bar(&mut self) -> &mut any::Any;
+}
+
+impl<T: Foo> Foo for Box<T> {
+    //fn bar(&mut self) -> &mut any::Any { (**self).bar() }
+
+    fn bar<'a>(&'a mut self) -> &'a mut any::Any {
+        |q: &'a mut Box<T>| -> &'a mut T { &mut **q }(self).bar()
+    }
+}
+```
 
 ## Articles
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
+- [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
+- [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
 - [An Overview of Macros in Rust](http://words.steveklabnik.com/an-overview-of-macros-in-rust)
 - [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
 - [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
+- [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
 - [Implementing Finite Automata](https://apanatshka.github.io/compsci/2016/10/03/implementing-finite-automata-part-1/)
 - [Rusty Dynamic Loading](https://damienradtke.com/post/rusty-dynamic-loading/)
 - [Abstracting over mutability in Rust](https://lab.whitequark.org/notes/2016-12-13/abstracting-over-mutability-in-rust/)
@@ -322,6 +344,7 @@ fn main() {
 - [Getting Started with Tokio](https://lukesteensen.com/2016/12/getting-started-with-tokio/)
 - [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
+- [The Borrow Checker](https://github.com/rust-lang/rust/blob/master/src/librustc_borrowck/borrowck/README.md)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
@@ -334,6 +357,7 @@ fn main() {
 - [The mathematical constant tau](https://github.com/FranklinChen/rust-tau/)
 - [Sorted key-value map](https://github.com/toffaletti/flat_map)
 - [Insertion order preserved key-value map](https://github.com/contain-rs/linked-hash-map)
+- [A lock-free, eventually consistent, concurrent multi-value map](https://github.com/jonhoo/rust-evmap)
 - [Multiple values for the same key](https://github.com/havarnov/multimap)
 - [safe and convenient store for one value of each type](https://github.com/chris-morgan/anymap)
 - [A map containing varying types of values with compact storage](https://github.com/murarth/polymap)
@@ -865,3 +889,5 @@ fn main() {
     println!("{}", id("hello"));
 }
 ```
+
+Immutable data structures are inherently tree-like. It is a pain to work with graph-like structures and you have to give up some guarantees the languages give you.
