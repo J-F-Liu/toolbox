@@ -27,4 +27,5 @@ alias 列出所有的别名
 fc-list | grep Mono 列出可用Mono字体
 zsh --version 查看zsh版本号
 upgrade_oh_my_zsh 升级oh-my-zsh
+repeat 10 { echo 'Hello' } 重复执行10次
 ```

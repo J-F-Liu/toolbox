@@ -47,6 +47,8 @@ This is why people say that the props flows one way in React: from parents to ch
 An instance is what you refer to as this in the component class you write. It is useful for storing local state and reacting to the lifecycle events.
 Functional components don’t have instances at all. Class components have instances, but you never need to create a component instance directly—React takes care of this.
 
+React introduced a way to write the UI as a function of its state.
+
 ## Redux
 Redux主要用于管理那些公用及异步的状态，而state一般用于管理组件独有的状态。如果你的组件中存在其不必和其他组件公用及非异步的单一数据，那么你直接可以写在state中，比如一些loading的状态和显示隐藏的状态等。
 巧妙的使用Redux和state可以帮助我们更好的管理数据流。

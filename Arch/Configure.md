@@ -169,6 +169,7 @@ packer -S i3blocks
 ```
 pacman -S ttf-dejavu wqy-zenhei wqy-microhei
 packer -S ttf-ms-fonts ttf-google-fonts-git
+packer -S ttf-emojione-color
 ```
 
 开启声音

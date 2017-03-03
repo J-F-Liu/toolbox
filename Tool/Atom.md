@@ -28,6 +28,8 @@ alt-shift-↑↓ 按列选择多行同时编辑
 
 ## 插件
 ```
+language-gfm-enhanced 增强的GitHub Flavored Markdown（disable language-gfm）
+markdown-preview-enhanced 超强的Markdown预览功能
 markdown-writer 提供书写 Markdown 快捷键
 tokamak-terminal 在atom里打开终端面板
 color-picker 取色器 必备插件

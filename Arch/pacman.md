@@ -46,6 +46,11 @@ pacman -Ql package_name
 pacman -Ss string1 string2
 ```
 
+安装AUR软件
+```
+packer -S --noconfirm --noedit package_name
+```
+
 下载最新的镜像服务器列表并且按照速度排序
 ```
 pacman -S reflector
