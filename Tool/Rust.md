@@ -31,6 +31,25 @@ cargo bench
 CARGO_INCREMENTAL=1 cargo build
 ```
 
+- [Rust Language Server (RLS)](https://github.com/rust-lang-nursery/rls)
+```
+rustup default nightly
+rustup update nightly
+rustup component add rls
+rustup component add rust-analysis
+rustup component add rust-src
+
+rustup update nightly # update RLS and its dependencies
+```
+
+- rls_vscode
+```
+git clone https://github.com/jonathandturner/rls_vscode.git
+cd rls_vscode
+npm install
+code .
+```
+
 
 - 样例程序
 ```
@@ -325,6 +344,7 @@ impl<T: Foo> Foo for Box<T> {
 ```
 
 ## Articles
+- [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
@@ -345,6 +365,9 @@ impl<T: Foo> Foo for Box<T> {
 - [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
 - [The Borrow Checker](https://github.com/rust-lang/rust/blob/master/src/librustc_borrowck/borrowck/README.md)
+- [Strategies for Returning References in Rust](https://bryce.fisher-fleig.org/blog/strategies-for-returning-references-in-rust/)
+- [Polymorphism in Rust: Enum vs Trait + Struct](http://keepcalmandlearnrust.com/2017/03/polymorphism-in-rust-enum-vs-trait-struct/)
+- [Iteration patterns for Result & Option](http://xion.io/post/code/rust-iter-patterns.html)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
@@ -365,6 +388,7 @@ impl<T: Foo> Foo for Box<T> {
 - [A small macro for defining lazy evaluated static variables in Rust](https://github.com/rust-lang-nursery/lazy-static.rs)
 - [Container / collection literal macros for HashMap, HashSet, BTreeMap, BTreeSet](https://github.com/bluss/maplit)
 - [Unicode Grapheme Cluster and Word boundaries](https://github.com/unicode-rs/unicode-segmentation)
+- [A pull parser for CommonMark](https://github.com/google/pulldown-cmark)
 
 ## Notes
 

@@ -49,6 +49,7 @@ pacman -Ss string1 string2
 安装AUR软件
 ```
 packer -S --noconfirm --noedit package_name
+packer -Su package_name 同步AUR数据并更新软件包
 ```
 
 下载最新的镜像服务器列表并且按照速度排序
