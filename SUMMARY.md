@@ -17,6 +17,7 @@
     * [rsync](Linux/rsync.md)
     * [tmux](Linux/tmux.md)
 * [Atom](Tool/Atom.md)
+* [Code](Tool/VSCode.md)
 * [Git](Tool/Git.md)
 * [GitBook](Tool/GitBook.md)
 * [Docker](Tool/Docker.md)

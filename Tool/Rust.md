@@ -31,7 +31,16 @@ cargo bench
 CARGO_INCREMENTAL=1 cargo build
 ```
 
+- Cross Compile
+```
+pacman -S mingw-w64
+rustup target add x86_64-pc-windows-gnu
+PKG_CONFIG_ALLOW_CROSS=1 cargo build --release --target x86_64-pc-windows-gnu
+PKG_CONFIG_ALLOW_CROSS=1 cargo rustc --release --target x86_64-pc-windows-gnu  -- -C link-args=-mwindows
+```
+
 - [Rust Language Server (RLS)](https://github.com/rust-lang-nursery/rls)
+
 ```
 rustup default nightly
 rustup update nightly

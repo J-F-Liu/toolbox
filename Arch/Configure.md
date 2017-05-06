@@ -93,12 +93,16 @@ systemctl enable systemd-networkd
   nameserver 8.8.4.4
   ```
 
+NetworkManager and systemd-networkd are two different, mutually exclusive tools:
+If use NetworkManager, stop and disable systemd-networkd.service and wpa_supplicant.service.
+If use systemd-networkd, stop and disable NetworkManager.service and NetworkManager-dispatcher.service and enable and start systemd-resolved.service
+
 自动连WiFi
 ```
 pacman -S networkmanager network-manager-applet
 systemctl start NetworkManager
 systemctl enable NetworkManager
-nm-applet
+nm-applet 鼠标右键单击，编辑网络连接，设置WiFi密码，左键单击连接WiFi网络。
 ```
 
 # 工作站{#workstation}
