@@ -25,9 +25,15 @@ pacman -Sy
 pacman -Qe
 ```
 
+搜索软件包
+```
+pacman -Ss package_name
+pacsearch package_name
+```
+
 搜索已安装的软件包
 ```
-pacman -Qs string1 string2
+pacman -Qs package_name
 ```
 
 查询软件包的基本信息

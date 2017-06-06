@@ -10,6 +10,7 @@
   * [使用](Arch/Use.md)
     * [pacman](Arch/pacman.md)
     * [systemd](Linux/systemd.md)
+    * [ssh](Linux/ssh.md)
     * [nano](Linux/nano.md)
     * [i3wm](Linux/i3wm.md)
     * [termite](Linux/termite.md)

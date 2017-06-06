@@ -355,6 +355,7 @@ impl<T: Foo> Foo for Box<T> {
 ## Articles
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
+- [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
 - [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
@@ -509,6 +510,12 @@ There are several kinds of item:
 
 All items except modules, constants and statics may be parameterized by type.
 The type parameters of an item are considered "part of the name", not part of the type of the item.
+
+`mod foo;` is basically a way of saying “look for foo.rs or foo/mod.rs and make a module named foo with its contents”. It’s the same as `mod foo { ... }` except the contents are in a different file.
+
+`use blash` create an item named `blah` “within the module”, which is basically something like a symbolic link, paths are relative to the root module.
+`pub use` says “make this symlink, but let others see it too”.
+`use self::foo` means “find me `foo` within the current module”.
 
 Usually a use declaration is used to shorten the path required to refer to a module item.
 These declarations may appear in modules and blocks, usually at the top.

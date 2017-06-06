@@ -425,12 +425,6 @@ nano /etc/hosts.allow
 nano ~/.ssh/authorized_keys
 ```
 
-免密码登录其他的SSH服务器
-```
-ssh-keygen
-ssh-copy-id username@remote-server.org
-```
-
 ## FTP服务
 ```
 pacman -S bftpd
