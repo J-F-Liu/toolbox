@@ -41,7 +41,7 @@ npm config ls
 npm config set registry https://registry.npm.taobao.org
 ```
 
-- Yarn
+- [Yarn](https://yarnpkg.com/)
 ```
 packer -S yarn
 yarn init

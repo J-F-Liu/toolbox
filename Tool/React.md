@@ -12,6 +12,8 @@
 - [走进前端开发之：框架的演变](http://mp.weixin.qq.com/s?__biz=MzAwMjMxNzQ0MQ==&mid=400374759&idx=1&sn=78830f8b92d7ae4f0f6d40aeee1ecd16#rd)
 - [React’s JSX: The Other Side of the Coin](https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98)
 - [You’re Missing the Point of React](https://medium.com/@dan_abramov/youre-missing-the-point-of-react-a20e34a51e1a)
+- [React 是如何重新定义前端开发的](https://zhuanlan.zhihu.com/p/27437770)
+- [React JS and why it's awesome](https://www.slideshare.net/AndrewHull/react-js-and-why-its-awesome)
 - [Navigating the React.JS Ecosystem](https://www.toptal.com/react/navigating-the-react-ecosystem)
 - [React组件的生命周期](https://segmentfault.com/a/1190000006807631)
 - [ReactJS组件间沟通的一些方法](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/)
@@ -23,6 +25,7 @@
 - [React入门与进阶之路由](http://blog.codingplayboy.com/2016/10/24/react_router/)
 - [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e)
 - [React Higher Order Components in depth](https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e)
+- [Make small focused modules](https://github.com/sindresorhus/ama/issues/10#issuecomment-117766328)
 
 ## 范例代码
 

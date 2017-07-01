@@ -48,6 +48,7 @@ docker commit container_id image_name:tag_name 提交容器中的改动到镜像
 docker start container_id 启动容器
 docker stop container_id 停止容器
 docker restart container_id 重启动容器
+docker inspect container_id 查看容器详情
 
 docker logs container_id 查看容器的日志
 docker attach container_id 进入运行中的容器

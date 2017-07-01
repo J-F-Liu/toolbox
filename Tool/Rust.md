@@ -59,6 +59,11 @@ npm install
 code .
 ```
 
+- Tools developed using Rust
+```
+cargo install ripgrep
+cargo install --git https://github.com/sharkdp/fd
+```
 
 - 样例程序
 ```

@@ -14,7 +14,7 @@
     * [nano](Linux/nano.md)
     * [i3wm](Linux/i3wm.md)
     * [termite](Linux/termite.md)
-    * [zsh](Linux/zsh.md)
+    * [fish](Linux/fish.md)
     * [rsync](Linux/rsync.md)
     * [tmux](Linux/tmux.md)
 * [Atom](Tool/Atom.md)

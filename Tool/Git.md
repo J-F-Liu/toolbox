@@ -26,12 +26,15 @@ Menu: Help > Show SSH Key
 ```
 git init
 git clone https://github.com/J-F-Liu/toolbox.git
+git clone https://github.com/J-F-Liu/toolbox.git --depth 10
 
 git add .
 git status
 git commit
 git commit --amend
 git commit --amend --reset-author
+git log
+git blame file_name
 
 git stash list
 git stash save
@@ -42,6 +45,28 @@ git fsck --lost-found
 git cherry-pick 从不同的分支中捡出一个单独的commit，并把它和你当前的分支合并
 ```
 
+Branch
+```
+git branch -v -a
+
+git diff --check
+
+git checkout <commit_or_branch>
+git checkout -b <new_branch> <start_point>
+git branch -d <branch_to_delete>
+git merge <another_branch>
+git merge --rebase <another_branch>
+git merge --abort
+git rebase --abort
+```
+
+switch between multiple staging areas
+```
+copy %REPOROOT%\.git\index %REPOROOT%\.git\index1
+set GIT_INDEX_FILE=%REPOROOT%\.git\index1
+set GIT_INDEX_FILE=%REPOROOT%\.git\index
+```
+
 ## Remote Repository
 ```
 git remote -v
@@ -50,9 +75,11 @@ git remote add origin https://github.com/J-F-Liu/toolbox.git
 git pull origin master
 git branch --set-upstream-to=origin/master master
 git push --set-upstream origin master
-git push
-git pull
-git checkout -t origin/another
+git push [remote_name local_branch:remote_branch]
+git fetch [remote_name]
+git pull [remote_name local_branch:remote_branch]
+git pull --rebase origin master
+git checkout -t origin/another 
 git checkout another #Git versions ≥ 1.6.6
 ```
 
@@ -85,24 +112,6 @@ git rebase --continue
 delete all untracked and ignored files and folders
 ```
 git clean -xdf
-```
-
-Branch
-```
-git branch -v -a
-
-git diff --check
-
-git checkout <commit>
-git checkout master
-git checkout -b <new_branch> <start_point>
-```
-
-switch between multiple staging areas
-```
-copy %REPOROOT%\.git\index %REPOROOT%\.git\index1
-set GIT_INDEX_FILE=%REPOROOT%\.git\index1
-set GIT_INDEX_FILE=%REPOROOT%\.git\index
 ```
 
 Archive

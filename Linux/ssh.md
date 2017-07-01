@@ -27,3 +27,20 @@ scp user@host:directory/SourceFile TargetFile
 scp -r user@host:directory/SourceFolder TargetFolder
 scp -P 2222 user@host:directory/SourceFile TargetFile
 ```
+
+在远程主机上运行命令
+```
+ssh user@host 'ps ax | grep [h]ttpd'
+```
+
+本地端口转发（Local forwarding）
+```
+ssh -L <local-port-to-listen>:<target-host>:<target-port> <gateway>
+```
+通过gateway中转，连接本机的所监听的端口，相当于连上了目标机对应的端口。
+
+远程端口转发
+```
+ssh -R <remote-port-to-listen>:<target-host>:<target-port> <remote-host>
+```
+经由本机中转，在远程机上访问所监听的端口，相当于连上了目标机对应的端口，可以将目标机指定为本机。

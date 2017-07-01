@@ -559,6 +559,7 @@ nano /etc/samba/smb.conf
   encrypt passwords = yes
   smb passwd file = /etc/samba/smbpasswd
   interfaces = 10.0.2.4/24
+  min protocol = SMB2
 >
   [share]
   comment = share name
