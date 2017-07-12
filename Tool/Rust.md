@@ -21,9 +21,10 @@ rustup target add x86_64-unknown-linux-musl
 - cargo用法
 ```
 cargo new <project> --bin
+cargo check
+cargo run
 cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
-cargo run
 cargo update
 cargo doc --open
 cargo test
@@ -61,6 +62,7 @@ code .
 
 - Tools developed using Rust
 ```
+cargo install loc
 cargo install ripgrep
 cargo install --git https://github.com/sharkdp/fd
 ```

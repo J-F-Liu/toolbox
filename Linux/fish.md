@@ -1,5 +1,13 @@
 # [fish](https://fishshell.com/)
 
+##  安装
+```
+pacman -S fish
+cat /etc/shells
+chsh -s /usr/bin/fish
+# log out and back in again
+```
+
 ## 快捷键
 ```
 ↑和↓   切换历史命令
@@ -12,6 +20,7 @@ Alt →  逐词补全
 ```
 > set PATH /usr/local/bin /usr/sbin $PATH
 > set -U fish_user_paths /usr/local/bin $fish_user_paths
+> env PORT=8080 yarn start
 ```
 
 ## Universal Variables

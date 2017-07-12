@@ -446,6 +446,8 @@ systemctl enable nginx
 nano /etc/nginx/nginx.conf
 less /etc/nginx/nginx.conf
 systemctl reload nginx
+journalctl -u nginx
+less /var/log/nginx/access.log
 ```
 > ```
     gzip  on;
