@@ -198,6 +198,7 @@ rmmod module_name
 查看系统信息
 ```
 uname -a
+lscpu
 cat /proc/cpuinfo
 cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 cat /proc/meminfo

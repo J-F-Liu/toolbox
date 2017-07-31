@@ -401,6 +401,12 @@ mount /dev/md0 /data
 ```
 最后更新/etc/fstab文件
 
+扫描并恢复已有的磁盘阵列
+```
+mdadm --assemble --scan
+mdadm --detail --scan --verbose > /etc/mdadm.conf
+```
+
 ## SSH服务
 ```
 pacman -S openssh

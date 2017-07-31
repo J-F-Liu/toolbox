@@ -19,6 +19,7 @@ Alt →  逐词补全
 ## 设置环境变量
 ```
 > set PATH /usr/local/bin /usr/sbin $PATH
+> set PATH[4] ~/bin
 > set -U fish_user_paths /usr/local/bin $fish_user_paths
 > env PORT=8080 yarn start
 ```

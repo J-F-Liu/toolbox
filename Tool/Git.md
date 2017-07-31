@@ -54,6 +54,7 @@ git diff --check
 git checkout <commit_or_branch>
 git checkout -b <new_branch> <start_point>
 git branch -d <branch_to_delete>
+git branch -m <old-name> <new-name>
 git merge <another_branch>
 git merge --rebase <another_branch>
 git merge --abort
@@ -79,7 +80,7 @@ git push [remote_name local_branch:remote_branch]
 git fetch [remote_name]
 git pull [remote_name local_branch:remote_branch]
 git pull --rebase origin master
-git checkout -t origin/another 
+git checkout -t origin/another
 git checkout another #Git versions ≥ 1.6.6
 ```
 

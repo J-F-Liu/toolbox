@@ -11,6 +11,7 @@
 
 - [走进前端开发之：框架的演变](http://mp.weixin.qq.com/s?__biz=MzAwMjMxNzQ0MQ==&mid=400374759&idx=1&sn=78830f8b92d7ae4f0f6d40aeee1ecd16#rd)
 - [React’s JSX: The Other Side of the Coin](https://medium.com/@housecor/react-s-jsx-the-other-side-of-the-coin-2ace7ab62b98)
+- [React 初窥：JSX 详解](https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Refer/React-And-FrontEnd-Engineering/React%20%E5%88%9D%E7%AA%A5/JSX.md)
 - [You’re Missing the Point of React](https://medium.com/@dan_abramov/youre-missing-the-point-of-react-a20e34a51e1a)
 - [React 是如何重新定义前端开发的](https://zhuanlan.zhihu.com/p/27437770)
 - [React JS and why it's awesome](https://www.slideshare.net/AndrewHull/react-js-and-why-its-awesome)

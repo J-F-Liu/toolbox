@@ -55,6 +55,7 @@ yarn upgrade <package>
 yarn remove <package>
 yarn why <query>
 yarn outdated
+yarn upgrade
 yarn ls
 yarn
 yarn start
