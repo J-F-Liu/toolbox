@@ -70,6 +70,9 @@ docker volume create --name volume_name 创建分卷
 docker volume inspect volume_name 查看分卷
 docker volume rm volume_name 删除分卷
 
+docker network ls 列出网络
+docker run --network=host image_name 使用host网络
+
 docker save -o busybox.tar busybox 导出镜像为tar文件
 gzip busybox.tar 压缩tar文件
 docker save busybox | gzip > busybox.tar.gz 导出并压缩镜像

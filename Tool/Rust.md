@@ -65,6 +65,7 @@ code .
 cargo install loc
 cargo install ripgrep
 cargo install --git https://github.com/sharkdp/fd
+cargo install simple-http-server
 ```
 
 - 样例程序

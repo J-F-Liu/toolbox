@@ -17,6 +17,7 @@
     * [fish](Linux/fish.md)
     * [rsync](Linux/rsync.md)
     * [tmux](Linux/tmux.md)
+    * [curl](Linux/curl.md)
 * [Atom](Tool/Atom.md)
 * [Code](Tool/VSCode.md)
 * [Git](Tool/Git.md)

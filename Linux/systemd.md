@@ -58,7 +58,7 @@ systemctl reset-failed
 
 读取某个单元的日志：
 ```
-journalctl -u unit
+journalctl -u unit -r
 ```
 
 统计日志占用的磁盘空间：
