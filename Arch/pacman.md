@@ -52,6 +52,11 @@ pacman -Ql package_name
 pacman -Ss string1 string2
 ```
 
+查询文件所属的软件包
+```
+pacman -Qo /path/to/file
+```
+
 安装AUR软件
 ```
 packer -S --noconfirm --noedit package_name

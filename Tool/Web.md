@@ -32,6 +32,13 @@
 - [解读设计风格的变迁史](http://www.jianshu.com/p/3bb4f671094f)
 - [色彩想象力－迷之渐变色](https://blog.maxleap.cn/archives/1201)
 
+## Tools
+- [HTTPie — a command line HTTP client](https://httpie.org/)
+- [mitmproxy — interactive examination and modification of HTTP traffic](https://mitmproxy.org/)
+- [The best HTTP Static File Server](https://github.com/codeskyblue/gohttpserver)
+- [DevDocs: API Documentation Browser](http://devdocs.io/)
+- [Text encoder decoder, format converter](https://toolkit.site/)
+
 ## Open Source
 - [Art of README](https://github.com/noffle/art-of-readme/blob/master/README-zh.md)
 

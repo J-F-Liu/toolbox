@@ -48,6 +48,9 @@ rustup update nightly
 rustup component add rls
 rustup component add rust-analysis
 rustup component add rust-src
+rustup component add rust-docs
+cargo install rustfmt-nightly
+cargo install clippy
 
 rustup update nightly # update RLS and its dependencies
 ```
@@ -65,6 +68,7 @@ code .
 cargo install loc
 cargo install ripgrep
 cargo install --git https://github.com/sharkdp/fd
+cargo install --git https://github.com/ogham/exa
 cargo install simple-http-server
 ```
 
