@@ -25,9 +25,12 @@ cargo check
 cargo run
 cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
+cargo rustc --release -- -C target-cpu=skylake
+RUSTFLAGS="-Ctarget-cpu=native" cargo rustc --release
 cargo update
 cargo doc --open
 cargo test
+cargo test -- --nocapture
 cargo bench
 CARGO_INCREMENTAL=1 cargo build
 ```
@@ -67,6 +70,7 @@ code .
 ```
 cargo install loc
 cargo install ripgrep
+cargo install tokei
 cargo install --git https://github.com/sharkdp/fd
 cargo install --git https://github.com/ogham/exa
 cargo install simple-http-server
@@ -365,6 +369,7 @@ impl<T: Foo> Foo for Box<T> {
 ```
 
 ## Articles
+- [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
