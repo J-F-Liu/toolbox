@@ -29,6 +29,7 @@ npm rebuild node-sass        重新编译node-sass
 npm outdated                 检测当前安装的所有模块是否有更新
 npm dedupe                   重新计算依赖关系，优化模块的存放结构
 npm run                      列出在package.json文件中定义的脚本命令
+npm list -g --depth=0        列出全局安装的package
 ```
 - 卸载模块
 ```
@@ -39,6 +40,7 @@ npm uninstall <packageName> -S 卸载并更新package.json文件
 ```
 npm config ls
 npm config set registry https://registry.npm.taobao.org
+npm config set registry https://registry.npmjs.com
 ```
 
 - [Yarn](https://yarnpkg.com/)
@@ -57,6 +59,7 @@ yarn why <query>
 yarn outdated
 yarn upgrade
 yarn ls
+yarn global <add/list/remove/upgrade> <package>
 yarn
 yarn start
 yarn test

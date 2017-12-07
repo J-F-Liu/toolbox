@@ -1,5 +1,12 @@
 # React
 
+## 安装
+```
+yarn add react react-dom prop-types
+yarn global add react-devtools
+react-devtools
+```
+
 ## 官方文档
 - https://facebook.github.io/react/docs/getting-started.html
 - https://facebook.github.io/react/blog/
@@ -52,6 +59,15 @@ An instance is what you refer to as this in the component class you write. It is
 Functional components don’t have instances at all. Class components have instances, but you never need to create a component instance directly—React takes care of this.
 
 React introduced a way to write the UI as a function of its state.
+
+view = render(state)
+
+## 组件分类
+
+- 纯展示型的组件，数据进，DOM 出，直观明了
+- 交互型组件，典型的例子是对于表单组件的封装和加强，大部分的组件库都是以交互型组件为主，比如说 Element UI，特点是有比较复杂的交互逻辑，但是是比较通用的逻辑，强调组件的复用
+- 接入型组件，在 React 场景下的 container component，这种组件会跟数据层的 service 打交道，会包含一些跟服务器或者说数据源打交道的逻辑，container 会把数据向下传递给展示型组件
+- 功能型组件，路由的 router-view 组件、transition 组件，本身并不渲染任何内容，是一个逻辑型的东西，作为一种扩展或者是抽象机制存在
 
 ## Redux
 Redux主要用于管理那些公用及异步的状态，而state一般用于管理组件独有的状态。如果你的组件中存在其不必和其他组件公用及非异步的单一数据，那么你直接可以写在state中，比如一些loading的状态和显示隐藏的状态等。

@@ -44,3 +44,5 @@ ssh -L <local-port-to-listen>:<target-host>:<target-port> <gateway>
 ssh -R <remote-port-to-listen>:<target-host>:<target-port> <remote-host>
 ```
 经由本机中转，在远程机上访问所监听的端口，相当于连上了目标机对应的端口，可以将目标机指定为本机。
+
+端口转发需要在/etc/ssh/sshd_config中设置GatewayPorts yes。

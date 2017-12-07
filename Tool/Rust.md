@@ -43,27 +43,19 @@ PKG_CONFIG_ALLOW_CROSS=1 cargo build --release --target x86_64-pc-windows-gnu
 PKG_CONFIG_ALLOW_CROSS=1 cargo rustc --release --target x86_64-pc-windows-gnu  -- -C link-args=-mwindows
 ```
 
-- [Rust Language Server (RLS)](https://github.com/rust-lang-nursery/rls)
-
+- Development tools
 ```
 rustup default nightly
 rustup update nightly
-rustup component add rls
+rustup component add rls-preview
 rustup component add rust-analysis
 rustup component add rust-src
 rustup component add rust-docs
 cargo install rustfmt-nightly
 cargo install clippy
+cargo install cargo-outdated
 
 rustup update nightly # update RLS and its dependencies
-```
-
-- rls_vscode
-```
-git clone https://github.com/jonathandturner/rls_vscode.git
-cd rls_vscode
-npm install
-code .
 ```
 
 - Tools developed using Rust
@@ -370,6 +362,7 @@ impl<T: Foo> Foo for Box<T> {
 
 ## Articles
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
+- [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
@@ -395,6 +388,7 @@ impl<T: Foo> Foo for Box<T> {
 - [Strategies for Returning References in Rust](https://bryce.fisher-fleig.org/blog/strategies-for-returning-references-in-rust/)
 - [Polymorphism in Rust: Enum vs Trait + Struct](http://keepcalmandlearnrust.com/2017/03/polymorphism-in-rust-enum-vs-trait-struct/)
 - [Iteration patterns for Result & Option](http://xion.io/post/code/rust-iter-patterns.html)
+- [Exploring lock-free Rust](https://morestina.net/blog/742/exploring-lock-free-rust-1-locks)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)

@@ -16,6 +16,12 @@ tab    尝试补全命令、参数、路径，在多个建议之间切换
 Alt →  逐词补全
 ```
 
+## 配置
+```
+nano ~/.config/fish/config.fish
+fish_config 打开基于网页的配置界面
+```
+
 ## 设置环境变量
 ```
 > set PATH /usr/local/bin /usr/sbin $PATH
