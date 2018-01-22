@@ -33,6 +33,7 @@ react-devtools
 - [React入门与进阶之路由](http://blog.codingplayboy.com/2016/10/24/react_router/)
 - [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e)
 - [React Higher Order Components in depth](https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e)
+- [Function as Child Components](https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9)
 - [Make small focused modules](https://github.com/sindresorhus/ama/issues/10#issuecomment-117766328)
 
 ## 范例代码

@@ -45,6 +45,8 @@ PKG_CONFIG_ALLOW_CROSS=1 cargo rustc --release --target x86_64-pc-windows-gnu  -
 
 - Development tools
 ```
+rustup show
+rustup doc
 rustup default nightly
 rustup update nightly
 rustup component add rls-preview
@@ -53,7 +55,9 @@ rustup component add rust-src
 rustup component add rust-docs
 cargo install rustfmt-nightly
 cargo install clippy
+cargo install cargo-edit
 cargo install cargo-outdated
+cargo install --git https://github.com/murarth/rusti
 
 rustup update nightly # update RLS and its dependencies
 ```
@@ -63,6 +67,7 @@ rustup update nightly # update RLS and its dependencies
 cargo install loc
 cargo install ripgrep
 cargo install tokei
+cargo install xsv
 cargo install --git https://github.com/sharkdp/fd
 cargo install --git https://github.com/ogham/exa
 cargo install simple-http-server

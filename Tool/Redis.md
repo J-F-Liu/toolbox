@@ -29,7 +29,6 @@ Redis doesn't allow you to query an object's values, values can be arbitrary byt
 ## Install
 ```
 pacman -S redis
-packer -S robomongo-bin
 systemctl enable redis
 systemctl start redis
 ```
@@ -79,4 +78,14 @@ LTRIM resque:failed 1 0
 SMEMBERS resque:queues
 LRANGE resque:queue:shell_command 0 10
 LRANGE resque:queue:thumbnail 0 10
+
+// Get information and statistics about the server.
+info
+
+// Change the selected database for the current connection.
+// By default new connections use the database 0.
+select <index>
+
+// Delete all the keys of the currently selected DB.
+flushdb
 ```
