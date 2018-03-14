@@ -64,12 +64,13 @@ rustup update nightly # update RLS and its dependencies
 
 - Tools developed using Rust
 ```
-cargo install loc
 cargo install ripgrep
 cargo install tokei
+cargo install loc
 cargo install xsv
+cargo install fselect
+cargo install exa
 cargo install --git https://github.com/sharkdp/fd
-cargo install --git https://github.com/ogham/exa
 cargo install simple-http-server
 ```
 
@@ -380,6 +381,7 @@ impl<T: Foo> Foo for Box<T> {
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
+- [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
 - [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
 - [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
 - [Implementing Finite Automata](https://apanatshka.github.io/compsci/2016/10/03/implementing-finite-automata-part-1/)
@@ -394,6 +396,8 @@ impl<T: Foo> Foo for Box<T> {
 - [Polymorphism in Rust: Enum vs Trait + Struct](http://keepcalmandlearnrust.com/2017/03/polymorphism-in-rust-enum-vs-trait-struct/)
 - [Iteration patterns for Result & Option](http://xion.io/post/code/rust-iter-patterns.html)
 - [Exploring lock-free Rust](https://morestina.net/blog/742/exploring-lock-free-rust-1-locks)
+- [What Are Tokio and Async IO All About?](https://manishearth.github.io/blog/2018/01/10/whats-tokio-and-async-io-all-about/)
+- [Borrow cycles in Rust: arenas v.s. drop-checking](https://exyr.org/2018/rust-arenas-vs-dropck/)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
@@ -415,6 +419,8 @@ impl<T: Foo> Foo for Box<T> {
 - [Container / collection literal macros for HashMap, HashSet, BTreeMap, BTreeSet](https://github.com/bluss/maplit)
 - [Unicode Grapheme Cluster and Word boundaries](https://github.com/unicode-rs/unicode-segmentation)
 - [A pull parser for CommonMark](https://github.com/google/pulldown-cmark)
+
+http://zsck.co/writing/capability-based-apis.html
 
 ## Notes
 

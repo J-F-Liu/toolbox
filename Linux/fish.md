@@ -35,6 +35,15 @@ fish_config 打开基于网页的配置界面
 > set -U EDITOR nano
 ```
 
+## 常用命令
+```
+history search <keyword> 搜索以前执行过的命令
+open <file_paht> 用默认的关联程序打开文件
+source <script_file> 在当前Shell环境中执行脚本文件
+type <command_name> 判断命令的类型，给出对应的函数定义或可执行文件的路径
+exit 退出fish shell
+```
+
 ## 执行多个命令
 ```
 > cp file1.txt file1_bak.txt; and echo "Backup successful"; or echo "Backup failed"

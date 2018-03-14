@@ -60,10 +60,14 @@ set users:9001 "{id: 9001, email: leto@dune.gov, ...}"
 hset users:lookup:email leto@dune.gov 9001
 
 // store objects in hash
-hset bugs:1233 1 "{id:1, account: 1233, subject: '...'}"
-hset bugs:1233 2 "{id:2, account: 1233, subject: '...'}"
-// get all the bug ids for an account
-hkeys bugs:1233
+hset myhash field1 "Hello"
+hset myhash field2 "World"
+
+// get all fields
+hkeys myhash
+
+// get all fields and values of the hash
+hgetall myhash
 
 keys *
 type resque:queues

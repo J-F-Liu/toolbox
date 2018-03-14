@@ -8,6 +8,7 @@ packer -S gitkraken
 
 ## Configuration
 ```
+git config --global --list
 git config --global user.email "china.liujunfeng@gmail.com"
 git config --global user.name "Junfeng Liu"
 git config --global push.default simple
@@ -34,6 +35,7 @@ git commit
 git commit --amend
 git commit --amend --reset-author
 git log
+git show --quiet --oneline <commit>
 git blame file_name
 
 git stash list
@@ -59,7 +61,16 @@ git merge <another_branch>
 git merge --rebase <another_branch>
 git merge --abort
 git rebase --abort
+git diff mybranch master -- myfile.cs 比较同一文件在不同分支的差异
 ```
+
+Patch
+```
+git diff from-commit to-commit > patch.diff
+git checkout taget-branch
+git apply patch.diff
+```
+
 
 switch between multiple staging areas
 ```

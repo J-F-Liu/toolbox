@@ -16,6 +16,7 @@
 - [酷酷的CSS3三角形运用](http://www.cnblogs.com/keepfool/p/5616326.html)
 - [用 CSS3 绘制你需要的几何图形](http://www.cnblogs.com/wdlhao/p/5751211.html)
 - [CSS魔法堂：Box-Shadow没那么简单啦:)](http://web.jobbole.com/86168/)
+- [Understanding Flexbox: Everything you need to know](https://medium.freecodecamp.org/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af)
 
 ## JavaScript
 - [总结ES6常用的新特性](http://luckykun.com/work/2016-05-10/es6-feature.html)

@@ -173,6 +173,8 @@ curl url -o file
 
 ## 4、进程管理
 ```
+nohup cmd & 后台运行命令
+ps -ef 列出所有进程
 ps auxww 列出进程及其命令
 ps aux | grep {{string}}
 pstree -p 展示进程树

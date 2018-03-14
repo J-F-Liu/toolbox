@@ -34,7 +34,12 @@ react-devtools
 - [3 Reasons why I stopped using React.setState](https://medium.com/@mweststrate/3-reasons-why-i-stopped-using-react-setstate-ab73fc67a42e)
 - [React Higher Order Components in depth](https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e)
 - [Function as Child Components](https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9)
+- [Function as Child Components Are an Anti-Pattern](http://americanexpress.io/faccs-are-an-antipattern/)
+- [Functional setState of React](https://medium.freecodecamp.org/functional-setstate-is-the-future-of-react-374f30401b6b)
 - [Make small focused modules](https://github.com/sindresorhus/ama/issues/10#issuecomment-117766328)
+- [Clean Code vs. Dirty Code: React Best Practices](http://americanexpress.io/clean-code-dirty-code/)
+- [7 architectural attributes of a reliable React component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/)
+- [All About React Router 4](https://css-tricks.com/react-router-4/)
 
 ## 范例代码
 
