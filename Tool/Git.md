@@ -108,7 +108,7 @@ list files that ever existed (i.e. including deleted files):
 git log --pretty=format: --name-only --diff-filter=A | sort - | sed '/^$/d'
 git log --oneline --author=Junfeng
 
-git reset --hard
+git reset --hard <commit>
 git reset HEAD *.Cache
 ```
 

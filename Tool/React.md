@@ -36,14 +36,15 @@ react-devtools
 - [Function as Child Components](https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9)
 - [Function as Child Components Are an Anti-Pattern](http://americanexpress.io/faccs-are-an-antipattern/)
 - [Functional setState of React](https://medium.freecodecamp.org/functional-setstate-is-the-future-of-react-374f30401b6b)
-- [Make small focused modules](https://github.com/sindresorhus/ama/issues/10#issuecomment-117766328)
 - [Clean Code vs. Dirty Code: React Best Practices](http://americanexpress.io/clean-code-dirty-code/)
 - [7 architectural attributes of a reliable React component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/)
 - [All About React Router 4](https://css-tricks.com/react-router-4/)
+- [A compilation of React Patterns, techniques, tips and tricks](https://vasanthk.gitbooks.io/react-bits/)
 
 ## 范例代码
 
 - [webpack-react-boilerplate](https://github.com/J-F-Liu/webpack-react-boilerplate)
+- [parcel-react-boilerplate](https://github.com/J-F-Liu/parcel-react-boilerplate)
 
 ## JSX的优点
 React’s JSX is fundamentally superior for a few simple reasons:

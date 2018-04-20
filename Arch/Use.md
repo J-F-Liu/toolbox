@@ -66,6 +66,7 @@ echo -n > /path/to/file
 ```
 
 用less查看文件内容，h帮助信息，-N显示行号，/搜索，v编辑，R重新加载，q退出
+g跳到开头，G跳到结尾，输入行号再按g跳到指定行
 ```
 less /path/to/text/file
 ```
