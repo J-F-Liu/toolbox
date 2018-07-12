@@ -58,6 +58,8 @@ cargo install rustfmt-nightly
 cargo install clippy
 cargo install cargo-edit
 cargo install cargo-outdated
+cargo install cargo-src # exploring code in web browser: cargo src --open
+cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 rustup update nightly # update RLS and its dependencies
 ```
@@ -369,11 +371,13 @@ impl<T: Foo> Foo for Box<T> {
 ## Articles
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
+- [The Secret Life of Cows](https://deterministic.space/secret-life-of-cows.html)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
 - [Rust memory safety revolution](https://anixe.pl/content/news/rust_memory_safety_revolution)
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
+- [Traits and Trait Objects in Rust](https://joshleeb.com/posts/rust-traits-and-trait-objects/)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
 - [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
 - [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
@@ -399,6 +403,7 @@ impl<T: Foo> Foo for Box<T> {
 - [Exploring lock-free Rust](https://morestina.net/blog/742/exploring-lock-free-rust-1-locks)
 - [What Are Tokio and Async IO All About?](https://manishearth.github.io/blog/2018/01/10/whats-tokio-and-async-io-all-about/)
 - [Borrow cycles in Rust: arenas v.s. drop-checking](https://exyr.org/2018/rust-arenas-vs-dropck/)
+- [Modeling graphs in Rust using vector indices](http://smallcultfollowing.com/babysteps/blog/2015/04/06/modeling-graphs-in-rust-using-vector-indices/)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
@@ -420,6 +425,7 @@ impl<T: Foo> Foo for Box<T> {
 - [Container / collection literal macros for HashMap, HashSet, BTreeMap, BTreeSet](https://github.com/bluss/maplit)
 - [Unicode Grapheme Cluster and Word boundaries](https://github.com/unicode-rs/unicode-segmentation)
 - [A pull parser for CommonMark](https://github.com/google/pulldown-cmark)
+- [Encapsulating Lifetime of the Field](https://matklad.github.io/2018/05/04/encapsulating-lifetime-of-the-field.html)
 
 http://zsck.co/writing/capability-based-apis.html
 
