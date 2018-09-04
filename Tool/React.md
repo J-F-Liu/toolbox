@@ -40,6 +40,7 @@ react-devtools
 - [7 architectural attributes of a reliable React component](https://dmitripavlutin.com/7-architectural-attributes-of-a-reliable-react-component/)
 - [All About React Router 4](https://css-tricks.com/react-router-4/)
 - [A compilation of React Patterns, techniques, tips and tricks](https://vasanthk.gitbooks.io/react-bits/)
+- [Mastering React Functional Components with Recompose](https://blog.usejournal.com/mastering-react-functional-components-with-recompose-d4dd6ac98834)
 
 ## 范例代码
 

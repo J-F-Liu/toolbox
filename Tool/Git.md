@@ -55,6 +55,7 @@ git diff --check
 
 git checkout <commit_or_branch>
 git checkout -b <new_branch> <start_point>
+git checkout --orphan gh-pages
 git branch -d <branch_to_delete>
 git branch -m <old-name> <new-name>
 git merge <another_branch>

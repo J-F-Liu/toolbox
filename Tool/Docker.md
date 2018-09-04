@@ -143,3 +143,10 @@ docker network create --driver overlay <network name>
 docker network ls
 docker service create --network <network name> --name <service name> <image name> 在指定网络上创建service
 ```
+
+## 容器运维最佳实践
+
+- 容器可以将日志写入 stdout 和 stderr，Docker 捕获这些日志行，并允许你使用 docker logs 命令访问它们。
+- 确保容器是无状态且不可变的，这意味着可以随时干净地关闭和销毁容器，而不必担心数据丢失。
+- 更新应用程序代码或打补丁，则构建新镜像并重新部署。不变性使部署更安全，更可重复。如果需要回滚，只需重新部署旧镜像即可。
+- 请避免使用特权容器。特权容器可以访问主机的所有设备，绕过容器的几乎所有安全功能。

@@ -22,10 +22,13 @@ nano ~/.config/fish/config.fish
 fish_config 打开基于网页的配置界面
 ```
 
-## 设置环境变量
+## 环境变量
 ```
 > set PATH /usr/local/bin /usr/sbin $PATH
 > set PATH[4] ~/bin
+> echo $fish_user_paths
+> echo $fish_user_paths[1]
+> set fish_user_paths[4] /usr/local/Cellar/node/10.0.0/bin
 > set -U fish_user_paths /usr/local/bin $fish_user_paths
 > env PORT=8080 yarn start
 ```
