@@ -41,6 +41,7 @@ react-devtools
 - [All About React Router 4](https://css-tricks.com/react-router-4/)
 - [A compilation of React Patterns, techniques, tips and tricks](https://vasanthk.gitbooks.io/react-bits/)
 - [Mastering React Functional Components with Recompose](https://blog.usejournal.com/mastering-react-functional-components-with-recompose-d4dd6ac98834)
+- [Fractal — A react app structure for infinite scale](https://hackernoon.com/fractal-a-react-app-structure-for-infinite-scale-4dab943092af)
 
 ## 范例代码
 

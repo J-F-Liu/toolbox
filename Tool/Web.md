@@ -29,6 +29,7 @@
 - [跨域问题，解决之道](http://blog.720ui.com/2016/web_cross_domain/)
 - [深入理解ES7的async/await](http://coolcao.com/2016/12/12/deeper-understanding-of-async-await/)
 - [Make small focused modules](https://github.com/sindresorhus/ama/issues/10#issuecomment-117766328)
+- [HACKING SEMICOLONS](https://slides.com/evanyou/semicolons)
 
 ## Design
 - [解读设计风格的变迁史](http://www.jianshu.com/p/3bb4f671094f)

@@ -14,6 +14,7 @@ rustup install nightly
 rustup default nightly
 rustup update nightly
 rustup self update
+rustup doc --std
 rustup target list
 rustup target add x86_64-unknown-linux-musl
 ```
@@ -50,11 +51,9 @@ rustup show
 rustup doc
 rustup default nightly
 rustup update nightly
-rustup component add rls-preview
-rustup component add rust-analysis
-rustup component add rust-src
+rustup component add rls-preview rust-analysis rust-src rustfmt-preview
 rustup component add rust-docs
-cargo install rustfmt-nightly
+cargo fmt
 cargo install clippy
 cargo install cargo-edit
 cargo install cargo-outdated
@@ -72,6 +71,7 @@ cargo install loc
 cargo install xsv
 cargo install fselect
 cargo install exa
+cargo install bat
 cargo install --git https://github.com/sharkdp/fd
 cargo install simple-http-server
 ```
@@ -101,278 +101,11 @@ fn main() {
 }
 ```
 
-### concatenate strings
-```
-// String + &str -> String
-"hello ".to_owned() + "world" + "!";
-format!("{} {}!", "hello", "world");
-concat!("2+2=", 4);
-
-let mut text = String::new();
-text.push_str("Hello world");
-text.push_str("!");
-println!("{}", text)
-```
-### format numbers
-```
-format_spec := [[fill]align][sign]['#'][0][width]['.' precision][type]
-fill := character
-align := '<' | '^' | '>'
-sign := '+' | '-'
-width := count
-precision := count | '*'
-type := identifier | ''
-count := parameter | integer
-parameter := argument '$'
-
-mapping of types to traits is:
-nothing ⇒ Display
-? ⇒ Debug
-o ⇒ Octal
-x ⇒ LowerHex
-X ⇒ UpperHex
-p ⇒ Pointer
-b ⇒ Binary
-e ⇒ LowerExp
-E ⇒ UpperExp
-`{:.*}` get precision from argument list, e.g. `format!("{:.*}", 2, 1.234567) // => "1.23"`
-# - This flag indicates alternate forms:
-#? - pretty-print the Debug formatting
-#x - precedes the argument with a 0x
-#X - precedes the argument with a 0x
-#b - precedes the argument with a 0b
-#o - precedes the argument with a 0o
-
-println!("{:b} of {:x}", 10, 10); // binary and hexical number
-format!("{:04}", 42);             // => "0042" with leading zeros
-
-// You can right-align text with a specified width. This will output
-// "     1". 5 white spaces and a "1".
-println!("{number:>width$}", number=1, width=6);
-
-// You can pad numbers with extra zeroes. This will output "000001".
-println!("{number:>0width$}", number=1, width=6);
-```
-### read user input from stdin
-```
-use std::io;
-use std::io::prelude::*;
-
-fn main() {
-    let mut user_input = String::new();
-    io::stdin().read_line(&mut user_input)
-        .expect("Failed to read line!");
-
-    println!("Hello, World.\n{}", user_input);
-}
-
-fn main() {
-    let stdin = io::stdin();
-    for line in stdin.lock().lines() {
-        println!("{}", line.unwrap());
-    }
-}
-```
-### function/closure as input parameter
-Closures are more complicated than functions: it's basically a regular function pointer + the closure environment.
-A named function's name can be used wherever you'd use a closure.
-```
-fn twice_ptr(x: i32, f: fn(i32) -> i32) -> i32 {
-    f(x) + f(x)
-}
-fn twice_dyn(x: i32, f: &Fn(i32) -> i32) -> i32 {
-    f(x) + f(x)
-}
-fn twice_stc<F:Fn(i32) -> i32>(x: i32, f: F) -> i32 {
-    f(x) + f(x)
-}
-
-fn square(x: i32) -> i32 { x * x }
-
-fn main() {
-  println!("{:?}",twice_ptr(5, square));
-  println!("{:?}",twice_stc(5, |x| x * x));
-}
-```
-
-### Pass closures as callbacks.
-```
-struct Processor<CB> where CB: FnMut() {
-    callback: CB,
-}
-
-impl<CB> Processor<CB> where CB: FnMut() {
-    fn set_callback(&mut self, c: CB) {
-        self.callback = c;
-    }
-
-    fn process_events(&mut self) {
-        (self.callback)();
-    }
-}
-
-fn main() {
-    let s = "world!".to_string();
-    let callback = || println!("hello {}", s);
-    let mut p = Processor { callback: callback };
-    p.process_events();
-}
-```
-- Fn are closures that only read data, and may be safely called multiple times, possibly from multiple threads. Both above closures are Fn.
-- FnMut are closures that modify data, e.g. by writing to a captured mut variable. They may also be called multiple times, but not in parallel. (Calling a FnMut closure from multiple threads would lead to a data race, so it can only be done with the protection of a mutex.) The closure object must be declared mutable by the caller.
-- FnOnce are closures that consume the data they capture, e.g. by moving it to a function that owns them. As the name implies, these may be called only once, and the caller must own them.
-
-There's 2 different types of move when discussing closures:
-- moving into the closure which is what the move keyword is doing to let the closure own the data
-- moving out of a captured variable, which can only be done in an FnOnce/FnBox
-
-The above code requires each Processor instance to be parameterized with a concrete callback type, which means that a single Processor can only deal with one callback type.
-If Processor stores Box<FnMut()>, it no longer needs to be generic, but the set_callback method is now generic.
-```
-struct Processor {
-    callback: Box<FnMut()>,
-}
-
-impl Processor {
-    fn set_callback<CB: 'static + FnMut()>(&mut self, c: CB) {
-        self.callback = Box::new(c);
-    }
-
-    fn process_events(&mut self) {
-        (self.callback)();
-    }
-}
-
-fn simple_callback() {
-    println!("hello");
-}
-
-fn main() {
-    let mut p = Processor { callback: Box::new(simple_callback) };
-    p.process_events();
-    let s = "world!".to_string();
-    let callback2 = move || println!("hello {}", s);
-    p.set_callback(callback2);
-    p.process_events();
-}
-```
-```
-use std::collections::HashMap;
-
-fn frequency(s: &str) -> HashMap<char, i32> {
-    let mut freqs = HashMap::new();
-    for ch in s.chars() {
-        let counter = freqs.entry(ch).or_insert(0);
-        *counter += 1;
-    }
-    freqs
-}
-
-struct Node {
-    freq: i32,
-    ch: Option<char>,
-    left: Option<Box<Node>>,
-    right: Option<Box<Node>>,
-}
-let mut p = Node {
-                freq:10, ch: Some('A'),
-                left:None, right: None,
-            };
-```
-
-Can not return local String as a slice, need to return a value of an owned type.
-```
-fn return_str<'a>() -> &'a str {
-    let mut string = "".to_string();
-
-    for i in 0..10 {
-        string.push_str("ACTG");
-    }
-
-    &string[..]
-}
-// should be written as
-fn return_str() -> String {
-    let mut string = String::new();
-
-    for _ in 0..10 {
-        string.push_str("ACTG");
-    }
-
-    string
-}
-```
-
-```
-fn main() {
-  let s = String::from("foo");
-  let x = Some(5);
-  // let r = x.map_or((s, 0), |v| (s, v)); // will get "value captured here after move" error
-  let r = match x {
-      None => (s, 0),
-      Some(v) => (s, v)
-  };
-  println!("{:?}", r);
-}
-```
-### Lifetime
-There are four places where a lifetime can appear in a type:
-- `&'a Type`: the lifetime of an immutable reference;
-- `&'a mut Type`: the lifetime of a mutable reference;
-- `Type<'a>`: a generic lifetime parameter on a type;
-- `Trait + 'a`: a trait object’s lifetime, as with generic bounds.
-
-Box<Trait> is normally equivalent to Box<Trait + 'static> and &'a Trait to &'a (Trait + 'a).
-
-### Sizedness
-Sized is a special compiler built-in trait that is automatically implemented or not based on the sizedness of a type.
-Types for which the size is not known are called dynamically sized types (DSTs), and there’s two classes of examples in current Rust1: [T] and Trait.
-Unsized values must always appear behind a pointer at runtime, like &[T] or Box<Trait>, putting an unsized type behind a pointer effectively makes it sized.
-```
-fn foo<T>() {} // can only be used with sized T
-fn bar<T: ?Sized>() {} // can be used with both sized and unsized T
-```
-
-In Rust traits are types, but they are “unsized”, which roughly means that they are only allowed to show up behind a pointer like Box (which points onto the heap) or & (which can point anywhere).
-A type like `&Trait` or `Box<Trait>` is called a “trait object”, and includes a pointer to an instance of a type T implementing `Trait`, and a vtable: a pointer to T’s implementation of each method in the trait.
-
-### TypeID
-```
-use std::any::{Any, TypeId};
-
-fn type_of<T: ?Sized + Any>(_s: &T) -> TypeId {
-    TypeId::of::<T>()
-}
-
-fn type_id<E: 'static + ?Sized>() -> TypeId {
-    TypeId::of::<E>()
-}
-
-fn main() {
-    println!("{:?}", type_of(b"c") == type_id::<[u8;1]>());
-}
-```
-### Deref Box
-```
-use std::any;
-trait Foo {
-    fn bar(&mut self) -> &mut any::Any;
-}
-
-impl<T: Foo> Foo for Box<T> {
-    //fn bar(&mut self) -> &mut any::Any { (**self).bar() }
-
-    fn bar<'a>(&'a mut self) -> &'a mut any::Any {
-        |q: &'a mut Box<T>| -> &'a mut T { &mut **q }(self).bar()
-    }
-}
-```
-
 ## Articles
+- [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
 - [The Secret Life of Cows](https://deterministic.space/secret-life-of-cows.html)
-- [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
 - [Rust memory safety revolution](https://anixe.pl/content/news/rust_memory_safety_revolution)

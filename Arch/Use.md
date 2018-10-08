@@ -5,7 +5,7 @@
 pwd 查看当前工作目录的路径
 cd  更改当前工作目录
 ls 列出当前目录中的文件
-ls -l
+ls -ltr 显示详细信息并按时间排序
 ```
 
 > drwxr-xr-x 7 root root 4096 Aug 11 01:22 app

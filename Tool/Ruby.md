@@ -8,7 +8,7 @@ pacman -S ruby
 ## Update gem
 ```
 gem sources --remove https://rubygems.org/
-gem sources -a https://gems.ruby-china.org/
+gem sources -a https://gems.ruby-china.com/
 gem sources -l
 
 gem update --system
