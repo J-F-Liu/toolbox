@@ -123,9 +123,14 @@ EDITOR=nano visudo
 pacman -S htop whois httping
 ```
 
+文件列表、查看、搜索
+```
+pacman -S exa bat fd ripgrep
+```
+
 ## 2、命令解析器(shell)
 ```
-pacman -S zsh
+pacman -S fish
 ```
 
 ## 3、图形界面

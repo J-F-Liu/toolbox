@@ -29,12 +29,15 @@ cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
 cargo rustc --release -- -C target-cpu=skylake
 RUSTFLAGS="-Ctarget-cpu=native" cargo rustc --release
+cargo build --features embed_image
 cargo update
 cargo doc --open
 cargo test
 cargo test -- --nocapture
 cargo bench
 CARGO_INCREMENTAL=1 cargo build
+rustc +beta --version
+cargo +beta build
 ```
 
 - Cross Compile
@@ -58,6 +61,7 @@ cargo install clippy
 cargo install cargo-edit
 cargo install cargo-outdated
 cargo install cargo-src # exploring code in web browser: cargo src --open
+cargo install cargo-watch
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 rustup update nightly # update RLS and its dependencies
@@ -72,7 +76,9 @@ cargo install xsv
 cargo install fselect
 cargo install exa
 cargo install bat
+cargo install dutree
 cargo install --git https://github.com/sharkdp/fd
+cargo install hexyl
 cargo install simple-http-server
 ```
 
@@ -138,6 +144,7 @@ fn main() {
 - [Borrow cycles in Rust: arenas v.s. drop-checking](https://exyr.org/2018/rust-arenas-vs-dropck/)
 - [Modeling graphs in Rust using vector indices](http://smallcultfollowing.com/babysteps/blog/2015/04/06/modeling-graphs-in-rust-using-vector-indices/)
 - [Rust concurrency patterns: communicate by sharing your Sender](https://medium.com/@polyglot_factotum/rust-concurrency-patterns-communicate-by-sharing-your-sender-11a496ce7791)
+- [On dealing with owning and borrowing in public interfaces](https://phaazon.net/blog/on-owning-borrowing-pub-interface)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)

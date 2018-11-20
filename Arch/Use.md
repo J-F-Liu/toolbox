@@ -146,7 +146,8 @@ who
 查看端口
 ```
 netstat -an | grep 8080
-ss -tnlp
+sudo netstat -tnlp
+sudo ss -tnlp
 ```
 
 启动防火墙

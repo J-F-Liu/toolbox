@@ -29,8 +29,10 @@ fish_config 打开基于网页的配置界面
 > echo $fish_user_paths
 > echo $fish_user_paths[1]
 > set fish_user_paths[4] /usr/local/Cellar/node/10.0.0/bin
+> set -e $fish_user_paths[4] # Erase an arry element
 > set -U fish_user_paths /usr/local/bin $fish_user_paths
 > env PORT=8080 yarn start
+> env (cat .env | xargs) program
 ```
 
 ## Universal Variables

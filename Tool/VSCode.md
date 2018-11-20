@@ -4,7 +4,12 @@
 
 ## 安装
 ```
-packer -S visual-studio-code
+packer -S visual-studio-code-bin
+```
+
+## 启动
+```
+code
 ```
 
 ## 插件
@@ -12,12 +17,18 @@ packer -S visual-studio-code
 - AutoFileName
 - Duplicate action
 - EditorConfig
+- Excel Viewer
 - Git History (git log)
+- hexdump for VSCode
+- Import Cost
 - Live HTML Previewer
 - Markdown Shortcuts
+- Markdown Preview Enchanced
 - Native Debug
 - One Dark Theme
-- vscode-icons
+- Prettier
+- REST Client
+- SVG Viewer
 - C#, Ruby, TOML, Docker
 
 ## 设置

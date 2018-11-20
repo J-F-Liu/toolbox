@@ -80,13 +80,14 @@ elinks wiki.archlinux.org
 lsblk --fs --paths
 ```
 
-3.2 编辑硬盘分区表，指定所需的目标设备
+3.2 创建硬盘分区表，指定所需的目标设备
+如果不是新的硬盘，可以用`wipefs -a /dev/sda`命令删掉已有的硬盘分区表。
+
+编辑硬盘分区表，选择要创建的分区表的类型：DOS或GPT。
+如果主板是BIOS启动，分区类型选DOS，如果是UEFI启动或硬盘容量大于2TB选GPT。
 ```
 cfdisk /dev/sda
 ```
-如果不是新的硬盘，可以用`wipefs -a /dev/sda`命令删掉已有的硬盘分区表。
-选择要创建的分区表的类型：DOS或GPT。
-如果主板是BIOS启动，分区类型选DOS，如果是UEFI启动或硬盘容量大于2TB选GPT。
 
 分区方案可根据具体的使用需求来确定。
 UEFI的主板，需要一个EFI系统分区，容量为512MiB或更大。

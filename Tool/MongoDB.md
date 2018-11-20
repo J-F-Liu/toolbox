@@ -30,3 +30,11 @@ db.category.find({})
 db.category.deleteMany({}) //deletes all documents
 db.question.update({},{"$set": {categories: []}},{ multi: true })
 ```
+
+## Query
+
+[Operators](https://docs.mongodb.com/manual/reference/operator/query/index.html)
+
+```
+{$and: [{updatedAt:{$gte: new Date("2018-10-22T19:08:09")}}, {updatedAt:{$lte: new Date("2018-10-22T19:36:41")}}]}
+```

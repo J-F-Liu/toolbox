@@ -27,9 +27,10 @@
 - [让 Javascript 优雅如诗](http://www.ycwalker.com/2016/09/19/elegant-javascript/)
 - [JavaScript 模块化入门Ⅰ：理解模块](https://zhuanlan.zhihu.com/p/22890374)
 - [跨域问题，解决之道](http://blog.720ui.com/2016/web_cross_domain/)
-- [深入理解ES7的async/await](http://coolcao.com/2016/12/12/deeper-understanding-of-async-await/)
 - [Make small focused modules](https://github.com/sindresorhus/ama/issues/10#issuecomment-117766328)
 - [HACKING SEMICOLONS](https://slides.com/evanyou/semicolons)
+- [The Evolution of Async JavaScript: From Callbacks, to Promises, to Async/Await](https://tylermcginnis.com/async-javascript-from-callbacks-to-promises-to-async-await/)
+- [深入理解ES7的async/await](http://coolcao.com/2016/12/12/deeper-understanding-of-async-await/)
 
 ## Design
 - [解读设计风格的变迁史](http://www.jianshu.com/p/3bb4f671094f)
