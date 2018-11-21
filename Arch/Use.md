@@ -130,6 +130,11 @@ groupadd gituser
 usermod -aG group user
 ```
 
+列出用户所属的组
+```
+groups user
+```
+
 列出属于某个用户组的用户
 ```
 pacman -S libuser
@@ -261,6 +266,7 @@ whereis <cmd>  在全部路径中查找
 
 ```
 man ascii 查看ASCII表
+bc 命令行计算器
 cal 日历
 date 日期和时间
 uptime 系统已运行了多长时间

@@ -181,6 +181,13 @@ packer -S ttf-ms-fonts ttf-google-fonts-git
 packer -S ttf-emojione-color
 ```
 
+调节屏幕亮度
+```
+packer -S brightnessctl
+brightnessctl -l
+brightnessctl -c backlight set 50%
+```
+
 开启声音
 ```
 pacman -S alsa-utils volumeicon
@@ -208,7 +215,7 @@ pcm.!default {
 
 ## 4、创建一个新的帐号，比如junfeng
 ```
-useradd -m -G users,wheel -s /usr/bin/zsh junfeng
+useradd -m -G users,wheel,video,input -s /usr/bin/fish junfeng
 passwd junfeng
 ```
 
