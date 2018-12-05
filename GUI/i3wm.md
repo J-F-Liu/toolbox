@@ -31,6 +31,54 @@ $mod一般为Alt或Win键，初次启动i3时可进行设置。
 * /etc/i3blocks.conf
 * ~/.i3blocks.conf
 
+## 安装步骤
+
+安装显示服务(display server)
+```
+pacman -S xorg-server xorg-server-utils
+```
+
+安装显示管理器(display manager)，用于显示登录界面和进入桌面
+```
+pacman -S lightdm lightdm-gtk-greeter numlockx
+systemctl enable lightdm.service
+dm-tool lock 锁屏
+```
+设置登录界面背景图片
+> nano /etc/lightdm/lightdm-gtk-greeter.conf
+```
+[greeter]
+background=/usr/share/pixmaps/backgrounds/gnome/background-default.jpg
+```
+
+自动打开NumLock
+> nano /etc/lightdm/lightdm.conf
+```
+[Seat:*]
+...
+greeter-setup-script=/usr/bin/numlockx on
+```
+
+安装窗口管理器(window manager)
+```
+pacman -S i3-wm i3lock dmenu termite
+packer -S i3blocks
+```
+
+初次进入i3的界面，按Enter键生成配置文件并设置选项，然后按$mod+Enter打开终端窗口。
+
+## 修改i3的配置
+```
+nano ~/.config/i3/config
+```
+加入
+> ```
+  bar {
+          status_command i3blocks
+  }
+  exec --no-startup-id fcitx
+```
+
 ```
 # run `xprop` and click target window to get class name
 assign [class="chromium"]  →  3: chromium
@@ -51,9 +99,11 @@ exec --no-startup-id clipit
 exec --no-startup-id volwheel
 ```
 
-## 指定终端模拟器程序
+指定终端模拟器程序
 ```
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec termite
 ```
+
+编辑完成后，$mod+shift+c重新加载i3配置

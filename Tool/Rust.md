@@ -72,14 +72,16 @@ rustup update nightly # update RLS and its dependencies
 cargo install ripgrep
 cargo install tokei
 cargo install loc
-cargo install xsv
 cargo install fselect
-cargo install exa
-cargo install bat
-cargo install dutree
+cargo install exa # ls replacement
+cargo install bat # cat replacement
+cargo install hexyl # hexdump replacement
+cargo install dutree # du enhanced
+cargo install xsv # a suite of CSV command line utilities
 cargo install --git https://github.com/sharkdp/fd
-cargo install hexyl
 cargo install simple-http-server
+cargo install rural # curl replacement, HTTPie like API
+cargo install jsonpp
 ```
 
 - 样例程序
@@ -145,6 +147,7 @@ fn main() {
 - [Modeling graphs in Rust using vector indices](http://smallcultfollowing.com/babysteps/blog/2015/04/06/modeling-graphs-in-rust-using-vector-indices/)
 - [Rust concurrency patterns: communicate by sharing your Sender](https://medium.com/@polyglot_factotum/rust-concurrency-patterns-communicate-by-sharing-your-sender-11a496ce7791)
 - [On dealing with owning and borrowing in public interfaces](https://phaazon.net/blog/on-owning-borrowing-pub-interface)
+- [Things Rust doesn’t let you do](https://medium.com/@GolDDranks/things-rust-doesnt-let-you-do-draft-f596a3c740a5)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)

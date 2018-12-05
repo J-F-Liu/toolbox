@@ -142,37 +142,6 @@ pacman -S xf86-video-vesa mesa
 可用`lspci | grep -e VGA -e 3D`命令识别显卡型号，再安装相对应的显卡驱动。
 
 
-安装显示服务(display server)
-```
-pacman -S xorg-server xorg-server-utils
-```
-
-安装显示管理器(display manager)，用于显示登录界面和进入桌面
-```
-pacman -S lightdm lightdm-gtk-greeter numlockx
-systemctl enable lightdm.service
-dm-tool lock 锁屏
-```
-设置登录界面背景图片
-> nano /etc/lightdm/lightdm-gtk-greeter.conf
-```
-[greeter]
-background=/usr/share/pixmaps/backgrounds/gnome/background-default.jpg
-```
-
-自动打开NumLock
-> nano /etc/lightdm/lightdm.conf
-```
-[Seat:*]
-...
-greeter-setup-script=/usr/bin/numlockx on
-```
-
-安装窗口管理器(window manager)
-```
-pacman -S i3-wm i3lock dmenu termite
-packer -S i3blocks
-```
 
 安装字体
 ```
@@ -224,8 +193,6 @@ passwd junfeng
 reboot
 ```
 
-初次进入i3的界面，按Enter键生成配置文件并设置选项，然后按$mod+Enter打开终端窗口。
-
 安装packer，用于从AUR安装软件
 ```
 sudo pacman -S curl git expac jshon
@@ -256,20 +223,6 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 ```
-
-修改i3的配置
-```
-nano ~/.config/i3/config
-```
-加入
-> ```
-  bar {
-          status_command i3blocks
-  }
-  exec --no-startup-id fcitx
-```
-
-编辑完成后，$mod+shift+c重新加载i3配置
 
 安装GTK界面风格，我比较喜欢Arc Theme。
 ```
@@ -455,110 +408,6 @@ systemctl start bftpd
 less /var/log/bftpd.log
 bftpd start -d
 ```
-
-# 网站服务
-```
-pacman -S nginx
-systemctl start nginx
-systemctl enable nginx
-nano /etc/nginx/nginx.conf
-less /etc/nginx/nginx.conf
-systemctl reload nginx
-journalctl -u nginx
-less /var/log/nginx/access.log
-```
-> ```
-    gzip  on;
-    gzip_vary on;
-    gzip_proxied any;
-    gzip_comp_level 6;
-    gzip_min_length 2048;
-    gzip_types text/plain text/css application/javascript application/json;
->
-    # Default server block for undefined domains
-    server {
-        listen 80;
-        return 404;
-    }
-```
-
-# 启用HTTPS和HTTP/2
-```
-pacman -S certbot
-
-# Obtain a cert using a built-in “standalone” webserver (you may need to temporarily stop your existing webserver, if any)
-certbot certonly --standalone -d example.com -d www.example.com
-
-# Obtain a cert using the "webroot" plugin, which can work with the webroot directory of any webserver software
-certbot certonly --webroot -w /var/www/example -d example.com -d www.example.com
-
-# Renew certificates automatically before they expire
-certbot renew --dry-run # test automatic renewal for your certificates
-```
-
-Configure SSL in Nginx
-```
-server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-
-    ssl on;
-
-    ssl_certificate /etc/letsencrypt/live/yourdomain.com/cert.pem;
-    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
-
-    ssl_stapling on;
-    ssl_stapling_verify on;
-    ssl_trusted_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
-
-    ssl_session_timeout 5m;
-
-    server_name yourdomain.com www.yourdomain.com;
-
-    location / {
-      root /var/www/yourpath;
-      index index.html;
-    }
-}
-```
-Redirecting All Traffic to SSL/TLS
-```
-server {
-    listen 80;
-    listen [::]:80;
-    server_name example.com;
-    return 301 https://$server_name$request_uri;
-}
-```
-
-Create a systemd job for automatic renewal
-> nano /etc/systemd/system/certbot.service
-
-```
-[Unit]
-Description=Let's Encrypt renewal
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/certbot renew --quiet --agree-tos
-ExecStartPost=/bin/systemctl reload nginx.service
-```
-
-> nano /etc/systemd/system/certbot.timer
-
-```
-[Unit]
-Description=Daily renewal of Let's Encrypt's certificates
-
-[Timer]
-OnCalendar=daily
-RandomizedDelaySec=1day
-Persistent=true
-
-[Install]
-WantedBy=timers.target
-```
-Enable and start certbot.timer
 
 ## Samba服务
 

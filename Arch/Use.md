@@ -137,7 +137,7 @@ groups user
 
 列出属于某个用户组的用户
 ```
-pacman -S libuser
+packer -S libuser
 lid -g group
 ```
 

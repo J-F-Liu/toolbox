@@ -53,6 +53,7 @@ ansible machines -b -K -m yum -a "name=ntp state=installed"  # use ansible’s y
 ansible machines -b -K -m service -a "name=ntpd state=started enabled=yes” # make sure NTP is started and set to run on boot
 ```
 
+
 ## Playbooks
 Playbooks are expressed in YAML format and have a minimum of syntax, which intentionally tries to not be a programming language or script, but rather a model of a configuration or a process.
 Each playbook is composed of one or more ‘plays’ in a list.

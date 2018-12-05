@@ -22,6 +22,11 @@ curl -O www.example.com/example.html
 curl --socks5 127.0.0.1:1080 -O www.example.com/example.html
 ```
 
+自动访问重定向后的地址
+```
+curl -L www.example.com/example.html
+```
+
 输出响应消息的状态行、消息报头、空行和响应正文
 ```
 curl -i http://httpbin.org/get
@@ -53,4 +58,9 @@ curl -i -X POST \
 读取并发送文件内容
 ```
 curl --data-binary @file.txt https://paste.rs/
+```
+
+记录和发送cookie
+```
+curl -c cookies.txt https://paste.rs/
 ```
