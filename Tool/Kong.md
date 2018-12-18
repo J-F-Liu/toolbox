@@ -57,31 +57,3 @@ Consumers are associated to individuals or applications using your API. They can
 
 The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets).
 
-## Install third party plugin
-```
-docker run -d --name kong \
-     --network=kong-net \
-     -e "KONG_DATABASE=postgres" \
-     -e "KONG_PG_HOST=kong-database" \
-     -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
-     -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
-     -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
-     -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
-     -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
-     -p 8000:8000 \
-     -p 8443:8443 \
-     -p 8001:8001 \
-     -p 8444:8444 \
-     kong:1.0rc2-centos
-
-curl -O https://luarocks.org/releases/luarocks-3.0.4.tar.gz
-docker cp luarocks-3.0.4 kong:/tmp/
-docker exec kong luarocks install kong-plugin-jwt-claims-headers
-docker exec -it kong kong reload
-```
-curl -X POST http://localhost:8001/services/MK-Service/plugins \
-  --data "name=jwt-claims-headers" \
-  --data "config.claims_to_include=.*" \
-  --data "config.continue_on_error=true"
-```
-service: the id or name of the Service that this plugin configuration will target.

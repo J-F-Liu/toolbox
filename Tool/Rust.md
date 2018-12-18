@@ -74,6 +74,7 @@ cargo install tokei
 cargo install loc
 cargo install fselect
 cargo install exa # ls replacement
+cargo install lsd # LSDeluxe, also ls replacement
 cargo install bat # cat replacement
 cargo install hexyl # hexdump replacement
 cargo install dutree # du enhanced
@@ -148,6 +149,7 @@ fn main() {
 - [Rust concurrency patterns: communicate by sharing your Sender](https://medium.com/@polyglot_factotum/rust-concurrency-patterns-communicate-by-sharing-your-sender-11a496ce7791)
 - [On dealing with owning and borrowing in public interfaces](https://phaazon.net/blog/on-owning-borrowing-pub-interface)
 - [Things Rust doesn’t let you do](https://medium.com/@GolDDranks/things-rust-doesnt-let-you-do-draft-f596a3c740a5)
+- [The Swiss Army Knife of Hashmaps](https://blog.waffles.space/2018/12/07/deep-dive-into-hashbrown/)
 
 ## crates
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)

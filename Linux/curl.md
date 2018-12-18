@@ -12,19 +12,25 @@ curl www.example.com
 curl -o example.html www.example.com
 ```
 
-下载文件，内容输出到文件，使用原来的文件名
+下载文件，内容输出到文件，使用原来的文件名，J表示使用Content-Disposition给的文件名
 ```
-curl -O www.example.com/example.html
-```
-
-下载文件，使用SOCKS5代理
-```
-curl --socks5 127.0.0.1:1080 -O www.example.com/example.html
+curl -O www.example.com/file.html
+curl -OJ www.example.com/file.html
 ```
 
 自动访问重定向后的地址
 ```
-curl -L www.example.com/example.html
+curl -L www.example.com/file.html
+```
+
+匹配和下载多个地址的文件，[]指定范围，{}指定列表，可组合起来使用
+```
+curl -O -O http://example.com/{web,mail}-log[0-6].txt
+```
+
+下载文件，使用SOCKS5代理
+```
+curl --socks5 127.0.0.1:1080 -O www.example.com/file.html
 ```
 
 输出响应消息的状态行、消息报头、空行和响应正文
@@ -58,6 +64,11 @@ curl -i -X POST \
 读取并发送文件内容
 ```
 curl --data-binary @file.txt https://paste.rs/
+```
+
+提交表单(multipart formpost)
+```
+curl -F person=anonymous -F secret=@file.txt http://example.com/submit.cgi
 ```
 
 记录和发送cookie

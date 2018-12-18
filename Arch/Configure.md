@@ -145,7 +145,7 @@ pacman -S xf86-video-vesa mesa
 
 安装字体
 ```
-pacman -S ttf-dejavu wqy-zenhei wqy-microhei
+pacman -S ttf-dejavu wqy-zenhei wqy-microhei awesome-terminal-fonts
 packer -S ttf-ms-fonts ttf-google-fonts-git
 packer -S ttf-emojione-color
 ```

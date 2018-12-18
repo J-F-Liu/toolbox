@@ -7,8 +7,8 @@
   * [配置](Arch/Configure.md)
     * [工作站](Arch/Configure.md#workstation)
     * [服务器](Arch/Configure.md#server)
-  * [桌面环境]
-    * [Gnmoe](GUI/Gnome.md)
+  * 桌面环境
+    * [Gnome](GUI/Gnome.md)
     * [i3wm](GUI/i3wm.md)
   * [使用](Arch/Use.md)
     * [pacman](Arch/pacman.md)
