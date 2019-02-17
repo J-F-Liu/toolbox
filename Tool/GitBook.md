@@ -2,8 +2,6 @@
 
 - 官方文档: http://toolchain.gitbook.com/
 
-- 发现图书: https://www.gitbook.com/explore
-
 - 安装
 ```
 npm install gitbook-cli -g

@@ -17,6 +17,8 @@ Alt →  逐词补全
 ```
 
 ## 配置
+
+fish starts by executing commands in ~/.config/fish/config.fish, you define your aliases here.
 ```
 nano ~/.config/fish/config.fish
 fish_config 打开基于网页的配置界面
@@ -69,4 +71,13 @@ My current directory is $PWD
 > echo In (pwd), running (uname)
 In /home/tutorial, running FreeBSD
 > alias rust-musl-builder='docker run --rm -it -v (pwd):/home/rust/src ekidd/rust-musl-builder:nightly'
+```
+
+## [Oh My Fish](https://github.com/oh-my-fish/oh-my-fish)
+```
+curl -L https://get.oh-my.fish | fish
+omf install bobthefish
+omf theme bobthefish
+set -g theme_color_scheme solarized-dark
+set -g theme_nerd_fonts yes
 ```
