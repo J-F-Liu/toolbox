@@ -39,6 +39,7 @@ docker create --name string -p host_port:container_port -v host_path:container_p
 docker rename CONTAINER NEW_NAME 给容器重命名
 
 # 新建并启动容器，-t分配一个伪终端并绑定到容器的标准输入上， -i则让容器的标准输入保持打开，-d则进入后台运行
+# --rm 容器停止后自动删除 -P 发布所有容器暴露的端口到主机上随机的端口号
 docker run -it image_name:tag_name /bin/bash
 
 # run multiple commands in docker, use /bin/bash -c and semicolon ;

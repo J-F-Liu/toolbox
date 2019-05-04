@@ -109,3 +109,43 @@ systemd单元文件可以从两个地方加载，优先级从低到高分别是�
 ```
 systemctl daemon-reload
 ```
+
+样例
+```
+[Unit]
+Description=Nginx
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/opt/nginx/sbin/nginx
+ExecReload=/opt/nginx/sbin/nginx -s reload
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### 日志管理
+
+查询日志占用的空间
+```
+journalctl --disk-usage
+```
+
+释放空间，指定保留多少
+```
+journalctl --vacuum-size=200M
+```
+
+配置最大占用量
+```
+nano /etc/systemd/journald.conf
+> SystemMaxUse=500M
+systemctl restart systemd-journald
+```
+
+### GUI
+```
+pacman -S systemd-ui
+pacman -S gnome-logs
+```

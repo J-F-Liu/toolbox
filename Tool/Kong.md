@@ -43,6 +43,11 @@ docker run -d --name kong-dashboard \
     pgbi/kong-dashboard start --kong-url http://172.18.0.3:8001
 ```
 
+```
+npm install -g kong-dashboard
+kong-dashboard start --kong-url http://localhost:8001 --port 8088
+```
+
 ## Configure
 
 Service entities are abstractions of each of your own upstream APIs and microservices.
@@ -57,3 +62,6 @@ Consumers are associated to individuals or applications using your API. They can
 
 The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets).
 
+## Monitor
+
+[Grafana Kong Dashboard](https://grafana.com/dashboards/7424)

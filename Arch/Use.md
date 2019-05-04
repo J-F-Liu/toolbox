@@ -102,6 +102,12 @@ unzip -v test.zip
 md5sum /path/to/file
 ```
 
+切分文件
+```
+split -l 20000 bigfile.log
+split -b 120M compact.file
+```
+
 ## 2、帐号管理
 
 查看帐号id及所在的用户组
@@ -217,6 +223,7 @@ free -h 查看内存状态
 df -h -a 查看磁盘剩余空间
 du -sh /image 查看文件夹占用空间
 du -kh --max-depth=1 /image
+df -i 查看inode数量，即使磁盘有剩余空间，inode满了也无法写入文件
 ```
 
 查看Shell程序

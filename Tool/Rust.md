@@ -115,6 +115,7 @@ fn main() {
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
 - [Methods for Array Initialization in Rust](https://www.joshmcguigan.com/blog/array-initialization-rust/)
+- [Scientific computing: a Rust adventure [Part 0 - Vectors]](https://www.lpalmieri.com/posts/2019-02-23-scientific-computing-a-rust-adventure-part-0-vectors/)
 - [The Secret Life of Cows](https://deterministic.space/secret-life-of-cows.html)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [Rust and CSV parsing](http://blog.burntsushi.net/csv/)

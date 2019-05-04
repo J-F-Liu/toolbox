@@ -51,6 +51,7 @@ ansible machines -m copy -a "src=/etc/fstab dest=/tmp/fstab" # copy a file on th
 ansible machines -m fetch -a "src=/etc/hosts dest=/tmp” # download file from the managed machine
 ansible machines -b -K -m yum -a "name=ntp state=installed"  # use ansible’s yum module to install the NTP daemon
 ansible machines -b -K -m service -a "name=ntpd state=started enabled=yes” # make sure NTP is started and set to run on boot
+ansible -i inventory-file host-pattern -m ping
 ```
 
 
