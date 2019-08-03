@@ -1,22 +1,37 @@
 # Docker
 
+容器化 = 封装 + 隔离
+分布式 = 集群 + 负载均衡
+
 ## 安装
+
 ```
 pacman -S docker
 systemctl start docker
 systemctl enable docker
 ```
 
-## 普通用户使用docker
+## 普通用户使用 docker
+
 ```
 sudo usermod -aG docker $(whoami)
 ```
+
 logout & login again
 
+## 访问 insecure-registries
+
+Create or modify /etc/docker/daemon.json
+{ "insecure-registries":["myregistry.example.com:5000"] }
+Restart docker daemon
+sudo systemctl restart docker
+
 ## allows IP forwarding from the container
+
 ```
 nano /etc/systemd/network/<interface>.network
 ```
+
 ```
 [Network]
 ...
@@ -25,6 +40,7 @@ IPForward=kernel
 ```
 
 ## 常用命令
+
 ```
 docker version 查看docker的版本信息
 docker info 列出全局信息
@@ -32,6 +48,7 @@ docker run hello-world 测试docker能否正常运行
 
 docker pull image_name 从仓库获取所需要的镜像
 docker images 列出镜像
+docker image prune -f 清理未被使用的镜像文件
 docker ps -a 列出容器
 docker ps --format "{{.ID}}: {{.Command}}"
 
@@ -47,16 +64,20 @@ docker run image /bin/bash -c "cd /path/to/somewhere; python a.py"
 
 docker commit container_id image_name:tag_name 提交容器中的改动到镜像文件中
 docker start container_id 启动容器
-docker stop container_id 停止容器
-docker restart container_id 重启动容器
-docker inspect container_id 查看容器详情
-
-docker logs container_id 查看容器的日志
 docker attach container_id 进入运行中的容器
 exit 从容器中退出
+docker start -a container_id 启动并进入容器
+docker stop container_id 停止容器
+docker restart container_id 重启动容器
+docker restart $(docker ps -aq) 重启所有停止的容器
+
+docker inspect container_id 查看容器详情
+docker logs container_id 查看容器的日志
+docker stats container_id* 查看容器资源使用情况
 
 docker exec CONTAINER COMMAND 在容器内执行任意command
-docker run -it --entrypoint /bin/bash CONTAINER 在运行时指定entrypoint
+docker exec -it CONTAINER bash 进入容器的terminal
+docker run -it --entrypoint /bin/bash IMAGE_NAME 在运行时指定entrypoint
 # entrypoint作为容器中pid为1的进程运行，未指定时缺省为 /bin/sh -c，cmd只是entrypoint的参数。
 
 docker pause CONTAINER 暂停容器中所有进程
@@ -73,6 +94,11 @@ docker volume rm volume_name 删除分卷
 
 docker network ls 列出网络
 docker run --network=host image_name 使用host网络
+网络选项：
+- bridge 默认值，连接到默认的桥接网络，
+- host 直接使用主机的网络连接，主机与容器之间没有隔离
+- overlay 跨主机的虚拟网络
+- none 禁用网络
 
 docker save -o busybox.tar busybox 导出镜像为tar文件
 gzip busybox.tar 压缩tar文件
@@ -84,14 +110,34 @@ docker system prune 删除当前没有被使用的一切项目
 docker volume prune 删除所有（本地）没有被容器使用的 volume
 ```
 
-## 构建image文件
+## 构建 image 文件
+
 ```
 git clone https://github.com/emk/rust-musl-builder.git
 cd rust-musl-builder
 docker build --build-arg TOOLCHAIN=nightly -t rust-musl-builder .
 ```
 
+## 发布镜像文件
+
+```
+docker login --username=liujf
+docker tag NAME liujf/NAME[:TAG]
+docker push liujf/NAME[:TAG]
+```
+
+## Run a local registry
+
+```
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
+
+## 允许通过 tcp 端口远程控制
+
+https://success.docker.com/article/how-do-i-enable-the-remote-api-for-dockerd
+
 ## Swarm 集群
+
 ```
 # 在管理节点上创建一个新的swarm，其他节点以worker或manager的方式加入swarm
 docker swarm init --advertise-addr 192.168.33.101 (在管理节点上运行)
@@ -104,10 +150,13 @@ docker node ls 查看集群中的所有节点
 docker node promote <worker_node> worker节点上升为manager节点(在管理节点上运行)
 ```
 
-### 在Swarm集群上运行service
-服务模式包括replicated和global。默认是replicated。
-- replicated模式，根据指定的数量运行任务。
-- global模式，任务运行在集群中所有活跃的节点上。
+### 在 Swarm 集群上运行 service
+
+服务模式包括 replicated 和 global。默认是 replicated。
+
+- replicated 模式，根据指定的数量运行任务。
+- global 模式，任务运行在集群中所有活跃的节点上。
+
 ```
 docker service create --name <service name> --mode <mode> alpine ping 8.8.8.8
 docker service ls
@@ -116,29 +165,37 @@ docker service scale <service name>=<副本个数>
 ```
 
 ### 发布端口
-- 公共的端口会暴露在每一个swarm集群中的节点服务器上.
-- 请求进如公共端口后会负载均衡到所有的sevice实例上.
+
+- 公共的端口会暴露在每一个 swarm 集群中的节点服务器上.
+- 请求进如公共端口后会负载均衡到所有的 sevice 实例上.
+
 ```
 docker service create --name search --publish 9200:9200 --replicas 7 elasticsearch
 watch docker service ps search 监控 service 创建过程
 docker service rm <service ID or Name> 删除服务
 docker service ls -q | xargs docker service rm 删除所有servcie
 ```
-一个service副本的创建过程,会经历以下几个状态:
-* accepted 任务已经被分配到某一个节点执行
-* preparing 准备资源, 现在来说一般是从网络拉取image
-* running 副本运行成功
-* shutdown 呃, 报错,被停止了…
+
+一个 service 副本的创建过程,会经历以下几个状态:
+
+- accepted 任务已经被分配到某一个节点执行
+- preparing 准备资源, 现在来说一般是从网络拉取 image
+- running 副本运行成功
+- shutdown 呃, 报错,被停止了…
 
 ### Rolling Update
---update-parallelism指定每次update的容器数量, --update-delay 每次更新之后的等待时间.
+
+--update-parallelism 指定每次 update 的容器数量, --update-delay 每次更新之后的等待时间.
 回滚和更新的命令是相同的，只是指定不同的镜像.
+
 ```
 docker service update <service name> --update-parallelism 2 --update-delay 5s --image <updated image>
 ```
 
-### overlay网络
+### overlay 网络
+
 保证不同主机上的容器网络互通
+
 ```
 docker network create --driver overlay <network name>
 docker network ls

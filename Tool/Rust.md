@@ -123,6 +123,7 @@ fn main() {
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Traits and Trait Objects in Rust](https://joshleeb.com/posts/rust-traits-and-trait-objects/)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
+- [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
 - [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
 - [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
 - [An Overview of Macros in Rust](http://words.steveklabnik.com/an-overview-of-macros-in-rust)

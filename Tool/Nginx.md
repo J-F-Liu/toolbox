@@ -150,8 +150,8 @@ location /api/ {
     rewrite ^/api/(.*) /$1 break;
     proxy_set_header Host api.web-tinker.com;
     proxy_http_version 1.1;
-    proxy_pass http://127.0.0.1:1234;
     proxy_buffering  off;
+    proxy_pass http://127.0.0.1:1234;
 }
 ```
 - rewrite 的作用是修改 $uri，但要注意 rewrite 要有个重新匹配 location 的副作用。由于 proxy_pass 的处理阶段比 location 处理更晚，所以这里需要 break 掉，以防止 rewrite 进入下一次 location 匹配而丢失 proxy_pass。

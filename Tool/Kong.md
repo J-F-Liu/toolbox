@@ -48,6 +48,11 @@ npm install -g kong-dashboard
 kong-dashboard start --kong-url http://localhost:8001 --port 8088
 ```
 
+```
+kong reload
+kong restart # need to restart after plugins configuration is changed
+```
+
 ## Configure
 
 Service entities are abstractions of each of your own upstream APIs and microservices.
@@ -63,5 +68,27 @@ Consumers are associated to individuals or applications using your API. They can
 The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets).
 
 ## Monitor
+
+```
+curl http://localhost:8001/plugins -d name=prometheus
+curl http://localhost:8001/metrics
+docker run -d -p 3000:3000 grafana/grafana
+docker run -d -p 8056:9090 -v ~/.config/prometheus.yml:/etc/prometheus/prometheus.yml --name prometheus prom/prometheus
+```
+
+```prometheus.yml
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+
+scrape_configs:
+  - job_name: kong_prometheus
+    static_configs:
+      - targets: ['localhost:8001']
+```
 
 [Grafana Kong Dashboard](https://grafana.com/dashboards/7424)

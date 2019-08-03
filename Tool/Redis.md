@@ -50,7 +50,7 @@ redis-server restart
 
 ## redis-cli
 ```
-redis-cli -a <password> -n 1
+redis-cli -h <host> -a <password> -n 1
 redis-cli shutdown
 ```
 
