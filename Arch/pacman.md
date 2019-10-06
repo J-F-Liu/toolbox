@@ -86,3 +86,8 @@ nano /etc/reflector.conf
 ```
 rm -rf /tmp/packerbuild-*
 ```
+
+删除缓存的安装包
+```
+pacman -Sc
+```

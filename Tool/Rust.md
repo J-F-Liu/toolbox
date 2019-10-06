@@ -110,6 +110,9 @@ fn main() {
 }
 ```
 
+LTO - Link Time Optimization
+
+
 ## Articles
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
@@ -118,6 +121,7 @@ fn main() {
 - [Scientific computing: a Rust adventure [Part 0 - Vectors]](https://www.lpalmieri.com/posts/2019-02-23-scientific-computing-a-rust-adventure-part-0-vectors/)
 - [The Secret Life of Cows](https://deterministic.space/secret-life-of-cows.html)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
+- [Rust memory safety revolution](https://anixe.pl/news/rust_memory_safety_revolution/)
 - [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
 - [Rust memory safety revolution](https://anixe.pl/content/news/rust_memory_safety_revolution)
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
@@ -129,6 +133,7 @@ fn main() {
 - [An Overview of Macros in Rust](http://words.steveklabnik.com/an-overview-of-macros-in-rust)
 - [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
+- [Accurate mental model for Rust's reference types](https://docs.rs/dtolnay/0.0.6/dtolnay/macro._02__reference_types.html)
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
 - [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)

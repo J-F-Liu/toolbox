@@ -31,7 +31,7 @@ Menu: Help > Show SSH Key
 ```
 git init
 git clone https://github.com/J-F-Liu/toolbox.git
-git clone https://github.com/J-F-Liu/toolbox.git --depth 10
+git clone https://github.com/J-F-Liu/toolbox.git --depth 10 --branch BRANCH
 
 git add .
 git status

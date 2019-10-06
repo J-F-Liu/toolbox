@@ -95,3 +95,16 @@ curl -c cookies.txt https://paste.rs/
 ```
 curl -o /dev/null -s -w 'Establish Connection: %{time_connect}s\nTTFB: %{time_starttransfer}s\nTotal: %{time_total}s\n'  https://www.google.com
 ```
+
+查询自己的 IP 地址
+
+```
+curl https://api.myip.com
+wget -qO- https://api.myip.com
+```
+
+在控制台阅读技术文档
+```
+curl cheat.sh
+curl cheat.sh/lua/:learn | less -R
+```

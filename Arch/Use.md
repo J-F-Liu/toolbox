@@ -63,6 +63,8 @@ a all all three of the above, same as ugo
 getfacl dir
 setfacl -R -m u:user:rwx dir
 setfacl -R -d --set g:group:rwx dir
+lsattr FILE
+chattr FILE
 ```
 
 清空文件内容
@@ -88,7 +90,7 @@ hexedit /path/to/file
 创建压缩文件
 
 ```
-zip -r filename.zip folder1 folder2
+zip -p password -r filename.zip folder1 folder2
 ```
 
 将压缩文件 text.zip 在当前目录下解压缩。
@@ -179,6 +181,11 @@ lid -g group
 ```
 who
 pkill -9 -t pts/0 强制退出
+```
+
+删除用户，-r删除该用户的主目录和邮件后台
+```
+userdel USER
 ```
 
 ## 3、网络配置
@@ -324,4 +331,13 @@ cal 日历
 date 日期和时间
 uptime 系统已运行了多长时间
 last -x | less 系统登录和重启的记录
+```
+
+dig - DNS 查询工具
+
+```
+dig +short DOMAIN_NAME
+dig +short DOMAIN_NAME MX
+dig +short DOMAIN_NAME TXT
+dig +trace DOMAIN_NAME
 ```

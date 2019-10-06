@@ -163,3 +163,4 @@ location /api/ {
 ### 参考资料
 
 - [全面了解 Nginx 到底能做什么](https://www.jianshu.com/p/8bf73d1a758c)
+- [Nginx proxy_pass examples](https://www.liaohuqiu.net/posts/nginx-proxy-pass/)

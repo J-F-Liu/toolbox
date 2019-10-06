@@ -72,13 +72,16 @@ docker restart container_id 重启动容器
 docker restart $(docker ps -aq) 重启所有停止的容器
 
 docker inspect container_id 查看容器详情
-docker logs container_id 查看容器的日志
+docker logs -f --tail 300 container_id 查看容器的日志
 docker stats container_id* 查看容器资源使用情况
 
 docker exec CONTAINER COMMAND 在容器内执行任意command
 docker exec -it CONTAINER bash 进入容器的terminal
 docker run -it --entrypoint /bin/bash IMAGE_NAME 在运行时指定entrypoint
 # entrypoint作为容器中pid为1的进程运行，未指定时缺省为 /bin/sh -c，cmd只是entrypoint的参数。
+
+docker cp CONTAINER:/FILE_PATH LOCAL_PATH
+docker cp LOCAL_PATH CONTAINER:/FILE_PATH
 
 docker pause CONTAINER 暂停容器中所有进程
 docker unpause CONTAINER 继续容器中所有进程
@@ -130,6 +133,8 @@ docker push liujf/NAME[:TAG]
 
 ```
 docker run -d -p 5000:5000 --restart=always --name registry registry:2
+docker tag ubuntu:16.04 localhost:5000/my-ubuntu
+docker push localhost:5000/my-ubuntu
 ```
 
 ## 允许通过 tcp 端口远程控制

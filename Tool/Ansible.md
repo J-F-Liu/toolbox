@@ -1,5 +1,7 @@
 # Ansible
 
+在若干服务器上从零开始执行所有必需的配置与操作。
+
 Ansible is an IT automation tool. It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
 
 Ansible aims to be:
@@ -24,7 +26,7 @@ pacman -S ansible
 
 ## Inventory Setup
 
-The inventory file defines the hosts and groups.
+The inventory file defines the hosts and groups. The inventory file can be in INI-like format or YAML format.
 Your public SSH key should be located in authorized_keys on those systems.
 Machines can be in many groups at one time. Groups are used to allow you to configure many machines at once.
 
@@ -35,8 +37,10 @@ sudo nano /etc/ansible/hosts
 ```
 [server_group]
 140.xxx.xxx.xxx:2222 ansible_user=root
+server_alias_name ansible_port=5555 ansible_host=192.0.2.50
 ```
 
+Host lines accept multiple key=value parameters per line.
 By default Ansible assumes it can find a /usr/bin/python on your remote system that is a 2.X version of Python.
 You can tell Ansible where to find Python by setting the ansible_python_interpreter variable in your Ansible inventory file.
 
@@ -116,6 +120,21 @@ Or use pull mode to invert the transfer direction.
         dest: /path/on/server_b
         mode: pull
       delegate_to: ServerB
+```
+
+Playbook 是用于配置管理的脚本。inventory 文件使用.ini 文件格式，playbook 使用 YAML 文件格式和 Jinja2 模板语言。inventory 文件和 playbook 可以一起用版本控制系统来管理。
+
+Playbook 是一个 play 的列表，每个 play 必须包含 hosts 和 tasks 两项。Play 有三个常用的配置：name，become，vars，handlers。
+每个 task 必须包含一个键值对，键是模块名，值是要传到模块的参数。
+handler 只会在所有 task 执行完后执行，被通知多次也只执行一次。有多个 handler 时，按照定义顺序执行，而不是被通知的顺序。一般用来重新加载配置，或者重启服务。
+
+## 模块
+
+模块是由 Ansible 包装的、在主机上执行一系列操作的脚本。
+Ansible 内置的模块有 200 多个，模块的执行是幂等的，也即多次运行同一个 Playbook 是安全的。
+
+```
+ansible-doc MODULE_NAME 查看模块文档
 ```
 
 ## [AWX](https://github.com/ansible/awx)
