@@ -53,6 +53,16 @@ git fsck --lost-found
 git cherry-pick 从不同的分支中捡出一个单独的commit，并把它和你当前的分支合并
 ```
 
+Undo the last commit and keep the changes:
+```
+git reset --soft HEAD~1
+```
+
+Undo the last commit and discard the changes:
+```
+git reset --hard HEAD~1
+```
+
 Branch
 
 ```

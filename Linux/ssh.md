@@ -11,6 +11,8 @@ pacman -S openssh
 ```
 nano ~/.ssh/config
 chmod 600 ~/.ssh/config
+nano /etc/ssh/sshd_config
+systemctl restart sshd
 ```
 
 ```Config File Example

@@ -1,6 +1,7 @@
 # Rust
 
 - 安装
+
 ```
 pacman -S rust cargo
 rustc -V
@@ -8,18 +9,43 @@ cargo -V
 ```
 
 - [rustup](https://rustup.rs/)
+
 ```
 pacman -S rustup
 rustup install nightly
 rustup default nightly
 rustup update nightly
 rustup self update
+rustup set profile minimal
+rustup set profile complete
 rustup doc --std
 rustup target list
 rustup target add x86_64-unknown-linux-musl
 ```
 
-- cargo用法
+- 国内镜像
+
+> nano ~/.cargo/config
+
+```
+[source.crates-io]
+replace-with = "rustcc"
+
+[source.rustcc]
+registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
+
+[source.ustc]
+registry = "https://mirrors.ustc.edu.cn/crates.io-index/"
+```
+
+- rustup 国内镜像
+
+  增加 Environment Variables:
+  RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
+  RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
+
+- cargo 用法
+
 ```
 cargo new <project> --bin
 cargo check
@@ -28,7 +54,7 @@ cargo run --example json
 cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
 cargo rustc --release -- -C target-cpu=skylake
-RUSTFLAGS="-Ctarget-cpu=native" cargo rustc --release
+RUSTFLAGS="-C target-cpu=native" cargo build --release
 cargo build --features embed_image
 cargo update
 cargo doc --open
@@ -41,6 +67,7 @@ cargo +beta build
 ```
 
 - Cross Compile
+
 ```
 pacman -S mingw-w64
 rustup target add x86_64-pc-windows-gnu
@@ -49,6 +76,7 @@ PKG_CONFIG_ALLOW_CROSS=1 cargo rustc --release --target x86_64-pc-windows-gnu  -
 ```
 
 - Development tools
+
 ```
 rustup show
 rustup doc
@@ -68,6 +96,7 @@ rustup update nightly # update RLS and its dependencies
 ```
 
 - Tools developed using Rust
+
 ```
 cargo install ripgrep
 cargo install tokei
@@ -81,11 +110,13 @@ cargo install dutree # du enhanced
 cargo install xsv # a suite of CSV command line utilities
 cargo install --git https://github.com/sharkdp/fd
 cargo install simple-http-server
+cargo install microserver
 cargo install rural # curl replacement, HTTPie like API
 cargo install jsonpp
 ```
 
 - 样例程序
+
 ```
 fn main() {
     // A simple integer calculator:
@@ -110,10 +141,20 @@ fn main() {
 }
 ```
 
+AOT - Ahead of time compilation
+JIT - Just in time compilation
 LTO - Link Time Optimization
+CTFE - Compile time function execution
+RAII - Resource Acquisition Is Initialization
 
+DST - Dynamic Sized Type
+ZST - Zero Sized Type
+NLL - Non-lexical lifetime
+HIR - high-level intermediate representation
+MIR - mid-level intermediate representation
 
 ## Articles
+
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
@@ -159,8 +200,11 @@ LTO - Link Time Optimization
 - [Things Rust doesn’t let you do](https://medium.com/@GolDDranks/things-rust-doesnt-let-you-do-draft-f596a3c740a5)
 - [The Swiss Army Knife of Hashmaps](https://blog.waffles.space/2018/12/07/deep-dive-into-hashbrown/)
 - [Creating web-server .deb binary with rust](https://gill.net.in/posts/creating-web-server-deb-binary-with-rust/)
+- [Neat Rust Tricks: Passing Rust Closures to C](https://blog.seantheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c)
+- [Rust Lifetimes and Iterators](https://blog.katona.me/2019/12/29/Rust-Lifetimes-and-Iterators/)
 
 ## crates
+
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
 - [slog-rs - Structured, composable logging for Rust](https://github.com/dpc/slog-rs)
 - [Put your Rust app's data in the right place on every platform](https://github.com/AndyBarron/app-dirs-rs)
@@ -188,11 +232,21 @@ Rayon splits your data into distinct pieces, gives each piece to a thread to do 
 
 Tokio runs tasks which sometimes need to be paused in order to wait for asynchronous events. Handling tons of such tasks is no problem. Its goal is to distribute IO-intensive tasks onto a thread pool.
 
+可以改进的点：
+
+- 格式化字符串支持嵌入变量名和表达式
+- 可变长数组，用于函数传入不定个数的参数 rfcs#1909
+- trait 名直接用作类型名
+- 一次除法运算，同时获得商和余数
+- 为了避免重叠规则影响代码复用，支持特化 feature(speicialization)
+- 迭代器支持引用类型
+- 关联类型支持生命周期泛型
+
 ## Notes
 
-* Goal: memory safety and data-race-free concurrency.
-* Strategy: establishes a clear lifetime for each value.
-* Method: ownership, borrow checker, lifetime parameters, static type system.
+- Goal: memory safety and data-race-free concurrency.
+- Strategy: establishes a clear lifetime for each value.
+- Method: ownership, borrow checker, lifetime parameters, static type system.
 
 If a program has been written so that no possible execution can exhibit undefined behavior, we say that program is well defined.
 If a language’s type system ensures that every program is well defined, we say that language is type safe.
@@ -225,11 +279,12 @@ In Rust, for most types (including any type that owns resources like a heap-allo
 Passing arguments to a function and returning values from a function are handled like assignment: they also move such types, rather than copying.
 
 • Some types can be copied bit-for-bit, without the need for any special treatment; Rust permits such types to implement the special trait Copy.
-  Assignment copies Copy types, rather than moving them: the source of the assignment retains its value.
+Assignment copies Copy types, rather than moving them: the source of the assignment retains its value.
 • All other types are moved by assignment, never implicitly copied.
 
 Rust permits Copy implementations only for types that qualify: all the values your type comprises must be Copy themselves, and your type must not require custom behavior when it is dropped.
 The Rust standard library includes a related trait, Clone, for types that can be copied explicitly. Its definition is simple:
+
 ```
 pub trait Copy: Clone { }
 
@@ -238,6 +293,7 @@ pub trait Clone {
     fn clone_from(&mut self, source: &Self) { ... }
 }
 ```
+
 Clone is a supertrait of Copy, so everything which is Copy must also implement Clone.
 In other words, if something implements Copy, it is also cloneable.
 Cloning a vector entails cloning each of its elements in turn, so Vec<T> implements Clone whenever T does so; the other container types behave similarly.
@@ -252,7 +308,6 @@ While a value is borrowed, it musn’t be moved to a new owner. **A variable mus
 References always have lifetimes associated with them; Rust simply lets us omit them when the situation is unambigous.
 
 Rust’s ownership, moves, and borrows end up being a reasonably pleasant way to express resource management.
-
 
 How Rust innovates the greatest is by statically tracking ownership and lifetimes of all variables and their references. The ownership system enables Rust to automatically deallocate and run destructors on all values immediately when they go out of scope, and prevents values from being accessed after they are destroyed. It is what makes Rust memory safe and thread safe, and why it doesn't need a GC to accomplish that.
 
@@ -284,17 +339,18 @@ Items are organized within a crate by a nested set of modules.
 Every crate has a single "outermost" anonymous module; all further items within the crate have paths within the module tree of the crate.
 
 There are several kinds of item:
-* extern crate declarations
-* use declarations
-* modules
-* functions
-* type definitions
-* structs
-* enumerations
-* constant items
-* static items
-* traits
-* implementations
+
+- extern crate declarations
+- use declarations
+- modules
+- functions
+- type definitions
+- structs
+- enumerations
+- constant items
+- static items
+- traits
+- implementations
 
 All items except modules, constants and statics may be parameterized by type.
 The type parameters of an item are considered "part of the name", not part of the type of the item.
@@ -307,12 +363,14 @@ The type parameters of an item are considered "part of the name", not part of th
 
 Usually a use declaration is used to shorten the path required to refer to a module item.
 These declarations may appear in modules and blocks, usually at the top.
+
 ```
 use p::q::r as x;
 use a::b::{c,d,e,f};
 use a::b::{self, c, d}; // use a::b; use a::b::{c,d};
 use a::b::*;
 ```
+
 The paths contained in use items are relative to the crate root.
 It is also possible to use self and super at the beginning of a use item to refer to the current and direct parent modules respectively.
 
@@ -320,6 +378,7 @@ A function item defines a sequence of statements and a final expression, along w
 A generic function allows one or more parameterized types to appear in its signature.
 
 Trait bounds can be specified for type parameters to allow methods with that trait to be called on values of that type. This is specified using the where syntax:
+
 ```
 use std::fmt::Debug;
 
@@ -329,11 +388,13 @@ fn foo<T>(x: &[T]) where T: Debug {
 
 foo(&[1, 2]);
 ```
+
 When a generic function is referenced, its type is instantiated based on the context of the reference.
 The type parameters can also be explicitly supplied in a trailing path component after the function name.
 This might be necessary if there is not sufficient context to determine the type parameters. For example, `mem::size_of::<u32>() == 4`.
 
 A type alias defines a new name for an existing type.
+
 ```
 type Point = (u8, u8);
 let p: Point = (41, 68);
@@ -348,6 +409,7 @@ struct 类型有自己的名字，而且每个成员也有自己的名字。
 
 An enumeration is a simultaneous definition of a nominal enumerated type as well as a set of constructors, that can be used to create or pattern-match values of the corresponding enumerated type.
 Enumeration constructors can have either named or unnamed fields:
+
 ```
 enum Animal {
     Rat,
@@ -358,6 +420,7 @@ enum Animal {
 let mut a: Animal = Animal::Dog("Cocoa".to_string(), 37.2);
 a = Animal::Cat { name: "Spotty".to_string(), weight: 2.7 };
 ```
+
 Each enum value has a discriminant which is an integer associated to it if none of the variants have data attached.
 
 A constant item is a named constant value which is not associated with a specific memory location in the program.
@@ -374,19 +437,23 @@ An unsafe block is required when either reading or writing a mutable static vari
 Mutable statics have the same restrictions as normal statics, except that the type of the value is not required to ascribe to Sync.
 
 A trait describes an abstract interface that types can implement. This interface consists of associated items, which come in three varieties:
-* functions
-* constants
-* types
+
+- functions
+- constants
+- types
 
 All traits define an implicit type parameter Self that refers to "the type that is implementing this interface". Traits may also contain additional type parameters.
 Traits can include default implementations of methods, as in:
+
 ```
 trait Foo {
     fn bar(&self);
     fn baz(&self) { println!("We called baz."); }
 }
 ```
+
 Trait methods may be static, which means that they lack a self argument.
+
 ```
 trait Num {
     fn from_i32(n: i32) -> Self;
@@ -398,6 +465,7 @@ let x: f64 = Num::from_i32(42);
 ```
 
 Type parameters can be specified for a trait to make it generic.
+
 ```
 trait Seq<T> {
     fn len(&self) -> u32;
@@ -405,7 +473,9 @@ trait Seq<T> {
     fn iter<F>(&self, F) where F: Fn(T);
 }
 ```
+
 It is also possible to define associated types for a trait.
+
 ```
 trait Container {
     type E;
@@ -419,6 +489,7 @@ Traits also define a trait object with the same name as the trait. Values of thi
 
 An implementation is an item that implements a trait for a specific type. Implementations are defined with the keyword `impl`.
 All methods declared as part of the trait must be implemented, with matching types and type parameter counts.
+
 ```
 struct Circle {
     radius: f64,
@@ -431,8 +502,10 @@ impl Clone for Circle {
     fn clone(&self) -> Circle { *self }
 }
 ```
+
 It is possible to define an implementation without referring to a trait. The methods in such an implementation can only be used as direct calls on the values of the type that the implementation targets.
 Such implementations are limited to nominal types (enums, structs, trait objects), and the implementation must appear in the same crate as the self type:
+
 ```
 struct Point {x: i32, y: i32}
 
@@ -445,7 +518,9 @@ impl Point {
 let my_point = Point {x: 10, y:11};
 my_point.log();
 ```
+
 An implementation can take type parameters, which can be different from the type parameters taken by the trait it implements.
+
 ```
 impl<T> Seq<T> for Vec<T> {
     /* ... */
@@ -463,6 +538,7 @@ If an item is public, then it can be used externally through any of its public a
 If an item is private, it may be accessed by the current module and its descendants.
 
 Rust allows publicly re-exporting items through a pub use directive. It essentially allows public access into the re-exported item.
+
 ```
 // Any external crate referencing implementation::api::f would receive a privacy violation, while the path api::f would be allowed.
 pub use self::implementation::api;
@@ -476,14 +552,16 @@ mod implementation {
 
 Any item declaration may have an attribute applied to it.
 An attribute is a general, free-form metadatum that is interpreted according to name, convention, and language and compiler version. Attributes may appear as any of:
-* A single identifier, the attribute name
-* An identifier followed by the equals sign '=' and a literal, providing a key/value pair
-* An identifier followed by a parenthesized list of sub-attribute arguments
+
+- A single identifier, the attribute name
+- An identifier followed by the equals sign '=' and a literal, providing a key/value pair
+- An identifier followed by a parenthesized list of sub-attribute arguments
 
 Attributes with a bang ("!") after the hash ("#") apply to the item that the attribute is declared within.
 Attributes that do not have a bang after the hash apply to the item that follows the attribute.
 
 An example of attributes:
+
 ```
 // General metadata applied to the enclosing module or crate.
 #![crate_type = "lib"]
@@ -504,7 +582,9 @@ mod bar {
 #[allow(non_camel_case_types)]
 type int8_t = i8;
 ```
+
 The derive attribute allows certain traits to be automatically implemented for data structures.
+
 ```
 #[derive(PartialEq, Clone)]
 struct Foo<T> {
@@ -512,7 +592,9 @@ struct Foo<T> {
     b: T,
 }
 ```
+
 The generated impl for PartialEq is equivalent to
+
 ```
 impl<T: PartialEq> PartialEq for Foo<T> {
     fn eq(&self, other: &Foo<T>) -> bool {
@@ -567,10 +649,13 @@ A struct expression forms a new value of the named struct type. Note that for a 
 A block expression is similar to a module in terms of the declarations that are possible. Each block conceptually introduces a new namespace scope.
 
 A block will execute each statement sequentially, and then execute the expression (if given). If the block ends in a statement, its value is ():
+
 ```
 let x: () = { println!("Hello."); };
 ```
+
 If it ends in an expression, its value and type are that of the expression:
+
 ```
 let x: i32 = { println!("Hello."); 5 };
 assert_eq!(5, x);
@@ -587,19 +672,23 @@ Vector access is bounds-checked at compile-time for constant arrays being access
 Otherwise a check will be performed at run-time that will put the thread in a panicked state if it fails.
 
 The .. operator will construct an object of one of the std::ops::Range variants.
+
 ```
 1..2;   // std::ops::Range
 3..;    // std::ops::RangeFrom
 ..4;    // std::ops::RangeTo
 ..;     // std::ops::RangeFull
 ```
+
 Similarly, the ... operator will construct an object of one of the std::ops::RangeInclusive variants.
 
 ## MIR
+
 MIR stands for mid-level IR, because the MIR comes between the existing HIR (“high-level IR”, roughly an abstract syntax tree) and LLVM (the “low-level” IR).
 
 At the highest level MIR describes the execution of a single function.
 It consists of a series of declarations regarding the stack storage that will be required and then a set of basic blocks.
+
 ```
 MIR = fn({TYPE}) -> TYPE {
     {let [mut] B: TYPE;}  // user-declared bindings and their types
@@ -607,22 +696,29 @@ MIR = fn({TYPE}) -> TYPE {
     {BASIC_BLOCK}         // control-flow graph
 };
 ```
+
 The storage declarations are broken into two categories:
-* User-declared bindings have a 1-to-1 relationship with the variables specified in the program.
-* Temporaries are introduced by the compiler in various cases.
+
+- User-declared bindings have a 1-to-1 relationship with the variables specified in the program.
+- Temporaries are introduced by the compiler in various cases.
 
 Each basic block has an id and consists of a sequence of statements and a terminator.
+
 ```
 BASIC_BLOCK = BB: {STATEMENT} TERMINATOR
 ```
+
 A STATEMENT can have one of three forms:
+
 ```
 STATEMENT = LVALUE "=" RVALUE                 // assign rvalue into lvalue
           | SetDiscriminant(Lvalue, Variant)  // Write the discriminant for a variant to the enum Lvalue
           | StorageLive(Lvalue)   // Start a live range for the storage of the local
           | StorageDead(Lvalue)   // End the current live range for the storage of the local
 ```
+
 The TERMINATOR for a basic block describes how it connects to subsequent blocks:
+
 ```
 TERMINATOR = GOTO(BB)              // normal control-flow
            | IF(LVALUE, BB0, BB1)  // test LVALUE and branch to BB0 if true, else BB1
@@ -639,7 +735,9 @@ TERMINATOR = GOTO(BB)              // normal control-flow
            | Resume                // the landing pad is finished and unwinding should continue
            | Unreachable           // Indicates a terminator that can never be reached
 ```
+
 An LVALUE represents a path to a memory location. This is the basic "unit" analyzed by the borrow checker.
+
 ```
 LVALUE = B                   // reference to a user-declared binding
        | TEMP                // a temporary introduced by the compiler
@@ -651,7 +749,9 @@ LVALUE = B                   // reference to a user-declared binding
        | LVALUE[LVALUE]      // index into an array (see disc. below about bounds checks)
        | (LVALUE as VARIANT) // downcast to a specific variant of an enum
 ```
+
 An RVALUE represents a computation that yields a result. This result must be stored in memory somewhere to be accessible.
+
 ```
 RVALUE = Use(LVALUE)                // just read an lvalue
        | [LVALUE; LVALUE]
@@ -669,8 +769,10 @@ RVALUE = Use(LVALUE)                // just read an lvalue
 BINOP = + | - | * | / | ...         // excluding && and ||
 UNOP = ! | -                        // note: no `*`, as that is part of LVALUE
 ```
+
 We could also expand the scope of operands to include both lvalues and some simple rvalues like constants.
 Constants are a subset of rvalues that can be evaluated at compilation time:
+
 ```
 CONSTANT = INT
          | UINT
@@ -688,7 +790,9 @@ CONSTANT = INT
 ```
 
 ## Nighly rust
+
 what is suggested a generic closure should desugar to.
+
 ```
 #![feature(unboxed_closures)]
 #![feature(fn_traits)]
