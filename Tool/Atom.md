@@ -3,11 +3,13 @@
 网站：https://atom.io/
 
 ## 安装
+
 ```
-packer -S atom-editor-bin
+yay -S atom-editor-bin
 ```
 
 ## 快捷键
+
 ```
 ctrl-shift-s 保存所有打开的文件
 ctrl-shift-o 打开目录
@@ -27,6 +29,7 @@ alt-shift-↑↓ 按列选择多行同时编辑
 ```
 
 ## 插件
+
 ```
 language-gfm-enhanced 增强的GitHub Flavored Markdown（disable language-gfm）
 markdown-preview-enhanced 超强的Markdown预览功能

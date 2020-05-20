@@ -1,23 +1,27 @@
 # Node.js
 
 - 安装
+
 ```
 pacman -S nodejs npm python2
 ```
 
 - 调试
+
 ```
 npm install -g node-inspector
 node-debug app.js
 ```
 
-- 升级npm
+- 升级 npm
+
 ```
 npm -v
 npm install -g npm@latest
 ```
 
 - 安装模块
+
 ```
 npm install <packageName>    安装package
 npm install <packageName> -S 安装并保存到package.json文件
@@ -31,12 +35,15 @@ npm dedupe                   重新计算依赖关系，优化模块的存放结
 npm run                      列出在package.json文件中定义的脚本命令
 npm list -g --depth=0        列出全局安装的package
 ```
+
 - 卸载模块
+
 ```
 npm uninstall <packageName> -S 卸载并更新package.json文件
 ```
 
 - 使用国内的镜像服务
+
 ```
 npm config ls
 npm config set registry https://registry.npm.taobao.org
@@ -44,8 +51,9 @@ npm config set registry https://registry.npmjs.com
 ```
 
 - [Yarn](https://yarnpkg.com/)
+
 ```
-packer -S yarn
+yay -S yarn
 yarn init
 yarn info <package>
 yarn add <package>
@@ -66,8 +74,8 @@ yarn test
 yarn run <script>
 ```
 
-npm中依赖版本号是 ^x.y.z，适配范围是找到最左侧的第一个非0位，只允许这一位右侧的版本号变动。比如：
+npm 中依赖版本号是 ^x.y.z，适配范围是找到最左侧的第一个非 0 位，只允许这一位右侧的版本号变动。比如：
 
-- ^1.2.3版本包括：>= 1.2.3 并且 < 2.0.0
-- ^0.2.3版本包括：>= 0.2.3 并且 < 0.3.0
-- ^0.0.3版本包括：>= 0.0.3 并且 < 0.0.4
+- ^1.2.3 版本包括：>= 1.2.3 并且 < 2.0.0
+- ^0.2.3 版本包括：>= 0.2.3 并且 < 0.3.0
+- ^0.0.3 版本包括：>= 0.0.3 并且 < 0.0.4

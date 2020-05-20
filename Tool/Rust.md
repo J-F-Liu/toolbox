@@ -155,6 +155,7 @@ MIR - mid-level intermediate representation
 
 ## Articles
 
+- [A half-hour to learn Rust](https://fasterthanli.me/blog/2020/a-half-hour-to-learn-rust/)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
@@ -202,6 +203,9 @@ MIR - mid-level intermediate representation
 - [Creating web-server .deb binary with rust](https://gill.net.in/posts/creating-web-server-deb-binary-with-rust/)
 - [Neat Rust Tricks: Passing Rust Closures to C](https://blog.seantheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c)
 - [Rust Lifetimes and Iterators](https://blog.katona.me/2019/12/29/Rust-Lifetimes-and-Iterators/)
+- [feature(slice_patterns)](https://thomashartmann.dev/blog/feature\(slice_patterns\))
+- [Guide on how to write documentation for a Rust crate](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)
+- [On Generics and Associated Types](https://thomashartmann.dev/blog/on-generics-and-associated-types/)
 
 ## crates
 
@@ -241,6 +245,14 @@ Tokio runs tasks which sometimes need to be paused in order to wait for asynchro
 - 为了避免重叠规则影响代码复用，支持特化 feature(speicialization)
 - 迭代器支持引用类型
 - 关联类型支持生命周期泛型
+- .expect("error message") 读起来有点怪
+- a.min(b) 应该是取 a 的值，最小为 b。min(a,b)才是取 a 和 b 中较小的。
+
+无符号数，以小减大，subtract with overflow 异常。
+fn checked_add(self, rhs: u8) -> Option<u8> returning None if overflow occurred.
+fn wrapping_add(self, rhs: u8) -> u8 wrapping around at the boundary of the type.
+fn overflowing_add(self, rhs: u8) -> (u8, bool) return wrapped result with a boolean indicating whether an arithmetic overflow occurred
+fn saturating_add(self, rhs: u8) -> u8 saturating at the numeric bounds instead of overflowing.
 
 ## Notes
 

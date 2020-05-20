@@ -4,7 +4,7 @@
 
 ```
 pacman -S git
-packer -S gitkraken
+yay -S gitkraken
 ```
 
 ## Configuration
@@ -54,11 +54,13 @@ git cherry-pick 从不同的分支中捡出一个单独的commit，并把它和�
 ```
 
 Undo the last commit and keep the changes:
+
 ```
 git reset --soft HEAD~1
 ```
 
 Undo the last commit and discard the changes:
+
 ```
 git reset --hard HEAD~1
 ```

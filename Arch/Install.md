@@ -93,6 +93,8 @@ lsblk --fs --paths
 3.2 创建及编辑硬盘分区表，指定所需的目标设备
 
 ![流程图](./diskpart.svg)
+DOS 分区表最大支持 2TB 的硬盘，超过 2TB 需使用 GPT 分区表。
+如果选了 DOS 分区模式，要把启动分区在 cfdisk 中设置成 bootable。
 分区方案可根据具体的使用需求来确定。UEFI 启动需要一个 EFI 系统分区，容量为 512MiB 或更大。
 
 3.3 格式化分区
@@ -135,7 +137,7 @@ nano /etc/pacman.d/mirrorlist
 4.2 安装基本软件包
 
 ```
-pacstrap -i /mnt base base-devel
+pacstrap /mnt base base-devel linux linux-firmware
 ```
 
 4.3 生成 fstab 文件
@@ -155,6 +157,7 @@ arch-chroot /mnt
 - EFI 启动
 
 确认以 UEFI 模式启动，并且 EFI 系统分区挂载的路径为/boot。
+可用 ls /sys/firmware/efi/efivars 命令进行确认。
 
 安装 systemd-boot 到 EFI 系统分区：
 
@@ -170,8 +173,8 @@ nano /boot/loader/loader.conf
 
 > ```
 >   timeout  3
->   editor   0
->   default  arch
+>   editor   no
+>   default  arch.conf
 > ```
 
 ```
@@ -213,9 +216,9 @@ systemctl start iwd
 iwctl
 [iwd]# help
 [iwd]# device list
-[iwd]# device wlp2s0b1 scan
-[iwd]# device wlp2s0b1 get-networks
-[iwd]# device wlp2s0b1 connect WPA2AP
+[iwd]# station wlan0 scan
+[iwd]# station wlan0 get-networks
+[iwd]# station wlan0 connect "WPA2AP NAME"
 ```
 
 如果需要连接蓝牙设备

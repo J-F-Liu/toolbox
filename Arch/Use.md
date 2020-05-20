@@ -130,6 +130,12 @@ split -l 20000 bigfile.log
 split -b 120M compact.file
 ```
 
+比较文件内容 side-by-side
+
+```
+diff FILE1 FILE2 -y
+```
+
 ## 2、帐号管理
 
 查看帐号 id 及所在的用户组
@@ -172,7 +178,7 @@ groups user
 列出属于某个用户组的用户
 
 ```
-packer -S libuser
+yay -S libuser
 lid -g group
 ```
 
@@ -183,9 +189,16 @@ who
 pkill -9 -t pts/0 强制退出
 ```
 
-删除用户，-r删除该用户的主目录和邮件后台
+删除用户，-r 删除该用户的主目录和邮件后台
+
 ```
 userdel USER
+```
+
+编辑哪些用户组具有 sudo 权限，是否免密码
+
+```
+nano /etc/sudoers
 ```
 
 ## 3、网络配置

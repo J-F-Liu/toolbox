@@ -5,6 +5,14 @@ apt install PACKAGE
 apt remove PACKAGE
 ```
 
+Search which package contains the file
+
+```
+apt install apt-file
+apt update
+apt-file search FILENAME
+```
+
 Add User
 
 ```

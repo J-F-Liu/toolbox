@@ -1,23 +1,27 @@
 # MongoDB
 
 ## Install
+
 ```
 pacman -S mongodb mongodb-tools
-packer -S robomongo-bin
+yay -S robomongo-bin
 systemctl start mongodb
 ```
 
 ## Backup Data
+
 ```
 mongodump -h localhost:27017 -d database -c collection -o ./backup
 ```
 
 ## Restore Data
+
 ```
 mongorestore -h localhost:27017 -d database -c collection ./backup --drop
 ```
 
 ## MongoDb CLI
+
 ```
 mongo 10.10.102.12:27017
 show dbs //show database names //db.getMongo().getDBs()

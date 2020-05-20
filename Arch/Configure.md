@@ -59,8 +59,12 @@ echo computer_name > /etc/hostname
 获取动态IP
 ```
 
-systemctl start dhcpcd
-systemctl enable dhcpcd
+nano /etc/systemd/network/25-wireless.network
+[Match]
+Name=wlp2s0
+
+[Network]
+DHCP=ipv4
 
 ````
 
@@ -172,18 +176,22 @@ pacman -S xf86-video-vesa mesa
 
 可用`lspci | grep -e VGA -e 3D`命令识别显卡型号，再安装相对应的显卡驱动。
 
+pacman -S sway dmenu alacritty
+pacman -S gdm
+systemctl enable gdm
+
 安装字体
 
 ```
 pacman -S ttf-dejavu wqy-zenhei wqy-microhei awesome-terminal-fonts
-packer -S ttf-ms-fonts ttf-google-fonts-git
-packer -S ttf-emojione-color
+yay -S ttf-ms-fonts ttf-google-fonts-git
+yay -S ttf-emojione-color
 ```
 
 调节屏幕亮度
 
 ```
-packer -S brightnessctl
+yay -S brightnessctl
 brightnessctl -l
 brightnessctl -c backlight set 50%
 ```
@@ -228,23 +236,19 @@ passwd junfeng
 reboot
 ```
 
-安装 packer，用于从 AUR 安装软件
+安装 yay 和从 AUR 安装软件，不能使用 root 账号
 
 ```
-sudo pacman -S curl git expac jshon
-mkdir packer && cd packer
-curl https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=packer -o PKGBUILD
-makepkg
-sudo pacman -U packer-*.pkg.tar.xz
-cd ..
-sudo rm -dR packer
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 ```
 
 安装输入法
 
 ```
 pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin fcitx-configtool
-packer -S fcitx-sogoupinyin
+yay -S fcitx-sogoupinyin
 fcitx -r 安装搜狗拼音后重启动fcitx
 fcitx-config-gtk3
 ```
@@ -295,14 +299,14 @@ pacman -S ark unrar p7zip
 文本编辑器、剪贴板管理器、文本搜索
 
 ```
-pacman -S medit clipit ripgrep
+pacman -S code medit clipit ripgrep
 ```
 
 网页浏览器
 
 ```
 pacman -S chromium
-packer -S chromium-pepper-flash
+yay -S chromium-pepper-flash
 chromium --proxy-server="socks5://127.0.0.1:1080"
 ```
 
@@ -329,96 +333,84 @@ pacman -S evince zathura zathura-pdf-mupdf zathura-djvu zathura-ps
 > set recolor-lightcolor "#002B36"
 > ```
 
-```
-
 音乐、视频播放器
-```
 
+```
 pacman -S audacious smplayer mkvtoolnix
-packer -S netease-cloud-music
+yay -S netease-cloud-music
 
 ```
 
 办公软件
+
 ```
-
 pacman -S libreoffice-fresh libreoffice-fresh-zh-CN
-
 ```
 
 图像编辑、屏幕截图
+
 ```
-
 pacman -S pinta scrot shutter
-
 ```
 
 脑图创作
+
 ```
-
 pacman -S xmind
-
 ```
 
 电子邮件客户端、编程文档
+
 ```
-
-packer -S n1 zeal
-
+yay -S n1 zeal
 ```
 
 文件下载
-```
 
+```
 pacman -S aria2 uget
-
 ```
 
-FTP客户端
-```
+FTP 客户端
 
+```
 pacman -S filezilla
-
 ```
 
 创建、编辑、刻录光盘文件
-```
 
+```
 pacman -S brasero
-
 ```
 
-挂载NTFS分区
-```
+挂载 NTFS 分区
 
+```
 pacman -S ntfs-3g
 ntfs-3g /dev/sda1 /mnt/windows
 
 ```
 
 挂载共享目录
-```
 
+```
 pacman -S smbclient
 mount -t cifs -o username=username,password="password" //16.187.190.50/test /mnt/
-
 ```
 
 虚拟机
-```
 
+```
 pacman -S virtualbox virtualbox-host-modules-arch virtualbox-guest-iso
-
 ```
-创建一个虚拟机，安装Windows10系统，将某个本地目录配置成虚拟机中的共享目录。<br />
-目前需要在Windows中运行的软件有QQ、迅雷、百度云同步盘。
 
+创建一个虚拟机，安装 Windows10 系统，将某个本地目录配置成虚拟机中的共享目录。
 
 # 服务器{#server}
 
 ## 创建虚拟内存
-```
 
+```
 fallocate -l 2G /swapfile
 chmod 600 /swapfile
 mkswap /swapfile
@@ -427,46 +419,49 @@ echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 
 ```
 
-## RAID磁盘阵列
+## RAID 磁盘阵列
 
-先给每块硬盘创建一个分区（不用格式化），大于2T时使用GPT分区表，机械盘最好在末尾留出100M左右的未分配空间，从而确保每块硬盘分区的容量是一样的。
+先给每块硬盘创建一个分区（不用格式化），大于 2T 时使用 GPT 分区表，机械盘最好在末尾留出 100M 左右的未分配空间，从而确保每块硬盘分区的容量是一样的。
+
 ```
-
 mdadm --create --verbose --level=5 --metadata=1.2 --chunk=256 --raid-devices=5 /dev/md0 /dev/sdb1 /dev/sdc1 /dev/sdd1 /dev/sde1 /dev/sdf1 --spare-devices=1 /dev/sdg1
 cat /proc/mdstat
 
 ```
-阵列构建完成后再格式化
-```
 
+阵列构建完成后再格式化
+
+```
 mkfs.ext4 -v -L mdarray -m 0.01 -b 4096 -E stride=128,stripe-width=512 /dev/md0
 mdadm --detail /dev/md0
 mount /dev/md0 /data
-
 ```
-最后更新/etc/fstab文件
+
+最后更新/etc/fstab 文件
 
 扫描并恢复已有的磁盘阵列
-```
 
+```
 mdadm --assemble --scan
 mdadm --detail --scan --verbose > /etc/mdadm.conf
 
 ```
 
-## SSH服务
-```
+## SSH 服务
 
+```
 pacman -S openssh
 nano /etc/ssh/sshd_config
+```
 
-````
 > ```
-  PermitRootLogin yes
-  UseDNS no
-  ClientAliveInterval 60 #服务器端向客户端发送请求消息的时间间隔,以秒计
-  ClientAliveCountMax 10 #允许客户端超时的次数
-  TCPKeepAlive yes
+>   PermitRootLogin yes
+>   UseDNS no
+>   ClientAliveInterval 60 #服务器端向客户端发送请求消息的时间间隔,以秒计
+>   ClientAliveCountMax 10 #允许客户端超时的次数
+>   TCPKeepAlive yes
+> ```
+
 ````
 
 ```
@@ -527,10 +522,8 @@ nano /etc/samba/smb.conf
 >   directory mask = 0770
 > ```
 
-```
 
 ```
-
 systemctl start smbd
 less /var/log/samba/smbd.log
 
@@ -541,37 +534,33 @@ smbpasswd -a samba_user
 pdbedit -a -u samba_user
 pdbedit -x -u samba_user
 pdbedit --list --verbose
-
 ```
 
 查看当前连接状态
+
 ```
-
 smbstatus
-
 ```
 
 windows 访问共享文件夹的帐号切换方法
+
 1. 显示当前共享文件夹连接名
+
 ```
-
 net use
-
 ```
 
 2. 删除指定的连接名字
-```
 
+```
 net use /del [连接名]
-
 ```
-也可以通过net use /del * 选择删除
+
+也可以通过 net use /del \* 选择删除
 
 3. 指定登录帐号
-```
 
+```
 net use [共享文件夹路径] /user:帐号名 密码
-
 ```
-
-```
+````

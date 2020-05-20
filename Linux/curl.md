@@ -27,6 +27,12 @@ curl -OJ www.example.com/file.html
 curl -L www.example.com/file.html
 ```
 
+断点续传
+
+```
+curl -L -O -C - FILE_URL
+```
+
 匹配和下载多个地址的文件，[]指定范围，{}指定列表，可组合起来使用
 
 ```
@@ -104,6 +110,7 @@ wget -qO- https://api.myip.com
 ```
 
 在控制台阅读技术文档
+
 ```
 curl cheat.sh
 curl cheat.sh/lua/:learn | less -R

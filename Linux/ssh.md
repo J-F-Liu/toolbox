@@ -6,13 +6,21 @@
 pacman -S openssh
 ```
 
-配置
+配置服务端
+
+```
+nano /etc/ssh/sshd_config
+systemctl restart sshd
+
+ClientAliveInterval=60 服务器隔多少秒检测一次客户端是否响应, 默认是0，不发送
+ClientAliveCountMax=10 服务器发出请求后客户端没有响应的次数达到一定值, 就自动断开
+```
+
+配置客户端
 
 ```
 nano ~/.ssh/config
 chmod 600 ~/.ssh/config
-nano /etc/ssh/sshd_config
-systemctl restart sshd
 ```
 
 ```Config File Example

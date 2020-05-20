@@ -5,7 +5,7 @@
 ### 安装
 
 ```
-packer -S visual-studio-code-bin
+yay -S visual-studio-code-bin
 ```
 
 ### 启动

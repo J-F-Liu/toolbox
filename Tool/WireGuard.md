@@ -16,6 +16,7 @@ pacman -S wireguard-arch
 
 ```
 pacman -S wireguard-tools
+cd /etc/wireguard
 wg genkey | tee private | wg pubkey > public
 chmod 600 private
 ```
@@ -46,6 +47,8 @@ AllowedIPs = 10.10.10.2/32
 AllowedIPs 属性对于出口流量来说是路由表，对于入口流量来说则是访问控制列表，参考 Cryptokey Routing。
 PostUp 和 PostDown 配置用于在节点创建和删除之后执行的操作，对于 WireGuard 协议本身非必需。此处用于流量转发的 iptables 添加和删除，启动了代理服务器模式。
 
+修改配置文件后，需重新启动虚拟网卡。
+
 ### 允许 IP 转发
 
 Linux 内核可以将一个网卡上收到的数据包转发到另一个网卡上，转发规则由 iptables 定义。
@@ -69,6 +72,24 @@ Permanent setting using /etc/sysctl.conf:
 
 ```
 net.ipv4.ip_forward = 1
+```
+
+## Linux 客户端
+
+```
+pacman -S wireguard-tools openresolv
+```
+
+```
+[Interface]
+PrivateKey = <本机的密钥>
+Address = 10.10.10.2
+DNS = 8.8.8.8
+
+[Peer]
+PublicKey = <server public key>
+Endpoint = <server ip and udp port>
+AllowedIPs = 0.0.0.0/0
 ```
 
 ## Mac 端配置
@@ -102,3 +123,5 @@ AllowedIPs = 0.0.0.0/0
 https://play.google.com/store/apps/details?id=com.wireguard.android
 
 ## WireGuard Windows 客户端：https://tunsafe.com/download
+
+教程：https://miguelmota.com/blog/getting-started-with-wireguard/
