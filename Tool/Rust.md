@@ -203,9 +203,12 @@ MIR - mid-level intermediate representation
 - [Creating web-server .deb binary with rust](https://gill.net.in/posts/creating-web-server-deb-binary-with-rust/)
 - [Neat Rust Tricks: Passing Rust Closures to C](https://blog.seantheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c)
 - [Rust Lifetimes and Iterators](https://blog.katona.me/2019/12/29/Rust-Lifetimes-and-Iterators/)
-- [feature(slice_patterns)](https://thomashartmann.dev/blog/feature\(slice_patterns\))
+- [feature(slice_patterns)](<https://thomashartmann.dev/blog/feature(slice_patterns)>)
 - [Guide on how to write documentation for a Rust crate](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)
 - [On Generics and Associated Types](https://thomashartmann.dev/blog/on-generics-and-associated-types/)
+- [time_it: a Case Study in Rust Macros](https://notes.iveselov.info/programming/time_it-a-case-study-in-rust-macros)
+- [Writing Python inside your Rust code](https://blog.m-ou.se/writing-python-inside-rust-1/)
+- [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
 
 ## crates
 
@@ -616,6 +619,28 @@ impl<T: PartialEq> PartialEq for Foo<T> {
     fn ne(&self, other: &Foo<T>) -> bool {
         self.a != other.a || self.b != other.b
     }
+}
+```
+
+Currying functions
+
+```rust
+fn add(x: u32, y: u32, z: u32) -> u32 {
+  return x + y + z;
+}
+
+fn add(x: u32) -> impl Fn(u32) -> impl Fn(u32) -> u32 {
+  return move |y| move |z| x + y + z;
+}
+
+#![feature(type_alias_impl_trait)]  // allows us to use `impl Fn` in type aliases!
+
+type T0 = u32;                 // the return value when zero args are to be applied
+type T1 = impl Fn(u32) -> T0;  // the return value when one arg is to be applied
+type T2 = impl Fn(u32) -> T1;  // the return value when two args are to be applied
+
+fn add(x: u32) -> T2 {
+  return move |y| move |z| x + y + z;
 }
 ```
 

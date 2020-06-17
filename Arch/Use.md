@@ -136,6 +136,14 @@ split -b 120M compact.file
 diff FILE1 FILE2 -y
 ```
 
+硬盘测试和测速
+
+```
+hdparm -Tt /dev/sda3
+time dd if=/dev/zero bs=1024 count=1000000 of=/DEST/1Gb.file
+time dd if=/SRC/1Gb.file bs=64k of=/dev/null
+```
+
 ## 2、帐号管理
 
 查看帐号 id 及所在的用户组
