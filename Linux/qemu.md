@@ -2,6 +2,14 @@
 
 https://www.qemu.org/
 
+### Install
+
+```
+pacman -S qemu 	virt-manager
+```
+
+### Command Line
+
 ```
 curl -O https://nl.alpinelinux.org/alpine/v3.8/releases/x86_64/alpine-standard-3.8.0-x86_64.iso
 qemu-img create -f qcow2 alpine.qcow2 16G
@@ -30,3 +38,4 @@ qemu-system-x86_64 \
 
 - [virt-manager](https://virt-manager.org/)
 - [Gnome Boxes](https://help.gnome.org/users/gnome-boxes/stable/)
+- [AQEMU](https://github.com/tobimensch/aqemu)

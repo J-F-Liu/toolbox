@@ -20,3 +20,9 @@ gem install bundler
 rake -T -A 列出所有的task
 rake <task> 执行某个task
 ```
+
+## Use specific ruby version
+
+```
+yay -S rbenv ruby-build
+```

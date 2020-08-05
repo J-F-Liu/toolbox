@@ -9,7 +9,14 @@ Wireguard is implemented as a kernel module, which is key to its performance and
 安装内核模块，版本与当前运行中的内核版本不一致时需要重启系统。
 
 ```
-pacman -S wireguard-arch
+pacman -S wireguard-dkms
+```
+
+检查和加载 wireguard 内核模块
+
+```
+lsmod | grep wireguard
+modprobe wireguard
 ```
 
 生成秘钥
@@ -58,7 +65,6 @@ If we are setting up a Linux router/gateway or maybe a VPN server or just a plai
 Check if IP Forwarding is enabled
 
 ```
-
 sysctl net.ipv4.ip_forward
 ```
 

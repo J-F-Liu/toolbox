@@ -101,24 +101,24 @@ DHCP=ipv4
 >   /8 = 255.0.0.0
 > ```
 
-```
-
 启动网卡
-```
 
+```
 ip link set enp5s0 up
 systemctl start systemd-networkd
 systemctl enable systemd-networkd
 
-````
+```
 
 设置域名解析
+
 > nano /etc/resolv.conf
-> ```
+
+```
   # Google nameservers
   nameserver 8.8.8.8
   nameserver 8.8.4.4
-````
+```
 
 NetworkManager and systemd-networkd are two different, mutually exclusive tools:
 If use NetworkManager, stop and disable systemd-networkd.service and wpa_supplicant.service.
@@ -180,12 +180,17 @@ pacman -S sway dmenu alacritty
 pacman -S gdm
 systemctl enable gdm
 
+pip install git+https://github.com/toggle-corp/alacritty-colorscheme.git
+git clone https://github.com/eendroroy/alacritty-theme.git
+alacritty-colorscheme -C alacritty-theme/themes -l
+alacritty-colorscheme -C alacritty-theme/themes -T
+
 安装字体
 
 ```
 pacman -S ttf-dejavu wqy-zenhei wqy-microhei awesome-terminal-fonts
 yay -S ttf-ms-fonts ttf-google-fonts-git
-yay -S ttf-emojione-color
+yay -S ttf-emojione-color ttf-fira-code
 ```
 
 调节屏幕亮度
@@ -194,6 +199,16 @@ yay -S ttf-emojione-color
 yay -S brightnessctl
 brightnessctl -l
 brightnessctl -c backlight set 50%
+```
+
+多屏显示
+
+```
+pacman -S xrandr
+xrandr --listmonitors
+xrandr --output HDMI-1-2 --mode 3440x1440 --left-of eDP-1
+xrandr --output DP-1-6 --mode 3440x1440 --primary
+xrandr --output eDP-1 --off
 ```
 
 开启声音
@@ -223,7 +238,7 @@ pcm.!default {
 }
 ```
 
-## 4、创建一个新的帐号，比如 junfeng
+## 4、创建一个新的帐号
 
 ```
 useradd -m -G users,wheel,video,input -s /usr/bin/fish junfeng
@@ -239,6 +254,7 @@ reboot
 安装 yay 和从 AUR 安装软件，不能使用 root 账号
 
 ```
+pacman -S go wget
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
@@ -252,6 +268,8 @@ yay -S fcitx-sogoupinyin
 fcitx -r 安装搜狗拼音后重启动fcitx
 fcitx-config-gtk3
 ```
+
+配置界面中，取消 Only Show Current Language 复选框，添加中文输入法。
 
 Ctrl + Space 激活输入法<br />
 Ctrl + Shift 切换输入法<br />
@@ -283,6 +301,12 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 ```
 
 ## 5、常用软件
+
+编程语言
+
+```
+pacman -S python python-pip ruby rustup go nodejs
+```
 
 文件管理器
 
@@ -377,11 +401,16 @@ FTP 客户端
 pacman -S filezilla
 ```
 
+yay -S nutstore
+
 创建、编辑、刻录光盘文件
 
 ```
-pacman -S brasero
+pacman -S brasero acetoneiso2
 ```
+
+pacman -S usbutils usbview
+chmod -R o+w /dev/bus/usb
 
 挂载 NTFS 分区
 

@@ -93,6 +93,7 @@ cargo install cargo-watch
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 rustup update nightly # update RLS and its dependencies
+curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.config/Code\ -\ OSS/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux
 ```
 
 - Tools developed using Rust
@@ -718,6 +719,16 @@ The .. operator will construct an object of one of the std::ops::Range variants.
 ```
 
 Similarly, the ... operator will construct an object of one of the std::ops::RangeInclusive variants.
+
+## Rust runtime
+
+Most of what Rust runtime does is setting up some things that are useful to have like handlers for stack overflows or safely abstracting over argc and argv all in platform specific ways.
+It also runs our main function after which it cleans up the things it setup, as well as any platform specific cleanup.
+The runtime also helps catch panics for us if possible and returns the proper exit code to the operating system if it does or does not panic.
+
+It's really nice to have code that handles this complexity for us, is made to work for the platform we compile our code on,
+and simplifying everything needed to have a relatively well protected program in the case of unfortunate things happening.
+All without us needing to write any of the code ourselves.
 
 ## MIR
 

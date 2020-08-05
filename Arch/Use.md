@@ -139,6 +139,8 @@ diff FILE1 FILE2 -y
 硬盘测试和测速
 
 ```
+pacman -S hdparm
+hdparm -I /dev/sda
 hdparm -Tt /dev/sda3
 time dd if=/dev/zero bs=1024 count=1000000 of=/DEST/1Gb.file
 time dd if=/SRC/1Gb.file bs=64k of=/dev/null

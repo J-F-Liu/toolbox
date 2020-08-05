@@ -34,43 +34,39 @@ code
 ## 插件
 
 - Align
-- AutoFileName
+- Bracket Pair Colorizer 2
+- Color Highlight
+- Date & Time
 - Duplicate action
 - EditorConfig
 - Excel Viewer
-- Git History (git log)
 - hexdump for VSCode
-- Import Cost
-- Live HTML Previewer
-- Markdown Shortcuts
+- Image Tile Viewer
+- Markdown All in One
 - Markdown Preview Enchanced
 - Native Debug
 - One Dark Theme
-- Prettier
+- One Dark Syntax Theme
 - REST Client
 - SVG Viewer
 - C#, Ruby, TOML, Docker
+
+### Web Dev
+
+- AutoFileName
+- Import Cost
+- Prettier
+- Live HTML Previewer
 
 ## 设置
 
 ```
 {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true,
-    "editor.renderWhitespace": "boundary",
-    "vsicons.dontShowNewVersionMessage": true,
-    "editor.lineHeight": 24,
-    "editor.minimap.enabled": true,
-    "workbench.statusBar.visible": true,
-
-    "search.exclude": {
-      "**/node_modules": true,
-      "**/bower_components": true,
-      "target": true
-    },
-    "search.useIgnoreFilesByDefault": true,
-    "vsicons.projectDetection.disableDetect": true,
-    "workbench.colorTheme": "One Dark",
-    "workbench.iconTheme": "vscode-icons"
+    "editor.formatOnSave": true,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "workbench.colorTheme": "Atom One Dark",
+    "window.titleBarStyle": "custom",
+    "terminal.integrated.copyOnSelection": true
 }
 ```
