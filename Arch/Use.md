@@ -278,13 +278,15 @@ rmmod module_name
 
 使用 /etc/modprobe.d/中的文件配置内核模块参数
 
+If you recently upgraded you kernel, the modules of your currently running kernel were removed and replaced with modules for the newly installed kernel. These modules will not be loaded until you reboot and run the new kernel.
+
 ## 6、其他
 
 查看系统信息
 
 ```
 uname -a
-lscpu
+lscpu; lsmem; lsblk; lspci
 cat /proc/cpuinfo
 cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 cat /proc/meminfo
