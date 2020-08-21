@@ -50,6 +50,7 @@ code
 - REST Client
 - SVG Viewer
 - C#, Ruby, TOML, Docker
+- TabNine
 
 ### Web Dev
 
