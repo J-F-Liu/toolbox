@@ -53,7 +53,7 @@ cargo run
 cargo run --example json
 cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
-cargo rustc --release -- -C target-cpu=skylake
+cargo rustc --release -- -O -C target-feature=+avx
 RUSTFLAGS="-C target-cpu=native" cargo build --release
 cargo build --features embed_image
 cargo update
@@ -148,11 +148,14 @@ LTO - Link Time Optimization
 CTFE - Compile time function execution
 RAII - Resource Acquisition Is Initialization
 
-DST - Dynamic Sized Type
+DST - Dynamically Sized Type
 ZST - Zero Sized Type
 NLL - Non-lexical lifetime
 HIR - high-level intermediate representation
 MIR - mid-level intermediate representation
+
+Enums: Closed Set of Types
+Trait Objects: Open Set of Types
 
 ## Articles
 
@@ -210,6 +213,7 @@ MIR - mid-level intermediate representation
 - [time_it: a Case Study in Rust Macros](https://notes.iveselov.info/programming/time_it-a-case-study-in-rust-macros)
 - [Writing Python inside your Rust code](https://blog.m-ou.se/writing-python-inside-rust-1/)
 - [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
+- [A practical guide to async in Rust](https://blog.logrocket.com/a-practical-guide-to-async-in-rust/)
 
 ## crates
 
@@ -233,6 +237,12 @@ MIR - mid-level intermediate representation
 - [Unicode Grapheme Cluster and Word boundaries](https://github.com/unicode-rs/unicode-segmentation)
 - [A pull parser for CommonMark](https://github.com/google/pulldown-cmark)
 - [Encapsulating Lifetime of the Field](https://matklad.github.io/2018/05/04/encapsulating-lifetime-of-the-field.html)
+- [An introduction to Data Oriented Design with Rust](http://jamesmcm.github.io/blog/2020/07/25/intro-dod)
+- [Understanding Rust Lifetimes](https://medium.com/nearprotocol/understanding-rust-lifetimes-e813bcd405fa)
+
+To secure your client connection, use Rustls; however, make sure it is configured properly either with Mozilla’s trusted root certificates or your service provider’s own root certificates!
+
+Thanks to cargo deb and cargo rpm building Linux packages is dead simple for Rust projects.
 
 http://zsck.co/writing/capability-based-apis.html
 
@@ -257,6 +267,44 @@ fn checked_add(self, rhs: u8) -> Option<u8> returning None if overflow occurred.
 fn wrapping_add(self, rhs: u8) -> u8 wrapping around at the boundary of the type.
 fn overflowing_add(self, rhs: u8) -> (u8, bool) return wrapped result with a boolean indicating whether an arithmetic overflow occurred
 fn saturating_add(self, rhs: u8) -> u8 saturating at the numeric bounds instead of overflowing.
+
+std::fmt
+format_spec := [[fill]align][sign]['#']['0'][width]['.' precision][type]
+type := identifier | '?' | ''
+
+The current mapping of types to traits is:
+
+nothing ⇒ Display
+? ⇒ Debug
+x? ⇒ Debug with lower-case hexadecimal integers
+X? ⇒ Debug with upper-case hexadecimal integers
+o ⇒ Octal
+x ⇒ LowerHex
+X ⇒ UpperHex
+p ⇒ Pointer
+b ⇒ Binary
+e ⇒ LowerExp
+E ⇒ UpperExp
+
+## HashMap
+
+```rust
+use std::collections::HashMap;
+
+let mut hashmap = HashMap::new();
+let mut hashmap = HashMap::with_capacity(10);
+
+hashmap.insert(37, "a"); // Option<V>
+let value = hashmap[&1]; // &V
+let value = hashmap.get(&1); // Option<&V>
+let value = hashmap.entry(3).or_insert("b"); // &'a mut V
+hashmap.remove(&1);
+```
+
+If we insert a value with the key that is present in the hashmap, the previous value will get overwritten.
+
+If the key does not exist, the value that you have given in the or_insert() method will be associated with the key.
+If the key already exists, then the new value will be dumped, and the previous value will persist.
 
 ## Notes
 

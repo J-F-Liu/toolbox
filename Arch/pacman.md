@@ -18,6 +18,7 @@ pacman -Rs package_name
 
 ```
 pacman -Syu
+sudo pacman-mirrors --geoip && sudo pacman -Syyu
 ```
 
 同步所有软件包数据

@@ -2,7 +2,7 @@
 
 ## ECS
 
-All app logic in Bevy uses the Entity Component System paradigm, which is often shortened to ECS. 
+All app logic in Bevy uses the Entity Component System paradigm, which is often shortened to ECS.
 Entities are unique "things" that are assigned groups of Components, which are then processed using Systems.
 
 ```rust
@@ -45,6 +45,7 @@ App::build()
 ```
 
 Default stages:
+
 - startup_stage::STARTUP
 - startup_stage::POST_STARTUP
 - stage::FIRST
@@ -77,12 +78,12 @@ pub trait IntoForEachSystem<CommandBuffer, R, C> {
 impl<Func, A> IntoForEachSystem<(Commands,), (), (A,)> for Func
 where
     Func: FnMut(Commands, A) + FnMut(Commands, <<A as HecsQuery>::Fetch as Fetch>::Item) + Send + Sync + 'static,
-    A: HecsQuery, 
+    A: HecsQuery,
 
 impl<Func, A> IntoForEachSystem<(), (), (A,)> for Func
 where
     Func: FnMut(A) + FnMut(<<A as HecsQuery>::Fetch as Fetch>::Item) + Send + Sync + 'static,
-    A: HecsQuery, 
+    A: HecsQuery,
 ...
 ```
 
@@ -92,7 +93,7 @@ where
 - `commands.with(component)` Add a component to previously created entity.
 - `commands.with_bundle(components)` Add multiple components to previously created entity.
 - `commands.insert(entity, components)` Add multiple components to specified entity.
-- `commands.insert_one(entity, component)` Add one component to specified entity.  
+- `commands.insert_one(entity, component)` Add one component to specified entity.
 - `commands.remove_one::<T>(entity)` Remove `T` component from specified entity.
 - `commands.write_world(world_writer)` Mutate world with custom world writer.
 
@@ -108,6 +109,7 @@ Bevy's Default Plugins adds the features most people expect from an engine, such
 - adds an "event loop" to our application. Our App's ECS Schedule now runs in a loop once per "frame".
 
 Default Plugins:
+
 ```rust
 bevy_type_registry::TypeRegistryPlugin
 bevy_core::CorePlugin // time, timer, labels
@@ -129,6 +131,7 @@ bevy_wgpu::WgpuPlugin
 ```
 
 Stages after add_default_plugins
+
 ```rust
 app.schedule.stage_order = [
     "first",
@@ -206,3 +209,5 @@ fn greet_people(
     }
 }
 ```
+
+Limited to 65535 vertices or 79 subdivisions.
