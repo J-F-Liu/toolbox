@@ -125,7 +125,7 @@ bevy_pbr::PbrPlugin
 bevy_ui::UiPlugin
 bevy_text::TextPlugin
 bevy_audio::AudioPlugin
-bevy_gltf::GltfPlugin
+bevy_gltf::GltfPlugin // load glTF and glb files
 bevy_winit::WinitPlugin
 bevy_wgpu::WgpuPlugin
 ```

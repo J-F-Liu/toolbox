@@ -15,6 +15,7 @@ pacman -S rustup
 rustup install nightly
 rustup default nightly
 rustup update nightly
+rustup override set nightly
 rustup self update
 rustup set profile minimal
 rustup set profile complete
@@ -86,7 +87,7 @@ rustup component add rls-preview rust-analysis rust-src rustfmt-preview
 rustup component add rust-docs
 cargo fmt
 cargo install clippy
-cargo install cargo-edit
+cargo install cargo-edit # modifying Cargo.toml by `cargo add`, `cargo rm`, and `cargo upgrade` commands.
 cargo install cargo-outdated
 cargo install cargo-src # exploring code in web browser: cargo src --open
 cargo install cargo-watch
@@ -94,6 +95,7 @@ cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 rustup update nightly # update RLS and its dependencies
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.config/Code\ -\ OSS/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux
+C:\Users\Liu\AppData\Roaming\Code\User\globalStorage\matklad.rust-analyzer\rust-analyzer-windows.exe --version
 ```
 
 - Tools developed using Rust
@@ -239,6 +241,7 @@ Trait Objects: Open Set of Types
 - [Encapsulating Lifetime of the Field](https://matklad.github.io/2018/05/04/encapsulating-lifetime-of-the-field.html)
 - [An introduction to Data Oriented Design with Rust](http://jamesmcm.github.io/blog/2020/07/25/intro-dod)
 - [Understanding Rust Lifetimes](https://medium.com/nearprotocol/understanding-rust-lifetimes-e813bcd405fa)
+- [A procedural macro for generating the most basic getters and setters on fields](https://github.com/Hoverbear/getset)
 
 To secure your client connection, use Rustls; however, make sure it is configured properly either with Mozilla’s trusted root certificates or your service provider’s own root certificates!
 
@@ -271,6 +274,8 @@ fn saturating_add(self, rhs: u8) -> u8 saturating at the numeric bounds instead 
 std::fmt
 format_spec := [[fill]align][sign]['#']['0'][width]['.' precision][type]
 type := identifier | '?' | ''
+width := number | name$ | index$
+precision := number | name$ | index$
 
 The current mapping of types to traits is:
 
@@ -305,6 +310,12 @@ If we insert a value with the key that is present in the hashmap, the previous v
 
 If the key does not exist, the value that you have given in the or_insert() method will be associated with the key.
 If the key already exists, then the new value will be dumped, and the previous value will persist.
+
+## Self-referencing struct
+
+When you have a lifetime <'a> on a struct, that lifetime denotes references to values stored outside of the struct. If you try to store a reference that points inside the struct rather than outside, you will run into a compiler error when the compiler notices you lied to it.
+
+In Rust self-referencing structs are a thing that many people want. However, as you have already found out they are a bit troublesome to implement in Rust. What I would recommend instead of raw references is to use indices instead.
 
 ## Notes
 

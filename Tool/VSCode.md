@@ -51,6 +51,7 @@ code
 - SVG Viewer
 - C#, Ruby, TOML, Docker
 - TabNine
+- Unicode code point of current character
 
 ### Web Dev
 
