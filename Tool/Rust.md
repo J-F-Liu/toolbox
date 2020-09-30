@@ -216,6 +216,7 @@ Trait Objects: Open Set of Types
 - [Writing Python inside your Rust code](https://blog.m-ou.se/writing-python-inside-rust-1/)
 - [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
 - [A practical guide to async in Rust](https://blog.logrocket.com/a-practical-guide-to-async-in-rust/)
+- [Types Over Strings: Extensible Architectures in Rust](https://willcrichton.net/notes/types-over-strings/)
 
 ## crates
 
