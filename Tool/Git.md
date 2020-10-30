@@ -1,5 +1,12 @@
 # Git
 
+## Tutorials
+
+- [30 分钟 git 命令入门](http://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/)
+- [Things About Git and Github You Need to Know as Developer](https://medium.com/swlh/things-about-git-and-github-you-need-to-know-as-developer-907baa0bed79)
+- [Using submodules in Git](https://www.vogella.com/tutorials/GitSubmodules/article.html)
+
+
 ## Install
 
 ```
@@ -30,8 +37,10 @@ Menu: Help > Show SSH Key
 
 ```
 git init
-git clone https://github.com/J-F-Liu/toolbox.git
-git clone https://github.com/J-F-Liu/toolbox.git --depth 10 --branch BRANCH
+git clone REPOSITORY_URL
+git clone REPOSITORY_URL --depth 10 --branch BRANCH
+git clone REPOSITORY_URL --recursive 克隆嵌套的仓库
+git submodule update --init --recursive  加载嵌套的仓库
 
 git add .
 git status
@@ -256,5 +265,3 @@ WantedBy=multi-user.target
 ```
 systemctl enable gogs.service
 ```
-
-- [30 分钟 git 命令入门](http://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/)

@@ -1,3 +1,10 @@
+Update System
+```
+apt update 下载最新的软件列表
+apt upgrade 进行更新操作
+apt autoremove 清理不需要的旧组件
+```
+
 Install package
 
 ```
@@ -8,8 +15,6 @@ apt remove PACKAGE
 Search which package contains the file
 
 ```
-apt install apt-file
-apt update
 apt-file search FILENAME
 ```
 
@@ -35,4 +40,7 @@ Install Ruby
 apt-get install ruby-dev
 gem install bundle
 apt-get install make g++ zlibc zlib1g zlib1g-dev
+```
+```
+apt install wireguard-dkms wireguard-tools
 ```

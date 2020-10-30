@@ -27,6 +27,7 @@ code
 | Ctrl+F           | Find in current file                       |
 | Ctrl+Shift+F     | Find in all files                          |
 | Ctrl + Backspace | Delete previous word                       |
+| Ctrl+I           | Trigger IntelliSense                       |
 | F11              | Toggle Full Screen                         |
 | F5               | Start debugging                            |
 | F9               | Toggle Breakpoint                          |

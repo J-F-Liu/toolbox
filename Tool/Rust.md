@@ -175,6 +175,7 @@ Trait Objects: Open Set of Types
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Traits and Trait Objects in Rust](https://joshleeb.com/posts/rust-traits-and-trait-objects/)
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
+- [Optional parameters in Rust](https://vidify.org/blog/rust-parameters/)
 - [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
 - [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
 - [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
@@ -277,6 +278,7 @@ format_spec := [[fill]align][sign]['#']['0'][width]['.' precision][type]
 type := identifier | '?' | ''
 width := number | name$ | index$
 precision := number | name$ | index$
+{:#?} pretty-prints a structure with newlines and indentation
 
 The current mapping of types to traits is:
 
@@ -304,6 +306,7 @@ hashmap.insert(37, "a"); // Option<V>
 let value = hashmap[&1]; // &V
 let value = hashmap.get(&1); // Option<&V>
 let value = hashmap.entry(3).or_insert("b"); // &'a mut V
+map.contains_key(&1);
 hashmap.remove(&1);
 ```
 
@@ -312,11 +315,27 @@ If we insert a value with the key that is present in the hashmap, the previous v
 If the key does not exist, the value that you have given in the or_insert() method will be associated with the key.
 If the key already exists, then the new value will be dumped, and the previous value will persist.
 
+## Environment variables
+Get the directory containing the manifest of your package during `cargo run`.
+```
+std::env::var("CARGO_MANIFEST_DIR")
+```
+Get the full filesystem path of the current running executable.
+```
+std::env::current_exe()
+```
+
 ## Self-referencing struct
 
 When you have a lifetime <'a> on a struct, that lifetime denotes references to values stored outside of the struct. If you try to store a reference that points inside the struct rather than outside, you will run into a compiler error when the compiler notices you lied to it.
 
 In Rust self-referencing structs are a thing that many people want. However, as you have already found out they are a bit troublesome to implement in Rust. What I would recommend instead of raw references is to use indices instead.
+
+## optimization
+
+You can write fantastically effective code with Rust, but you don't have to! In a lot of cases, you'll be fine using .clone(). A lot of the time it's entirely fine to just write code that works with minimal effort.
+
+Just because Rust allows you to write super cool non-allocating zero-copy algorithms safely, doesn’t mean every algorithm you write should be super cool, zero-copy and non-allocating.
 
 ## Notes
 

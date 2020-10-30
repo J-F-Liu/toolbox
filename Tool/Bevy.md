@@ -1,6 +1,7 @@
 # Bevy Engine
 
 [Bevy](https://bevyengine.org/)
+[First Read](https://github.com/jamadazi/bevy-cheatsheet/blob/master/bevy-cheatsheet.md)
 [learn-bevy](https://dev.to/ethanyidong/the-bevy-engine-1-4k4k)
 
 ## ECS
@@ -214,3 +215,10 @@ fn greet_people(
 ```
 
 Limited to 65535 vertices or 79 subdivisions.
+
+The coordinate system in Wgpu is based on DirectX and Metal's coordinate systems. That means that in normalized device coordinates the x axis and y axis are in the range of -1.0 to +1.0, and the z axis is 0.0 to +1.0.
+
+wgpu's world coordinates have the y-axis pointing up, while texture coordinates have the y-axis pointing down.
+
+Casting a ray from screen to 3D physics space is useful for object picking.
+To cast a ray from the screen, you need a Camera node. A Camera can be in two projection modes: perspective and orthogonal. Because of this, both the ray origin and direction must be obtained.
