@@ -3,6 +3,7 @@ Update System
 apt update 下载最新的软件列表
 apt upgrade 进行更新操作
 apt autoremove 清理不需要的旧组件
+do-release-upgrade -m server 升级大版本
 ```
 
 Install package

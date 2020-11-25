@@ -79,9 +79,9 @@ view = render(state)
 - 接入型组件，在 React 场景下的 container component，这种组件会跟数据层的 service 打交道，会包含一些跟服务器或者说数据源打交道的逻辑，container 会把数据向下传递给展示型组件
 - 功能型组件，路由的 router-view 组件、transition 组件，本身并不渲染任何内容，是一个逻辑型的东西，作为一种扩展或者是抽象机制存在
 
-## Redux
-Redux主要用于管理那些公用及异步的状态，而state一般用于管理组件独有的状态。如果你的组件中存在其不必和其他组件公用及非异步的单一数据，那么你直接可以写在state中，比如一些loading的状态和显示隐藏的状态等。
-巧妙的使用Redux和state可以帮助我们更好的管理数据流。
+## 服务端渲染SSR(Server-side rendering)
 
-## Server rendering
+单页应用的前端框架，对搜索引擎不友好，SEO 效果差。
+SSR的原理是服务器执行前端脚本，将渲染结果直接发给浏览器，从而提升 SEO 效果、加快网页显示。
+
 Can not use window in componentWillMount and render methods.

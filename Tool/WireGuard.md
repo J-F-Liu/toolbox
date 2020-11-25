@@ -32,6 +32,7 @@ chmod 600 private
 
 ```
 cd /etc/wireguard
+cp private wg0.conf
 nano wg0.conf
 wg-quick up wg0
 ```
@@ -53,8 +54,9 @@ AllowedIPs = 10.10.10.2/32
 
 AllowedIPs 属性对于出口流量来说是路由表，对于入口流量来说则是访问控制列表，参考 Cryptokey Routing。
 PostUp 和 PostDown 配置用于在节点创建和删除之后执行的操作，对于 WireGuard 协议本身非必需。此处用于流量转发的 iptables 添加和删除，启动了代理服务器模式。
-
+注意：其中的ens3是网卡的名称，改成系统中对应的网卡。
 修改配置文件后，需重新启动虚拟网卡。
+云服务器可能需要配置安全组的入网规则。
 
 ### 允许 IP 转发
 

@@ -22,6 +22,7 @@ rustup set profile complete
 rustup doc --std
 rustup target list
 rustup target add x86_64-unknown-linux-musl
+rustup component add clippy-preview
 ```
 
 - 国内镜像
@@ -88,9 +89,11 @@ rustup component add rust-docs
 cargo fmt
 cargo install clippy
 cargo install cargo-edit # modifying Cargo.toml by `cargo add`, `cargo rm`, and `cargo upgrade` commands.
+cargo install cargo-expand # prints out the result of macro expansion
 cargo install cargo-outdated
 cargo install cargo-src # exploring code in web browser: cargo src --open
 cargo install cargo-watch
+cargo install cargo-wipe
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 rustup update nightly # update RLS and its dependencies
@@ -110,6 +113,7 @@ cargo install lsd # LSDeluxe, also ls replacement
 cargo install bat # cat replacement
 cargo install hexyl # hexdump replacement
 cargo install dutree # du enhanced
+cargo install diskonaut
 cargo install xsv # a suite of CSV command line utilities
 cargo install --git https://github.com/sharkdp/fd
 cargo install simple-http-server
@@ -294,6 +298,21 @@ b ⇒ Binary
 e ⇒ LowerExp
 E ⇒ UpperExp
 
+## Iterator
+
+```rust
+// impl<A, E, V: FromIterator<A>> FromIterator<Result<A, E>> for Result<V, E> {
+//    fn from_iter<I: IntoIterator<Item = Result<A, E>>>(iter: I) -> Result<V, E> {}
+// }
+fn main() {
+    println!("{:?}", if_is_all_evens_and_return_them(vec![2, 4, 6, 8]));
+    println!("{:?}", if_is_all_evens_and_return_them(vec![2, 4, 5, 8]));
+}
+fn if_is_all_evens_and_return_them(nums: Vec<i32>) -> Result<Vec<i32>, i32> {
+    nums.into_iter().map(|x| if x % 2 == 0 { Ok(x) } else { Err(x) } ).collect()
+}
+```
+
 ## HashMap
 
 ```rust
@@ -324,6 +343,18 @@ Get the full filesystem path of the current running executable.
 ```
 std::env::current_exe()
 ```
+
+CARGO_PKG_VERSION — The full version of your package.
+PROFILE — release for release builds, debug for other builds
+
+## Closure
+
+闭包（closure）是函数指针（function pointer）和上下文（context）的组合。
+- 没有上下文的闭包就是一个fn函数指针类型，并且可以在任意位置调用。
+- 带有不可变上下文（immutable context）的闭包属于 Fn，只要上下文在作用域中存在，就可以调用。
+- 带有可变上下文（mutable context）的闭包属于 FnMut，可以在上下文有效的任意位置调用。
+- 拥有其上下文的闭包属于 FnOnce，只能被调用一次。
+
 
 ## Self-referencing struct
 
