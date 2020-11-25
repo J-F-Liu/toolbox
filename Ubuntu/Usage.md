@@ -15,6 +15,8 @@ apt remove PACKAGE
 Search which package contains the file
 
 ```
+apt install apt-file
+apt-file update
 apt-file search FILENAME
 ```
 
@@ -34,12 +36,19 @@ systemctl enable --now caddy.service
 systemctl status caddy
 ```
 
+Install nodejs
+```
+apt install nodejs npm yarnpkg
+```
+
 Install Ruby
 
 ```
-apt-get install ruby-dev
+apt install ruby-dev
 gem install bundle
-apt-get install make g++ zlibc zlib1g zlib1g-dev
+apt install make g++ zlibc zlib1g zlib1g-dev
+apt install libfreeimage3
+cp /usr/lib/x86_64-linux-gnu/libfreeimage.so.3 /usr/lib/x86_64-linux-gnu/libfreeimage.so
 ```
 ```
 apt install wireguard-dkms wireguard-tools
