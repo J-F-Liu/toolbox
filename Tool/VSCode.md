@@ -53,6 +53,8 @@ code
 - C#, Ruby, TOML, Docker
 - TabNine
 - Unicode code point of current character
+- change-case
+- Docker
 
 ### Web Dev
 

@@ -222,6 +222,7 @@ Trait Objects: Open Set of Types
 - [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
 - [A practical guide to async in Rust](https://blog.logrocket.com/a-practical-guide-to-async-in-rust/)
 - [Types Over Strings: Extensible Architectures in Rust](https://willcrichton.net/notes/types-over-strings/)
+- [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 
 ## crates
 
@@ -335,11 +336,15 @@ If the key does not exist, the value that you have given in the or_insert() meth
 If the key already exists, then the new value will be dumped, and the previous value will persist.
 
 ## Environment variables
+
 Get the directory containing the manifest of your package during `cargo run`.
+
 ```
 std::env::var("CARGO_MANIFEST_DIR")
 ```
+
 Get the full filesystem path of the current running executable.
+
 ```
 std::env::current_exe()
 ```
@@ -350,11 +355,69 @@ PROFILE — release for release builds, debug for other builds
 ## Closure
 
 闭包（closure）是函数指针（function pointer）和上下文（context）的组合。
-- 没有上下文的闭包就是一个fn函数指针类型，并且可以在任意位置调用。
+
+- 没有上下文的闭包就是一个 fn 函数指针类型，并且可以在任意位置调用。
 - 带有不可变上下文（immutable context）的闭包属于 Fn，只要上下文在作用域中存在，就可以调用。
 - 带有可变上下文（mutable context）的闭包属于 FnMut，可以在上下文有效的任意位置调用。
 - 拥有其上下文的闭包属于 FnOnce，只能被调用一次。
 
+## Error handling
+
+```rust
+pub trait std::error::Error: Debug + Display {
+    /// The lower-level source of this error, if any.
+    fn source(&self) -> Option<&(dyn Error + 'static)> { ... }
+    /// Returns a stack backtrace, if available, of where this error occurred.
+    fn backtrace(&self) -> Option<&Backtrace> { ... }
+}
+// anyhow crate
+pub(crate) struct ContextError<C, E> {
+    pub context: C,
+    pub error: E,
+}
+pub trait anyhow::Context<T, E>: context::private::Sealed {
+    /// Wrap the error value with additional context.
+    fn context<C>(self, context: C) -> Result<T, Error>
+    where
+        C: Display + Send + Sync + 'static;
+
+    /// Wrap the error value with additional context that is evaluated lazily
+    /// only once an error does occur.
+    fn with_context<C, F>(self, f: F) -> Result<T, Error>
+    where
+        C: Display + Send + Sync + 'static,
+        F: FnOnce() -> C;
+}
+
+use anyhow::{Context, Result, ensure};
+fn main() -> Result<()> {
+    let s = std::fs::read_to_string("input.txt")
+        .context("Failed to read input.txt")?;
+
+    // Unlike assert!, ensure! returns an Error rather than panicking.
+    ensure!(s.len() > 0, "Input can not be empty");
+
+    println!("{}", s);
+    Ok(())
+}
+```
+
+> RUST_BACKTRACE=1 RUST_LIB_BACKTRACE=0 cargo run
+
+```rust
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum FormatError {
+    #[error("Invalid header (expected {expected:?}, got {found:?})")]
+    InvalidHeader {
+        expected: String,
+        found: String,
+    },
+    #[error("Missing attribute: {0}")]
+    MissingAttribute(String),
+}
+```
 
 ## Self-referencing struct
 

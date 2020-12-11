@@ -1,5 +1,10 @@
 # Kubernetes
 
+Kubernetes, which can be referred to as a "container orchestration system" responsible for deploying, scaling, and managing dockerized applications.
+Kubernetes can automatically scale apps by adding more servers/virtual machines and distribute traffic among those servers.
+
+Kubernetes is great for large scale and complex applications, but small scale applications should try to avoid using Kubernetes if possible since it comes with a lot of configuration and complexity.
+
 Kubernetes coordinates a highly available cluster of computers that are connected to work as a single unit.
 
 A Kubernetes cluster consists of two types of resources:
@@ -74,5 +79,6 @@ Restart pods
 kubectl scale --replicas=0 deployment DEPLOYMENT
 kubectl scale --replicas=1 deployment DEPLOYMENT
 ```
+
 kubectl -n prod describe pod POD
 kubectl delete deploy DEPLOYMENT
