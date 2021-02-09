@@ -157,7 +157,7 @@ pacman -S htop whois httping
 文件列表、查看、搜索
 
 ```
-pacman -S exa bat fd ripgrep
+pacman -S lsd bat fd ripgrep
 ```
 
 ## 2、命令解析器(shell)
@@ -283,6 +283,14 @@ Shift + Space 全角、半角切换<br />
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
+```
+
+Define the following environment variables in `~/.pam_environment`.
+This file will be read by the pam_env module for all logins, including both X11 and Wayland sessions.
+```
+GTK_IM_MODULE DEFAULT=fcitx
+QT_IM_MODULE  DEFAULT=fcitx
+XMODIFIERS    DEFAULT=\@im=fcitx
 ```
 
 安装 GTK 界面风格，我比较喜欢 Arc Theme。

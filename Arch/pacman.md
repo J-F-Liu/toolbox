@@ -117,3 +117,6 @@ pacman -Sc
 ```
 yay -S pacman-static
 ```
+
+解决HTTP server doesn't seem to support byte ranges. Cannot resume
+rm -r ~/.cache/paru/clone/PACKAGE

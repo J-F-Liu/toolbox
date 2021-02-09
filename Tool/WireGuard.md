@@ -86,6 +86,7 @@ net.ipv4.ip_forward = 1
 
 ```
 pacman -S wireguard-tools openresolv
+paru networkmanager-wireguard-git
 ```
 
 ```
