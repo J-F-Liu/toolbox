@@ -1,4 +1,5 @@
 Update System
+
 ```
 apt update 下载最新的软件列表
 apt upgrade 进行更新操作
@@ -11,6 +12,8 @@ Install package
 ```
 apt install PACKAGE
 apt remove PACKAGE
+apt search PACKAGE
+apt autoremove
 ```
 
 Search which package contains the file
@@ -38,6 +41,7 @@ systemctl status caddy
 ```
 
 Install nodejs
+
 ```
 apt install nodejs npm yarnpkg
 ```
@@ -51,6 +55,14 @@ apt install make g++ zlibc zlib1g zlib1g-dev
 apt install libfreeimage3
 cp /usr/lib/x86_64-linux-gnu/libfreeimage.so.3 /usr/lib/x86_64-linux-gnu/libfreeimage.so
 ```
+
 ```
 apt install wireguard-dkms wireguard-tools
+```
+
+Install MongoDB
+
+```
+apt install mongodb
+systemctl status mongodb
 ```

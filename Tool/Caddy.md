@@ -1,6 +1,7 @@
 # Caddy
 
 Install
+
 ```
 sudo echo "deb [trusted=yes] https://apt.fury.io/caddy/ /" \
     | sudo tee -a /etc/apt/sources.list.d/caddy-fury.list
@@ -9,10 +10,12 @@ sudo apt install caddy
 caddy version
 apt install libnss3-tools
 ```
+
 MacOS: brew install caddy
 Docker: docker pull caddy
 
 Usage
+
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable caddy
@@ -37,12 +40,19 @@ caddy reverse-proxy --from :2016 --to 127.0.0.1:9000
 ```
 
 ## Caddyfile
+
 ```
 Caddyfile = address directive+
-          | site_block+
+          | [global_options_block] site_block+
+
+global_options_block = '{'
+    option+
+'}'
+
 site_block = address '{'
     directive+
 '}'
+
 directive = root
         | header
         | redir
@@ -63,4 +73,5 @@ directive = root
         | file_server
         | acme_server
 ```
+
 The order in which those directives are evaluated matters.

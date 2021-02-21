@@ -31,7 +31,7 @@ rustup component add clippy-preview
 
 ```
 [source.crates-io]
-replace-with = "rustcc"
+replace-with = "ustc"
 
 [source.rustcc]
 registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
@@ -57,7 +57,7 @@ cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
 cargo rustc --release -- -O -C target-feature=+avx
 RUSTFLAGS="-C target-cpu=native" cargo build --release
-cargo build --features embed_image
+cargo build --features "feat1 feat2"
 cargo update
 cargo doc --open
 cargo test
@@ -153,6 +153,7 @@ JIT - Just in time compilation
 LTO - Link Time Optimization
 CTFE - Compile time function execution
 RAII - Resource Acquisition Is Initialization
+LLVM - Low level virtual machine
 
 DST - Dynamically Sized Type
 ZST - Zero Sized Type
@@ -162,6 +163,10 @@ MIR - mid-level intermediate representation
 
 Enums: Closed Set of Types
 Trait Objects: Open Set of Types
+
+You can't have a binding with a DST type (e.g. let x: [u8]); every DST has to be behind an indirection (e.g. let x: &[u8]).
+Currently in stable Rust, the only dynamically sized types are slices, trait objects, and structs that contain one of those two DSTs.
+For these, references are "fat": whereas &u8 is physically just a *const u8 pointer to a memory location, &[u8] is a (*const u8, usize) pair, where the second number is the length of the slice. &dyn Trait is roughly `(*const ?, &'static VTable)`, where the pointer is to the object, and the vtable reference holds all of the information about the trait impl.
 
 ## Articles
 
@@ -188,6 +193,8 @@ Trait Objects: Open Set of Types
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Accurate mental model for Rust's reference types](https://docs.rs/dtolnay/0.0.6/dtolnay/macro._02__reference_types.html)
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
+- [Closures: Magic Functions](https://rustyyato.github.io/rust/syntactic/sugar/2019/01/17/Closures-Magic-Functions.html)
+- [Closures in Rust](https://zhauniarovich.com/post/2020/2020-12-closures-in-rust/)
 - [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
 - [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
 - [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
@@ -223,6 +230,8 @@ Trait Objects: Open Set of Types
 - [A practical guide to async in Rust](https://blog.logrocket.com/a-practical-guide-to-async-in-rust/)
 - [Types Over Strings: Extensible Architectures in Rust](https://willcrichton.net/notes/types-over-strings/)
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
+- [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
+- [Generalizing over Generics in Rust - AKA Higher Kinded Types in Rust](https://rustyyato.github.io/type/system,type/families/2021/02/15/Type-Families-1.html)
 
 ## crates
 
@@ -249,6 +258,10 @@ Trait Objects: Open Set of Types
 - [An introduction to Data Oriented Design with Rust](http://jamesmcm.github.io/blog/2020/07/25/intro-dod)
 - [Understanding Rust Lifetimes](https://medium.com/nearprotocol/understanding-rust-lifetimes-e813bcd405fa)
 - [A procedural macro for generating the most basic getters and setters on fields](https://github.com/Hoverbear/getset)
+- [Setting a Rust Executable's Icon in Windows](https://www.anthropicstudios.com/2021/01/05/setting-a-rust-windows-exe-icon/)
+  https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/
+  https://blog.logrocket.com/rust-compression-libraries/
+  https://blog.logrocket.com/rust-cryptography-libraries-a-comprehensive-list/
 
 To secure your client connection, use Rustls; however, make sure it is configured properly either with Mozilla’s trusted root certificates or your service provider’s own root certificates!
 
@@ -271,6 +284,7 @@ Tokio runs tasks which sometimes need to be paused in order to wait for asynchro
 - 关联类型支持生命周期泛型
 - .expect("error message") 读起来有点怪
 - a.min(b) 应该是取 a 的值，最小为 b。min(a,b)才是取 a 和 b 中较小的。
+- trait object 不能组合，即 Box<Write + Read> 是不允许的，与此相关的问题还有：subtrait 不能转为 trait 类型
 
 无符号数，以小减大，subtract with overflow 异常。
 fn checked_add(self, rhs: u8) -> Option<u8> returning None if overflow occurred.
@@ -312,6 +326,28 @@ fn main() {
 fn if_is_all_evens_and_return_them(nums: Vec<i32>) -> Result<Vec<i32>, i32> {
     nums.into_iter().map(|x| if x % 2 == 0 { Ok(x) } else { Err(x) } ).collect()
 }
+
+fn my_func<Item, Container: IntoIterator<Item=Item>>(iter: Container){
+   let mut iterator = iter.into_iter();
+   ...
+}
+```
+
+## `matches` macro
+
+```rust
+// Eq is not drerived
+pub enum Test {
+    FIRST,
+    SECOND
+}
+
+matches!(data, Test::FIRST)
+// expands to
+match data {
+    Test::FIRST => true,
+    _ => false,
+}
 ```
 
 ## HashMap
@@ -351,6 +387,12 @@ std::env::current_exe()
 
 CARGO_PKG_VERSION — The full version of your package.
 PROFILE — release for release builds, debug for other builds
+
+Inspects an environment variable at compile time.
+
+```
+println!("The $PATH variable at the time of compiling was: {}", env!("PATH"));
+```
 
 ## Closure
 
