@@ -17,6 +17,7 @@ Docker: docker pull caddy
 Usage
 
 ```
+cat /usr/lib/systemd/system/caddy.service
 sudo systemctl daemon-reload
 sudo systemctl enable caddy
 sudo systemctl start caddy

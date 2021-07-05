@@ -78,3 +78,13 @@ Ocsp 全称在线证书状态检查协议 (rfc6960)，用来向 CA 站点查询�
 Nginx 目前已经支持这个 ocsp stapling file，只需要配置 ocsp stapling file 的指令就能开启这个功能：
 
 ssl_stapling on;ssl_stapling_file ocsp.staple;
+
+# PWA
+
+https://love2dev.com/blog/15-minute-progressive-web-app-upgrade/
+https://developer.mozilla.org/en-US/docs/Web/Manifest
+https://github.com/lyzadanger/serviceworker-example
+https://web.dev/pwa-checklist/
+https://web.dev/customize-install/
+https://googlechrome.github.io/samples/service-worker/custom-offline-page/index.html
+https://medium.com/james-johnson/a-simple-progressive-web-app-tutorial-f9708e5f2605

@@ -10,10 +10,10 @@ do-release-upgrade -m server 升级大版本
 Install package
 
 ```
+apt show PACKAGE
 apt install PACKAGE
 apt remove PACKAGE
 apt search PACKAGE
-apt autoremove
 ```
 
 Search which package contains the file
@@ -22,6 +22,7 @@ Search which package contains the file
 apt install apt-file
 apt-file update
 apt-file search FILENAME
+apt-file list PACKAGE
 ```
 
 Add User

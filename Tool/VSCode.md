@@ -70,6 +70,7 @@ code
     "editor.formatOnSave": true,
     "editor.fontLigatures": true,
     "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "files.eol": "\n",
     "workbench.colorTheme": "Atom One Dark",
     "window.titleBarStyle": "custom",
     "terminal.integrated.copyOnSelection": true

@@ -16,6 +16,7 @@ rustup install nightly
 rustup default nightly
 rustup update nightly
 rustup override set nightly
+rustup override unset
 rustup self update
 rustup set profile minimal
 rustup set profile complete
@@ -23,6 +24,7 @@ rustup doc --std
 rustup target list
 rustup target add x86_64-unknown-linux-musl
 rustup component add clippy-preview
+rustup toolchain help
 ```
 
 - 国内镜像
@@ -66,6 +68,7 @@ cargo bench
 CARGO_INCREMENTAL=1 cargo build
 rustc +beta --version
 cargo +beta build
+cargo +stable fmt
 ```
 
 - Cross Compile
@@ -164,6 +167,11 @@ MIR - mid-level intermediate representation
 Enums: Closed Set of Types
 Trait Objects: Open Set of Types
 
+Any data whose size can't be known at compile-time (or actively changes as the program runs) has to live on the heap, and be dynamically allocated as the program runs.
+
+In Rust, the String struct works very similarly to a Vec of characters. You get/have to work with strings as a data structure, not a primitive.
+If you have a mutable slice (&mut str) then you can mutate its contents, however you cannot change the length.
+
 You can't have a binding with a DST type (e.g. let x: [u8]); every DST has to be behind an indirection (e.g. let x: &[u8]).
 Currently in stable Rust, the only dynamically sized types are slices, trait objects, and structs that contain one of those two DSTs.
 For these, references are "fat": whereas &u8 is physically just a *const u8 pointer to a memory location, &[u8] is a (*const u8, usize) pair, where the second number is the length of the slice. &dyn Trait is roughly `(*const ?, &'static VTable)`, where the pointer is to the object, and the vtable reference holds all of the information about the trait impl.
@@ -232,9 +240,15 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
 - [Generalizing over Generics in Rust - AKA Higher Kinded Types in Rust](https://rustyyato.github.io/type/system,type/families/2021/02/15/Type-Families-1.html)
+- [Rusts Module System Explained](https://aloso.github.io/2021/03/28/module-system.html)
+- [Implementing RAII guards in Rust](https://aloso.github.io/2021/03/18/raii-guards.html)
+- [A zero-overhead linked list in Rust](https://aloso.github.io/2021/04/12/linked-list.html)
+- [Tour of Rust's Standard Library Traits](https://github.com/pretzelhammer/rust-blog/blob/master/posts/tour-of-rusts-standard-library-traits.md)
+- [Arenas in Rust](https://manishearth.github.io/blog/2021/03/15/arenas-in-rust/)
 
 ## crates
 
+- [easy-cast](https://kas-gui.github.io/blog/easy-cast.html)
 - [Native Windows GUI for rust](https://github.com/gabdube/native-windows-gui)
 - [slog-rs - Structured, composable logging for Rust](https://github.com/dpc/slog-rs)
 - [Put your Rust app's data in the right place on every platform](https://github.com/AndyBarron/app-dirs-rs)
@@ -262,6 +276,21 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
   https://blog.logrocket.com/rust-serialization-whats-ready-for-production-today/
   https://blog.logrocket.com/rust-compression-libraries/
   https://blog.logrocket.com/rust-cryptography-libraries-a-comprehensive-list/
+  https://blog.logrocket.com/the-current-state-of-rust-web-frameworks/
+
+- bitvec: A crate for manipulating memory, bit by bit
+- nalgebra
+- nalgebra-sparse
+- mint: Math INteroperability Types
+- glam: A simple and fast 3D math library for games and graphics
+- simba: SIMD algebra, non-SIMD types like FixedI32<Frac>,SIMD types like f32x2, f64x4
+- slipstream: vectorize array iteration to take advantage of SIMD
+- adskalman: Kalman filter and Rauch-Tung-Striebel smoothing implementation using nalgebra, no_std
+- cam-geom: Geometric models of cameras for photogrammetry
+
+- stl_io: reading and writing STL (STereoLithography) files.
+- bevy_stl: A STL loader for bevy.
+- bevy_obj: A OBJ loader for bevy.
 
 To secure your client connection, use Rustls; however, make sure it is configured properly either with Mozilla’s trusted root certificates or your service provider’s own root certificates!
 
@@ -285,6 +314,9 @@ Tokio runs tasks which sometimes need to be paused in order to wait for asynchro
 - .expect("error message") 读起来有点怪
 - a.min(b) 应该是取 a 的值，最小为 b。min(a,b)才是取 a 和 b 中较小的。
 - trait object 不能组合，即 Box<Write + Read> 是不允许的，与此相关的问题还有：subtrait 不能转为 trait 类型
+- 自动实现 impl Trait for Box<dyn Trait>
+
+had two different Clone traits - one for reference cloning and one for deep value cloning
 
 无符号数，以小减大，subtract with overflow 异常。
 fn checked_add(self, rhs: u8) -> Option<u8> returning None if overflow occurred.
@@ -292,7 +324,10 @@ fn wrapping_add(self, rhs: u8) -> u8 wrapping around at the boundary of the type
 fn overflowing_add(self, rhs: u8) -> (u8, bool) return wrapped result with a boolean indicating whether an arithmetic overflow occurred
 fn saturating_add(self, rhs: u8) -> u8 saturating at the numeric bounds instead of overflowing.
 
-std::fmt
+## [std::fmt](https://doc.rust-lang.org/std/fmt/index.html)
+
+format := '{' [ argument ] [ ':' format_spec ] '}'
+argument := integer | identifier
 format_spec := [[fill]align][sign]['#']['0'][width]['.' precision][type]
 type := identifier | '?' | ''
 width := number | name$ | index$
@@ -312,6 +347,47 @@ p ⇒ Pointer
 b ⇒ Binary
 e ⇒ LowerExp
 E ⇒ UpperExp
+
+## Namespace
+
+Local variables and macros have to be declared before they can be used, which use textual scoping, and allow shadowing things with the same name.
+
+Things with path-based scoping can be declared and used in any order.
+There can’t be more than one thing with the same name defined in the same scope and namespace.
+
+There are 3 namespaces:
+
+- The type namespace
+- The value namespace
+- The macro namespace
+
+The type namespace contains
+
+- modules
+- structs
+- enums
+- unions
+- enum variants
+- traits
+- type aliases
+- foreign types
+- trait aliases
+- associated types
+- type parameters
+
+The value namespace contains
+
+- functions
+- constants
+- const parameters
+- statics
+- constructors
+- associated functions
+- associated constants
+
+The macro namespace just contains macros.
+
+All other names are treated specially and don’t fall into any of the above categories.
 
 ## Iterator
 
@@ -350,6 +426,26 @@ match data {
 }
 ```
 
+## Vec
+
+```rust
+vec.is_empty() -> bool
+vec.append(other: &mut Vec<T, A>)
+vec.extend(other: IntoIterator)
+vec.push(item)
+vec.pop() -> Option<T>
+vec.remove(index) -> T
+vec.swap_remove(index) -> T
+vec.drain(range) -> Drain
+vec.truncate(number_of_elements_to_keep);
+vec.contains(&item) -> bool
+vec.binary_search(&item) -> Result<usize, usize>
+vec.iter().find(predicate) -> Option<T>
+vec.iter().position(predicate) -> Option<usize>
+vec.sort()
+vec.reverse()
+```
+
 ## HashMap
 
 ```rust
@@ -362,6 +458,9 @@ hashmap.insert(37, "a"); // Option<V>
 let value = hashmap[&1]; // &V
 let value = hashmap.get(&1); // Option<&V>
 let value = hashmap.entry(3).or_insert("b"); // &'a mut V
+if let Some(x) = map.get_mut(&1) {
+    *x = "b";
+}
 map.contains_key(&1);
 hashmap.remove(&1);
 ```
@@ -383,6 +482,12 @@ Get the full filesystem path of the current running executable.
 
 ```
 std::env::current_exe()
+```
+
+Current OS type
+
+```
+std::env::consts::OS
 ```
 
 CARGO_PKG_VERSION — The full version of your package.
@@ -460,6 +565,23 @@ pub enum FormatError {
     MissingAttribute(String),
 }
 ```
+
+## Traits
+
+Call methods of T on Wrapper.
+
+```rust
+struct Wrapper(T);
+impl std::ops::Deref for Wrapper {
+    type Target = T;
+    #[inline(always)]
+    fn deref(&self) -> &T {
+        &self.0
+    }
+}
+```
+
+implement std::fmt::Display also enables std::string::ToString.
 
 ## Self-referencing struct
 
