@@ -41,7 +41,7 @@ code
 - Duplicate action
 - EditorConfig
 - Excel Viewer
-- hexdump for VSCode
+- GitLens
 - Image Tile Viewer
 - Markdown All in One
 - Markdown Preview Enchanced

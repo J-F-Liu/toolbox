@@ -97,6 +97,7 @@ cargo install cargo-outdated
 cargo install cargo-src # exploring code in web browser: cargo src --open
 cargo install cargo-watch
 cargo install cargo-wipe
+cargo install -f cargo-audit
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 rustup update nightly # update RLS and its dependencies
@@ -245,6 +246,9 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [A zero-overhead linked list in Rust](https://aloso.github.io/2021/04/12/linked-list.html)
 - [Tour of Rust's Standard Library Traits](https://github.com/pretzelhammer/rust-blog/blob/master/posts/tour-of-rusts-standard-library-traits.md)
 - [Arenas in Rust](https://manishearth.github.io/blog/2021/03/15/arenas-in-rust/)
+- [Smart Pointers in Rust: What, why and how?](https://dev.to/rogertorres/smart-pointers-in-rust-what-why-and-how-oma)
+- [Access private fields in Rust](https://blog.knoldus.com/safe-way-to-access-private-fields-in-rust/)
+- [Calling WebAssembly from Rust](https://paulbutler.org/2021/calling-webassembly-from-rust/)
 
 ## crates
 
@@ -287,6 +291,13 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - slipstream: vectorize array iteration to take advantage of SIMD
 - adskalman: Kalman filter and Rauch-Tung-Striebel smoothing implementation using nalgebra, no_std
 - cam-geom: Geometric models of cameras for photogrammetry
+
+GUI:
+
+- Druid: druid-shell + piet + kurbo + widgets
+- Relm4: GTK4-based, inspired by Elm
+- egui: immediate mode GUI, integrations: egui_web, egui_glium, bevy_egui
+- SixtyFPS: .60 UI desgin + business logic written in Rust, C++, or JavaScript, backends: gl, qt
 
 - stl_io: reading and writing STL (STereoLithography) files.
 - bevy_stl: A STL loader for bevy.
@@ -388,6 +399,23 @@ The value namespace contains
 The macro namespace just contains macros.
 
 All other names are treated specially and don’t fall into any of the above categories.
+
+Think of :: as / in file paths, super is like .. and crate is like ~.
+
+```rust
+mod foo;
+
+fn main() {
+    foo::bar(); // refers to the module `foo`
+    ::foo::bar(); // refers to a crate `foo`, NOT the module
+}
+```
+
+The main usage of #[inline] is to enable cross-crate inlining.
+It usually isn’t necessary to apply #[inline] to private functions — within a crate, the compiler generally makes good inline decisions.
+Apply #[inline] reactively when profiling shows that a particular small function is a bottleneck. Consider using lto for releases.
+
+Inlining can also make code slower, because inlining increases the code size, blowing the instruction cache size and causing cache misses.
 
 ## Iterator
 

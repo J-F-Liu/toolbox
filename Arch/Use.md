@@ -97,6 +97,8 @@ zip -p password -r filename.zip folder1 folder2
 
 ```
 unzip test.zip
+tar -xzf all.tar.gz
+tar -xzf all.tgz
 ```
 
 将压缩文件 text.zip 在指定目录/tmp 下解压缩，如果已有相同的文件存在，要求 unzip 命令不覆盖原先的文件。

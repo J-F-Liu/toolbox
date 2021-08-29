@@ -22,3 +22,40 @@ wapm run cowsay hello wapm!
 wapm install kherrick/pwgen
 wapm run pwgen -s 12 1
 ```
+
+Use wax
+
+```
+scoop install wasmer
+wax cowsay hello
+wax demimud
+```
+
+```demimud
+- How to Move -   exit / direction (east or e for short)
+
+- How to Look -   look / look <keyword> / look in <container>
+                  examine <keyword>
+
+- How to Open -   open <direction>
+
+- How to Unlock - unlock <direction> / open <direction>
+
+- How to Get -    get <keyword> / get <object> <container>
+                  get all / get all.<keyword>
+
+ - How to Give -        give <item> <keyword of player>
+                        give <item> <name of player>
+                        give all <player> / give all.<item> <player>
+
+ - How to Talk -        say <message> / 'message
+                        sayto <player> <message> / '>player message
+
+ - How to use Socials - type socials for a list available
+
+ - How to do Emotes -   emote <action> / ,action
+                        type help emote for more info
+
+ - How to Follow -      follow <player> / beckon <player>
+                        follow self / nofollow
+```
