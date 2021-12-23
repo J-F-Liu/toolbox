@@ -67,3 +67,5 @@ Install MongoDB
 apt install mongodb
 systemctl status mongodb
 ```
+
+apt-get install goaccess

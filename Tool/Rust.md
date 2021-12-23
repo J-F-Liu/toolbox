@@ -1,6 +1,6 @@
 # Rust
 
-- 安装
+#### 安装
 
 ```
 pacman -S rust cargo
@@ -48,7 +48,7 @@ registry = "https://mirrors.ustc.edu.cn/crates.io-index/"
   RUSTUP_DIST_SERVER=http://mirrors.ustc.edu.cn/rust-static
   RUSTUP_UPDATE_ROOT=http://mirrors.ustc.edu.cn/rust-static/rustup
 
-- cargo 用法
+#### cargo 用法
 
 ```
 cargo new <project> --bin
@@ -69,6 +69,8 @@ CARGO_INCREMENTAL=1 cargo build
 rustc +beta --version
 cargo +beta build
 cargo +stable fmt
+cargo list
+cargo install --list
 ```
 
 - Cross Compile
@@ -80,7 +82,7 @@ PKG_CONFIG_ALLOW_CROSS=1 cargo build --release --target x86_64-pc-windows-gnu
 PKG_CONFIG_ALLOW_CROSS=1 cargo rustc --release --target x86_64-pc-windows-gnu  -- -C link-args=-mwindows
 ```
 
-- Development tools
+#### Development tools
 
 ```
 rustup show
@@ -95,6 +97,7 @@ cargo install cargo-edit # modifying Cargo.toml by `cargo add`, `cargo rm`, and 
 cargo install cargo-expand # prints out the result of macro expansion
 cargo install cargo-outdated
 cargo install cargo-src # exploring code in web browser: cargo src --open
+cargo tree --duplicates -e=no-dev
 cargo install cargo-watch
 cargo install cargo-wipe
 cargo install -f cargo-audit
@@ -105,7 +108,15 @@ curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/
 C:\Users\Liu\AppData\Roaming\Code\User\globalStorage\matklad.rust-analyzer\rust-analyzer-windows.exe --version
 ```
 
-- Tools developed using Rust
+uses cargo publish --allow-dirty, which according to the cargo documentation, will cause the .cargo_vcs_info.json file to be omitted.
+
+Recommanded:
+
+- The crates.io download provides a git hash.
+- The upstream git repository has a matching release tag.
+- The files from those two sources are the same.
+
+#### Tools developed using Rust
 
 ```
 cargo install ripgrep
@@ -126,7 +137,7 @@ cargo install rural # curl replacement, HTTPie like API
 cargo install jsonpp
 ```
 
-- 样例程序
+#### 样例程序
 
 ```
 fn main() {
@@ -179,76 +190,92 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 
 ## Articles
 
+- [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [A half-hour to learn Rust](https://fasterthanli.me/blog/2020/a-half-hour-to-learn-rust/)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
+- [The Borrow Checker](https://github.com/rust-lang/rust/blob/master/src/librustc_borrowck/borrowck/README.md)
+- [Things Rust doesn’t let you do](https://medium.com/@GolDDranks/things-rust-doesnt-let-you-do-draft-f596a3c740a5)
+- [Rust memory safety revolution](https://anixe.pl/news/rust_memory_safety_revolution/)
+
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
 - [Methods for Array Initialization in Rust](https://www.joshmcguigan.com/blog/array-initialization-rust/)
 - [Scientific computing: a Rust adventure [Part 0 - Vectors]](https://www.lpalmieri.com/posts/2019-02-23-scientific-computing-a-rust-adventure-part-0-vectors/)
+- [The Swiss Army Knife of Hashmaps](https://blog.waffles.space/2018/12/07/deep-dive-into-hashbrown/)
+- [Rust Lifetimes and Iterators](https://blog.katona.me/2019/12/29/Rust-Lifetimes-and-Iterators/)
+- [Tour of Rust's Standard Library Traits](https://github.com/pretzelhammer/rust-blog/blob/master/posts/tour-of-rusts-standard-library-traits.md)
 - [The Secret Life of Cows](https://deterministic.space/secret-life-of-cows.html)
-- [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
-- [Rust memory safety revolution](https://anixe.pl/news/rust_memory_safety_revolution/)
-- [Rust and CSV parsing](http://blog.burntsushi.net/csv/)
-- [Rust memory safety revolution](https://anixe.pl/content/news/rust_memory_safety_revolution)
+- [Rusts Module System Explained](https://aloso.github.io/2021/03/28/module-system.html)
+- [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
+- [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
+
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
+- [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
 - [Traits and Trait Objects in Rust](https://joshleeb.com/posts/rust-traits-and-trait-objects/)
+- [dyn Trait and impl Trait in Rust](https://www.ncameron.org/blog/dyn-trait-and-impl-trait-in-rust/)
+- [Accurate mental model for Rust's reference types](https://docs.rs/dtolnay/0.0.6/dtolnay/macro._02__reference_types.html)
+- [Smart Pointers in Rust: What, why and how?](https://dev.to/rogertorres/smart-pointers-in-rust-what-why-and-how-oma)
+- [Borrow cycles in Rust: arenas v.s. drop-checking](https://exyr.org/2018/rust-arenas-vs-dropck/)
+- [Modeling graphs in Rust using vector indices](http://smallcultfollowing.com/babysteps/blog/2015/04/06/modeling-graphs-in-rust-using-vector-indices/)
+- [On dealing with owning and borrowing in public interfaces](https://phaazon.net/blog/on-owning-borrowing-pub-interface)
+- [Strategies for Returning References in Rust](https://bryce.fisher-fleig.org/blog/strategies-for-returning-references-in-rust/)
+- [Rust data structures with circular references](https://eli.thegreenplace.net/2021/rust-data-structures-with-circular-references/)
+
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
 - [Optional parameters in Rust](https://vidify.org/blog/rust-parameters/)
-- [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
-- [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
-- [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
-- [An Overview of Macros in Rust](http://words.steveklabnik.com/an-overview-of-macros-in-rust)
-- [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
+- [Polymorphism in Rust: Enum vs Trait + Struct](http://keepcalmandlearnrust.com/2017/03/polymorphism-in-rust-enum-vs-trait-struct/)
+- [Iteration patterns for Result & Option](http://xion.io/post/code/rust-iter-patterns.html)
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
-- [Accurate mental model for Rust's reference types](https://docs.rs/dtolnay/0.0.6/dtolnay/macro._02__reference_types.html)
+- [Abstracting over mutability in Rust](https://lab.whitequark.org/notes/2016-12-13/abstracting-over-mutability-in-rust/)
+
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Closures: Magic Functions](https://rustyyato.github.io/rust/syntactic/sugar/2019/01/17/Closures-Magic-Functions.html)
 - [Closures in Rust](https://zhauniarovich.com/post/2020/2020-12-closures-in-rust/)
-- [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
-- [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
-- [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
-- [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
-- [Implementing Finite Automata](https://apanatshka.github.io/compsci/2016/10/03/implementing-finite-automata-part-1/)
-- [Rusty Dynamic Loading](https://damienradtke.com/post/rusty-dynamic-loading/)
-- [Abstracting over mutability in Rust](https://lab.whitequark.org/notes/2016-12-13/abstracting-over-mutability-in-rust/)
-- [Rust futures at a glance](https://daiheitan.github.io/blog/2016/12/07/Rust-futures-at-a-glance/)
-- [Getting Started with Tokio](https://lukesteensen.com/2016/12/getting-started-with-tokio/)
-- [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
-- [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
-- [The Borrow Checker](https://github.com/rust-lang/rust/blob/master/src/librustc_borrowck/borrowck/README.md)
-- [Strategies for Returning References in Rust](https://bryce.fisher-fleig.org/blog/strategies-for-returning-references-in-rust/)
-- [Polymorphism in Rust: Enum vs Trait + Struct](http://keepcalmandlearnrust.com/2017/03/polymorphism-in-rust-enum-vs-trait-struct/)
-- [Iteration patterns for Result & Option](http://xion.io/post/code/rust-iter-patterns.html)
-- [Exploring lock-free Rust](https://morestina.net/blog/742/exploring-lock-free-rust-1-locks)
-- [What Are Tokio and Async IO All About?](https://manishearth.github.io/blog/2018/01/10/whats-tokio-and-async-io-all-about/)
-- [Borrow cycles in Rust: arenas v.s. drop-checking](https://exyr.org/2018/rust-arenas-vs-dropck/)
-- [Modeling graphs in Rust using vector indices](http://smallcultfollowing.com/babysteps/blog/2015/04/06/modeling-graphs-in-rust-using-vector-indices/)
-- [Rust concurrency patterns: communicate by sharing your Sender](https://medium.com/@polyglot_factotum/rust-concurrency-patterns-communicate-by-sharing-your-sender-11a496ce7791)
-- [On dealing with owning and borrowing in public interfaces](https://phaazon.net/blog/on-owning-borrowing-pub-interface)
-- [Things Rust doesn’t let you do](https://medium.com/@GolDDranks/things-rust-doesnt-let-you-do-draft-f596a3c740a5)
-- [The Swiss Army Knife of Hashmaps](https://blog.waffles.space/2018/12/07/deep-dive-into-hashbrown/)
-- [Creating web-server .deb binary with rust](https://gill.net.in/posts/creating-web-server-deb-binary-with-rust/)
 - [Neat Rust Tricks: Passing Rust Closures to C](https://blog.seantheprogrammer.com/neat-rust-tricks-passing-rust-closures-to-c)
-- [Rust Lifetimes and Iterators](https://blog.katona.me/2019/12/29/Rust-Lifetimes-and-Iterators/)
-- [feature(slice_patterns)](<https://thomashartmann.dev/blog/feature(slice_patterns)>)
-- [Guide on how to write documentation for a Rust crate](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)
-- [On Generics and Associated Types](https://thomashartmann.dev/blog/on-generics-and-associated-types/)
+
+- [An Overview of Macros in Rust](http://words.steveklabnik.com/an-overview-of-macros-in-rust)
 - [time_it: a Case Study in Rust Macros](https://notes.iveselov.info/programming/time_it-a-case-study-in-rust-macros)
-- [Writing Python inside your Rust code](https://blog.m-ou.se/writing-python-inside-rust-1/)
-- [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
-- [A practical guide to async in Rust](https://blog.logrocket.com/a-practical-guide-to-async-in-rust/)
+- [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
+- [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
+
+- [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
 - [Types Over Strings: Extensible Architectures in Rust](https://willcrichton.net/notes/types-over-strings/)
+- [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
+
+- [Rusty Dynamic Loading](https://damienradtke.com/post/rusty-dynamic-loading/)
+- [Creating web-server .deb binary with rust](https://gill.net.in/posts/creating-web-server-deb-binary-with-rust/)
+- [Writing Python inside your Rust code](https://blog.m-ou.se/writing-python-inside-rust-1/)
+- [Calling WebAssembly from Rust](https://paulbutler.org/2021/calling-webassembly-from-rust/)
+
+- [Rust futures at a glance](https://daiheitan.github.io/blog/2016/12/07/Rust-futures-at-a-glance/)
+- [Exploring lock-free Rust](https://morestina.net/blog/742/exploring-lock-free-rust-1-locks)
+- [A practical guide to async in Rust](https://blog.logrocket.com/a-practical-guide-to-async-in-rust/)
+- [Getting Started with Tokio](https://lukesteensen.com/2016/12/getting-started-with-tokio/)
+- [What Are Tokio and Async IO All About?](https://manishearth.github.io/blog/2018/01/10/whats-tokio-and-async-io-all-about/)
+- [Rust concurrency patterns: communicate by sharing your Sender](https://medium.com/@polyglot_factotum/rust-concurrency-patterns-communicate-by-sharing-your-sender-11a496ce7791)
+- [Multithreading in Rust](https://nickymeuleman.netlify.app/blog/multithreading-rust)
+- [What is an async runtime?](https://ncameron.org/blog/what-is-an-async-runtime/)
+- [ASYNC CANCELLATION I](https://blog.yoshuawuyts.com/async-cancellation-1/)
+
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
+- [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
+
+- [feature(slice_patterns)](<https://thomashartmann.dev/blog/feature(slice_patterns)>)
+- [On Generics and Associated Types](https://thomashartmann.dev/blog/on-generics-and-associated-types/)
 - [Generalizing over Generics in Rust - AKA Higher Kinded Types in Rust](https://rustyyato.github.io/type/system,type/families/2021/02/15/Type-Families-1.html)
-- [Rusts Module System Explained](https://aloso.github.io/2021/03/28/module-system.html)
+- [Access private fields in Rust](https://blog.knoldus.com/safe-way-to-access-private-fields-in-rust/)
+
+- [Implementing Finite Automata](https://apanatshka.github.io/compsci/2016/10/03/implementing-finite-automata-part-1/)
 - [Implementing RAII guards in Rust](https://aloso.github.io/2021/03/18/raii-guards.html)
 - [A zero-overhead linked list in Rust](https://aloso.github.io/2021/04/12/linked-list.html)
-- [Tour of Rust's Standard Library Traits](https://github.com/pretzelhammer/rust-blog/blob/master/posts/tour-of-rusts-standard-library-traits.md)
 - [Arenas in Rust](https://manishearth.github.io/blog/2021/03/15/arenas-in-rust/)
-- [Smart Pointers in Rust: What, why and how?](https://dev.to/rogertorres/smart-pointers-in-rust-what-why-and-how-oma)
-- [Access private fields in Rust](https://blog.knoldus.com/safe-way-to-access-private-fields-in-rust/)
-- [Calling WebAssembly from Rust](https://paulbutler.org/2021/calling-webassembly-from-rust/)
+
+- [Rust Packages vs Crates](https://jeffa.io/rust_packages_vs_crates)
+- [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
+- [Guide on how to write documentation for a Rust crate](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)
+- [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
+- [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
 
 ## crates
 
@@ -282,6 +309,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
   https://blog.logrocket.com/rust-cryptography-libraries-a-comprehensive-list/
   https://blog.logrocket.com/the-current-state-of-rust-web-frameworks/
 
+- time: Date and time library.
 - bitvec: A crate for manipulating memory, bit by bit
 - nalgebra
 - nalgebra-sparse
@@ -302,6 +330,15 @@ GUI:
 - stl_io: reading and writing STL (STereoLithography) files.
 - bevy_stl: A STL loader for bevy.
 - bevy_obj: A OBJ loader for bevy.
+
+Log:
+
+There are generally two categories of crates related to logging: logging interfaces and logging consumers.
+The two main interfaces are log and tracing - tracing is more featureful because it supports structured logging, but log is far more prevalent.
+Each logging interface has its own ecosystem of consumers; depending on your needs and chosen interface you can pick one.
+
+If you're writing a library, using log is a good bet because all the logging interfaces can be made compatible with it (e.g. tracing-log).
+But if you do need structured logging you can use Tracing instead.
 
 To secure your client connection, use Rustls; however, make sure it is configured properly either with Mozilla’s trusted root certificates or your service provider’s own root certificates!
 
@@ -328,6 +365,21 @@ Tokio runs tasks which sometimes need to be paused in order to wait for asynchro
 - 自动实现 impl Trait for Box<dyn Trait>
 
 had two different Clone traits - one for reference cloning and one for deep value cloning
+
+## New features
+
+```rust
+// Rust 1.56 now lets you bind both at once!
+let matrix @ Matrix { row_len, .. } = get_matrix();
+
+fn main() {
+  let array = [1u8, 2, 3];
+  for x in array.into_iter() {
+    // x is a `&u8` in Rust 2015 and Rust 2018
+    // x is a `u8` in Rust 2021
+  }
+}
+```
 
 无符号数，以小减大，subtract with overflow 异常。
 fn checked_add(self, rhs: u8) -> Option<u8> returning None if overflow occurred.
@@ -358,6 +410,13 @@ p ⇒ Pointer
 b ⇒ Binary
 e ⇒ LowerExp
 E ⇒ UpperExp
+
+Convert string to float
+
+```rust
+println!("{:.2}", 2.472e-3);
+if let Ok(x) = "2.472e-3".parse::<f64>() {};
+```
 
 ## Namespace
 
@@ -610,6 +669,24 @@ impl std::ops::Deref for Wrapper {
 ```
 
 implement std::fmt::Display also enables std::string::ToString.
+
+## Async Programming
+
+A lock gives you mutable access to some data from a shared reference. In most cases, you just pick the `Mutex<T>` primitive from `std`.
+
+The critical section denotes the section of the program that exists in between the lock getting acquired and subsequently, it getting released.
+
+Ideally, we want to minimize the critical section to make it as short as possible and do only precisely what needs to be done within it and nothing else. This can help performance by allowing other threads/tasks to take the lock sooner, allowing higher throughput and better latencies.
+
+We can categorize all critical sections by two types, data criticals and logic criticals.
+
+Data critical sections are primarily used when your lock contains trivial data that is updated with new data that isn’t derived from the data currently held in the lock. A data critical section should consist of reading and writing to the data inside the lock but not performing any real computation.
+
+The other kind of critical section is called a logic critical. These protect not only data, but also logic from executing concurrently. You’ll see and use these most often when the data you intend to store in the lock is calculated from data already inside the lock. In these cases, you usually want to perform the computation inside the critical section to prevent the source data from changing before you store the result of your computation.
+
+If we look at a typical data critical section, they’re usually rather short and execute very quickly, we’re only copying some data after all. They’re also very predictable, we know that copying data is always fast and we know that the execution time isn’t reliant upon some unpredictable factor such as external APIs or disk I/O. In these cases, a synchronous lock such as the `Mutex<T>` from `parking_lot` is preferable.
+
+Compared to data critical sections, logic criticals have vastly different characteristics. You’ll usually see them perform I/O or make OS syscalls. These operations always have unpredictable execution times and overall the lock is held for much longer than in a data critical section. This means that there is usually moments in time that our task is idle and waiting on some action to complete such as waiting for a database query to come back. This means that you should choose an asynchronous lock such as the `Mutex<T>` provided by `tokio::sync` since it allows tokio to better schedule tasks to take advantage of the idle waiting times during the critical section.
 
 ## Self-referencing struct
 

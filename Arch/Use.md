@@ -144,8 +144,8 @@ diff FILE1 FILE2 -y
 pacman -S hdparm
 hdparm -I /dev/sda
 hdparm -Tt /dev/sda3
-time dd if=/dev/zero bs=1024 count=1000000 of=/DEST/1Gb.file
-time dd if=/SRC/1Gb.file bs=64k of=/dev/null
+time dd if=/dev/zero bs=1024 count=1000000 of=~/1Gb.file
+time dd if=~/1Gb.file bs=64k of=/dev/null
 ```
 
 ## 2、帐号管理
@@ -367,4 +367,12 @@ dig +short DOMAIN_NAME
 dig +short DOMAIN_NAME MX
 dig +short DOMAIN_NAME TXT
 dig +trace DOMAIN_NAME
+```
+
+监控日志
+
+```
+tail -f /var/log/syslog /var/log/dmesg
+journalctl -f
+pacman -S lnav
 ```

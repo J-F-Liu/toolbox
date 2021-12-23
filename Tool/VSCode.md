@@ -2,6 +2,8 @@
 
 网站：https://code.visualstudio.com/
 
+教程：https://pawelcislo.com/2021/11/14/my-vs-code-playground/
+
 ### 安装
 
 ```
@@ -13,6 +15,10 @@ yay -S visual-studio-code-bin
 ```
 code
 ```
+
+### 使用
+
+Replacing text using regex groups, the captured groups can be recalled as $1, $2 etc in the replacement field of the same dialog.
 
 ### 快捷键
 
@@ -62,6 +68,18 @@ code
 - Import Cost
 - Prettier
 - Live HTML Previewer
+
+### Rust
+
+- rust-analyzer (ext install matklad.rust-analyzer)
+- CodeLLDB (ext install vadimcn.vscode-lldb)
+- BetterToml (ext install bungcip.better-toml)
+- Crates (ext install serayuzgur.crates)
+
+### Font
+
+- [Cousine](https://fonts.google.com/specimen/Cousine)
+- [Consolas](https://docs.microsoft.com/en-us/typography/font-list/consolas)
 
 ## 设置
 

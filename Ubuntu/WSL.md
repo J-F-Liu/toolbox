@@ -8,6 +8,8 @@
 
 > wsl --set-default-version 2
 
+> Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+
 ### 安装 Ubuntu 子系统
 
 从应用商店安装 Ubuntu 系统，这个系统将会以软件的形式存在。

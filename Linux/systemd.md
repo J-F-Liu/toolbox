@@ -148,6 +148,16 @@ WantedBy=multi-user.target
 
 ### 日志管理
 
+```
+  -r --reverse               Show the newest entries first
+  -o --output=STRING         Change journal output mode (short, short-precise,
+                               short-iso, short-iso-precise, short-full,
+                               short-monotonic, short-unix, verbose, export,
+                               json, json-pretty, json-sse, json-seq, cat,
+                               with-unit)
+
+```
+
 查询日志占用的空间
 
 ```
