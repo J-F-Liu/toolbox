@@ -287,6 +287,7 @@ export XMODIFIERS=@im=fcitx
 
 Define the following environment variables in `~/.pam_environment`.
 This file will be read by the pam_env module for all logins, including both X11 and Wayland sessions.
+
 ```
 GTK_IM_MODULE DEFAULT=fcitx
 QT_IM_MODULE  DEFAULT=fcitx
@@ -340,6 +341,7 @@ pacman -S code medit clipit ripgrep
 pacman -S chromium
 yay -S chromium-pepper-flash
 chromium --proxy-server="socks5://127.0.0.1:1080"
+chromium --proxy-server="http://127.0.0.1:8080"
 ```
 
 图片浏览器

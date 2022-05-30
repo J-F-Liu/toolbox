@@ -52,13 +52,15 @@ Install Ruby
 ```
 apt install ruby-dev
 gem install bundle
-apt install make g++ zlibc zlib1g zlib1g-dev
+apt install make g++ zlib1g zlib1g-dev
 apt install libfreeimage3
 cp /usr/lib/x86_64-linux-gnu/libfreeimage.so.3 /usr/lib/x86_64-linux-gnu/libfreeimage.so
 ```
 
+Install Rust
+
 ```
-apt install wireguard-dkms wireguard-tools
+curl https://sh.rustup.rs -sSf | sh
 ```
 
 Install MongoDB
@@ -68,4 +70,9 @@ apt install mongodb
 systemctl status mongodb
 ```
 
+Other
+
+```
+apt install wireguard-dkms wireguard-tools
 apt-get install goaccess
+```

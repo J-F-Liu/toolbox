@@ -27,19 +27,20 @@ rustup component add clippy-preview
 rustup toolchain help
 ```
 
-- 国内镜像
+- 国内镜像，每小时更新一次
 
 > nano ~/.cargo/config
 
 ```
 [source.crates-io]
+registry = "https://github.com/rust-lang/crates.io-index"
 replace-with = "ustc"
+
+[source.ustc]
+registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 
 [source.rustcc]
 registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
-
-[source.ustc]
-registry = "https://mirrors.ustc.edu.cn/crates.io-index/"
 ```
 
 - rustup 国内镜像
@@ -71,6 +72,8 @@ cargo +beta build
 cargo +stable fmt
 cargo list
 cargo install --list
+cargo install --force --registry crates-io
+cargo owner --add rust-bus-owner
 ```
 
 - Cross Compile
@@ -99,13 +102,22 @@ cargo install cargo-outdated
 cargo install cargo-src # exploring code in web browser: cargo src --open
 cargo tree --duplicates -e=no-dev
 cargo install cargo-watch
+cargo watch -x 'build --example game --target wasm32-unknown-unknown'
 cargo install cargo-wipe
 cargo install -f cargo-audit
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
+cargo install --git https://github.com/ogham/dog.git dog
 rustup update nightly # update RLS and its dependencies
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.config/Code\ -\ OSS/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux
 C:\Users\Liu\AppData\Roaming\Code\User\globalStorage\matklad.rust-analyzer\rust-analyzer-windows.exe --version
+
+mkdir web-wasm-project
+cd web-wasm-project
+cargo new --bin server --vcs none
+cargo new --bin frontend --vcs none
+echo -e "target/\n/dist/" > .gitignore
+git init
 ```
 
 uses cargo publish --allow-dirty, which according to the cargo documentation, will cause the .cargo_vcs_info.json file to be omitted.
@@ -194,11 +206,15 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [A half-hour to learn Rust](https://fasterthanli.me/blog/2020/a-half-hour-to-learn-rust/)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
 - [The Borrow Checker](https://github.com/rust-lang/rust/blob/master/src/librustc_borrowck/borrowck/README.md)
+- [Rust's Rules Are Made to Be Broken](https://blog.warp.dev/rules-are-made-to-be-broken/)
 - [Things Rust doesn’t let you do](https://medium.com/@GolDDranks/things-rust-doesnt-let-you-do-draft-f596a3c740a5)
 - [Rust memory safety revolution](https://anixe.pl/news/rust_memory_safety_revolution/)
+- [Rust has a small standard library (and that's ok)](https://blog.nindalf.com/posts/rust-stdlib/)
+- [Modeling Finite State Machines with Rust](https://www.ramnivas.com/blog/2022/05/09/fsm-model-rust)
 
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
+- [Format Strings in Rust 1.58](https://www.rustnote.com/blog/format_strings.html)
 - [Methods for Array Initialization in Rust](https://www.joshmcguigan.com/blog/array-initialization-rust/)
 - [Scientific computing: a Rust adventure [Part 0 - Vectors]](https://www.lpalmieri.com/posts/2019-02-23-scientific-computing-a-rust-adventure-part-0-vectors/)
 - [The Swiss Army Knife of Hashmaps](https://blog.waffles.space/2018/12/07/deep-dive-into-hashbrown/)
@@ -214,12 +230,14 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Traits and Trait Objects in Rust](https://joshleeb.com/posts/rust-traits-and-trait-objects/)
 - [dyn Trait and impl Trait in Rust](https://www.ncameron.org/blog/dyn-trait-and-impl-trait-in-rust/)
 - [Accurate mental model for Rust's reference types](https://docs.rs/dtolnay/0.0.6/dtolnay/macro._02__reference_types.html)
+- [Downcasting in Rust](https://ysantos.com/blog/downcast-rust)
 - [Smart Pointers in Rust: What, why and how?](https://dev.to/rogertorres/smart-pointers-in-rust-what-why-and-how-oma)
 - [Borrow cycles in Rust: arenas v.s. drop-checking](https://exyr.org/2018/rust-arenas-vs-dropck/)
 - [Modeling graphs in Rust using vector indices](http://smallcultfollowing.com/babysteps/blog/2015/04/06/modeling-graphs-in-rust-using-vector-indices/)
 - [On dealing with owning and borrowing in public interfaces](https://phaazon.net/blog/on-owning-borrowing-pub-interface)
 - [Strategies for Returning References in Rust](https://bryce.fisher-fleig.org/blog/strategies-for-returning-references-in-rust/)
 - [Rust data structures with circular references](https://eli.thegreenplace.net/2021/rust-data-structures-with-circular-references/)
+- [Do we really need language support for self-references?](https://robinmoussu.gitlab.io/blog/post/2022-03-16_do_we_really_need_language_support_for_self_references/)
 
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
 - [Optional parameters in Rust](https://vidify.org/blog/rust-parameters/)
@@ -238,6 +256,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
 - [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
 
+- [Three Kinds of Polymorphism in Rust](https://www.brandons.me/blog/polymorphism-in-rust)
 - [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
 - [Types Over Strings: Extensible Architectures in Rust](https://willcrichton.net/notes/types-over-strings/)
 - [Communicating Intent](https://github.com/jaheba/stuff/blob/master/communicating_intent.md)
@@ -255,6 +274,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Rust concurrency patterns: communicate by sharing your Sender](https://medium.com/@polyglot_factotum/rust-concurrency-patterns-communicate-by-sharing-your-sender-11a496ce7791)
 - [Multithreading in Rust](https://nickymeuleman.netlify.app/blog/multithreading-rust)
 - [What is an async runtime?](https://ncameron.org/blog/what-is-an-async-runtime/)
+- [Async Rust: What is a runtime? Here is how tokio works under the hood](https://kerkour.com/rust-async-await-what-is-a-runtime/)
 - [ASYNC CANCELLATION I](https://blog.yoshuawuyts.com/async-cancellation-1/)
 
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
@@ -276,6 +296,12 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Guide on how to write documentation for a Rust crate](https://blog.guillaume-gomez.fr/articles/2020-03-12+Guide+on+how+to+write+documentation+for+a+Rust+crate)
 - [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
 - [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
+- [Patching Cargo Dependencies](https://gatowololo.github.io/blog/cargo-patch/)
+
+- [Rust and Valgrind](https://nnethercote.github.io/2022/01/05/rust-and-valgrind.html)
+- [A tour of the Rust and C++ interoperability ecosystem](https://blog.tetrane.com/2022/Rust-Cxx-interop.html)
+
+- [A Rust web server / frontend setup like it's 2022 (with axum and yew)](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
 
 ## crates
 
@@ -309,6 +335,8 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
   https://blog.logrocket.com/rust-cryptography-libraries-a-comprehensive-list/
   https://blog.logrocket.com/the-current-state-of-rust-web-frameworks/
 
+Unless you need something from chrono, use time. chrono hasn't been updated in a while and depends on an ancient version of time.
+
 - time: Date and time library.
 - bitvec: A crate for manipulating memory, bit by bit
 - nalgebra
@@ -340,6 +368,12 @@ Each logging interface has its own ecosystem of consumers; depending on your nee
 If you're writing a library, using log is a good bet because all the logging interfaces can be made compatible with it (e.g. tracing-log).
 But if you do need structured logging you can use Tracing instead.
 
+Comment:
+
+Doc comment should be used to specify the interface of the code only; not the internal logic. As such, documentation should treat its library like a blackbox. Because who uses documentation? Developers who want to work with the library without having to understand its inners.
+
+On the other hand maintainers, contributors, reviewers, etc. will mostly look at what's inside, and this is what you should specify using spec comments.
+
 To secure your client connection, use Rustls; however, make sure it is configured properly either with Mozilla’s trusted root certificates or your service provider’s own root certificates!
 
 Thanks to cargo deb and cargo rpm building Linux packages is dead simple for Rust projects.
@@ -363,6 +397,10 @@ Tokio runs tasks which sometimes need to be paused in order to wait for asynchro
 - a.min(b) 应该是取 a 的值，最小为 b。min(a,b)才是取 a 和 b 中较小的。
 - trait object 不能组合，即 Box<Write + Read> 是不允许的，与此相关的问题还有：subtrait 不能转为 trait 类型
 - 自动实现 impl Trait for Box<dyn Trait>
+- Range 循环顺序只能从小到大
+- no two closures, even if identical, have the same type
+- 在列表中查找某个元素，找到则返回这个元素，否则先插入再返回
+- error[E0605]: non-primitive cast: `(u32, u32)` as `(i32, i32)`
 
 had two different Clone traits - one for reference cloning and one for deep value cloning
 
@@ -387,15 +425,38 @@ fn wrapping_add(self, rhs: u8) -> u8 wrapping around at the boundary of the type
 fn overflowing_add(self, rhs: u8) -> (u8, bool) return wrapped result with a boolean indicating whether an arithmetic overflow occurred
 fn saturating_add(self, rhs: u8) -> u8 saturating at the numeric bounds instead of overflowing.
 
+## reference operator surrounding the dereference
+
+```rust
+// Doesn't compile.
+fn g1(thing: &Thing) -> &String {
+    let tmp = *thing;
+//          ┃ ┗━ Point directly to the referenced data.
+//          ┗━━━ Try to copy RHS's value, otherwise move it into `tmp`.
+
+    &tmp.field
+}
+
+// Compiles.
+fn g2(thing: &Thing) -> &String {
+    &(*thing).field
+//  ┃ ┗━ Point directly to the referenced data.
+//  ┗━━━ Create a reference to the expression's value with a matching lifetime.
+}
+```
+
 ## [std::fmt](https://doc.rust-lang.org/std/fmt/index.html)
 
 format := '{' [ argument ] [ ':' format_spec ] '}'
 argument := integer | identifier
 format_spec := [[fill]align][sign]['#']['0'][width]['.' precision][type]
+sign := '+'
 type := identifier | '?' | ''
 width := number | name$ | index$
 precision := number | name$ | index$
 {:#?} pretty-prints a structure with newlines and indentation
+
+sign indicates that the sign should always be printed.
 
 The current mapping of types to traits is:
 
@@ -417,6 +478,10 @@ Convert string to float
 println!("{:.2}", 2.472e-3);
 if let Ok(x) = "2.472e-3".parse::<f64>() {};
 ```
+
+Choosing an integer width a complicated choice. It’s a trade-off between compactness and space enough for a wide range of numbers, but also, it’s a matter of convention: More ints being the same width reduces the cognitive load. So that’s my advice: use usize for indices, and i32 for your default, it is used as a default by the inferencer.
+
+I’ve also seen a lot of code that uses u32 whenever it doesn’t make sense for the number to be negative. This is in line with Rust’s philosophy of making invalid values unrepresentable in the type.
 
 ## Namespace
 
@@ -550,6 +615,9 @@ if let Some(x) = map.get_mut(&1) {
 }
 map.contains_key(&1);
 hashmap.remove(&1);
+map.entry("string")
+    .and_modify(|v| *v += 1)
+    .or_insert(1);
 ```
 
 If we insert a value with the key that is present in the hashmap, the previous value will get overwritten.
@@ -669,6 +737,22 @@ impl std::ops::Deref for Wrapper {
 ```
 
 implement std::fmt::Display also enables std::string::ToString.
+
+## extern keyword
+
+```text
+error[E0703]: invalid ABI: found--help`
+--> ext.rs:1:8
+|
+1 | extern "--help" {} fn main() {}
+| ^^^^^^^^ invalid ABI
+|
+= help: valid ABIs: Rust, C, C-unwind, cdecl, stdcall, stdcall-unwind, fastcall, vectorcall, thiscall, thiscall-unwind, aapcs, win64, sysv64, ptx-kernel, msp430-interrupt, x86-interrupt, amdgpu-kernel, efiapi, avr-interrupt, avr-non-blocking-interrupt, C-cmse-nonsecure-call, wasm, system, system-unwind, rust-intrinsic, rust-call, platform-intrinsic, unadjusted
+
+error: aborting due to previous error
+
+For more information about this error, try rustc --explain E0703.
+```
 
 ## Async Programming
 

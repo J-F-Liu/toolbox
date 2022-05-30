@@ -2,10 +2,9 @@
 
 ## Tutorials
 
-- [30 分钟 git 命令入门](http://www.w3ctrain.com/2016/06/26/learn-git-in-30-minutes/)
+- [30 分钟 git 命令入门](https://www.jianshu.com/p/33bd9e1548e6)
 - [Things About Git and Github You Need to Know as Developer](https://medium.com/swlh/things-about-git-and-github-you-need-to-know-as-developer-907baa0bed79)
 - [Using submodules in Git](https://www.vogella.com/tutorials/GitSubmodules/article.html)
-
 
 ## Install
 

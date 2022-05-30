@@ -11,7 +11,8 @@ journalctl -u nginx
 less /var/log/nginx/access.log
 ```
 
-启用gzip压缩
+启用 gzip 压缩
+
 ```nginx
 gzip  on;
 gzip_vary on;
@@ -29,7 +30,8 @@ server {
 }
 ```
 
-### 启用HTTPS和HTTP/2
+### 启用 HTTPS 和 HTTP/2
+
 ```
 pacman -S certbot
 
@@ -44,6 +46,7 @@ certbot renew --dry-run # test automatic renewal for your certificates
 ```
 
 Configure SSL in Nginx
+
 ```nginx
 server {
     listen 443 ssl http2;
@@ -69,8 +72,8 @@ server {
 }
 ```
 
-
 Redirecting All Traffic to SSL/TLS
+
 ```nginx
 server {
     listen 80;
@@ -81,6 +84,7 @@ server {
 ```
 
 Create a systemd job for automatic renewal
+
 > nano /etc/systemd/system/certbot.service
 
 ```
@@ -107,17 +111,22 @@ Persistent=true
 [Install]
 WantedBy=timers.target
 ```
+
 Enable and start certbot.timer
 
 ### 增加请求体大小
+
 The default value for client_max_body_size directive is 1 MiB.
+
 ```nginx
 server {
     ...
     client_max_body_size 10M;
 }
 ```
+
 ### 设置访问日志路径
+
 ```nginx
 server {
     ...
@@ -126,6 +135,7 @@ server {
 ```
 
 ### 生成访问量统计报表
+
 ```
 pacman -S visitors goaccess
 visitors /var/log/nginx/site.access.log > report.html
@@ -134,6 +144,7 @@ goaccess /var/log/nginx/site.access.log -o /var/www/html/report.html --log-forma
 ```
 
 ### 运行单页应用
+
 ```nginx
 server {
     ...
@@ -145,6 +156,7 @@ server {
 ```
 
 ### 设置反向代理
+
 ```nginx
 location /api/ {
     rewrite ^/api/(.*) /$1 break;
@@ -154,11 +166,21 @@ location /api/ {
     proxy_pass http://127.0.0.1:1234;
 }
 ```
+
 - rewrite 的作用是修改 $uri，但要注意 rewrite 要有个重新匹配 location 的副作用。由于 proxy_pass 的处理阶段比 location 处理更晚，所以这里需要 break 掉，以防止 rewrite 进入下一次 location 匹配而丢失 proxy_pass。
 - hostname 可以通过 porxy_set_header 指令强制设置 proxy 的 HTTP 请求中的 Host 字段来修改它。
 - proxy_pass 默认使用的是 http 1.0，可以通过 proxy_http_version 指令让它使用 http 1.1。
-- 出现net::ERR_CONTENT_LENGTH_MISMATCH错误时关掉proxy_buffering。
+- 出现 net::ERR_CONTENT_LENGTH_MISMATCH 错误时关掉 proxy_buffering。
 
+### 配置 MIME 类型
+
+nano /etc/nginx/mime.types
+
+```
+application/vnd.google-earth.kmz   kmz;
+application/wasm                   wasm;
+application/x-7z-compressed        7z;
+```
 
 ### 参考资料
 
