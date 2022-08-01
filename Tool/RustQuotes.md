@@ -68,6 +68,12 @@
 > And one of the things Rust learned from the experience of others is how to mitigate this effect, so we can hope Rust retains its youthful freshness for longer going forward. Rust has an edition system, so that features actually can be deprecated and phased out, while still maintaining compatibility.
 > https://www.thecodedmessage.com/posts/2022-05-11-programming-multiparadigm/
 
+> From now it should be completely understandable why Rust feels like a full of holes from time to time; in fact, it is almost a miracle that it is functioning at all. A computer language is like a system of tightly intertwined components: every time you introduce a new linguistic abstraction, you have to make sure that it plays well with the rest of the system to avoid bugs and inconsistencies.
+> https://hirrolot.github.io/posts/rust-is-hard-or-the-misery-of-mainstream-programming.html
+
+> The hype is real. After writing Rust code for sometime I felt like I want to rewrite everything in Rust.
+> [creator of Rust Explorer](https://www.rustexplorer.com/b/about)
+
 ### 442
 
 Rust limits severity of the damage an inexperienced programmer can cause. Once they manage to get the code to compile, it already has lots of correctness guarantees. “Bad” Rust code may just clone more than strictly necessary, or write 10 lines of code for something that has a helper method in the stdlib, but it won’t corrupt memory or blindly run the happy path without checking for errors.

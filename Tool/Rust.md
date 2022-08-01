@@ -22,6 +22,8 @@ rustup set profile minimal
 rustup set profile complete
 rustup doc --std
 rustup target list
+rustup target add x86_64-pc-windows-msvc
+rustup default stable-msvc
 rustup target add x86_64-unknown-linux-musl
 rustup component add clippy-preview
 rustup toolchain help
@@ -55,7 +57,7 @@ registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
 cargo new <project> --bin
 cargo check
 cargo run
-cargo run --example json
+RUST_BACKTRACE=full cargo run --example json
 cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
 cargo rustc --release -- -O -C target-feature=+avx
@@ -64,7 +66,7 @@ cargo build --features "feat1 feat2"
 cargo update
 cargo doc --open
 cargo test
-cargo test -- --nocapture
+cargo test -- --nocapture --test-threads=1 TEST_CASE
 cargo bench
 CARGO_INCREMENTAL=1 cargo build
 rustc +beta --version
@@ -72,8 +74,9 @@ cargo +beta build
 cargo +stable fmt
 cargo list
 cargo install --list
-cargo install --force --registry crates-io
+cargo install --force --locked --registry crates-io
 cargo owner --add rust-bus-owner
+cargo package --list --allow-dirty # check which files are included when publish a crate
 ```
 
 - Cross Compile
@@ -224,6 +227,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Rusts Module System Explained](https://aloso.github.io/2021/03/28/module-system.html)
 - [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
 - [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
+- [A new impl Trait](https://davidkoloski.me/blog/a-new-impl-trait-1/)
 
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
@@ -276,10 +280,12 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [What is an async runtime?](https://ncameron.org/blog/what-is-an-async-runtime/)
 - [Async Rust: What is a runtime? Here is how tokio works under the hood](https://kerkour.com/rust-async-await-what-is-a-runtime/)
 - [ASYNC CANCELLATION I](https://blog.yoshuawuyts.com/async-cancellation-1/)
+- [Let's talk about this async](https://conradludgate.com/posts/async)
 
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
 - [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
+- [More than you've ever wanted to know about errors in Rust](https://www.shuttle.rs/blog/2022/06/30/error-handling)
 
 - [feature(slice_patterns)](<https://thomashartmann.dev/blog/feature(slice_patterns)>)
 - [On Generics and Associated Types](https://thomashartmann.dev/blog/on-generics-and-associated-types/)
@@ -297,6 +303,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Six Easy Ways to Make Your Crate Awesome](http://www.integer32.com/2016/12/27/how-to-make-your-crate-awesome.html)
 - [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
 - [Patching Cargo Dependencies](https://gatowololo.github.io/blog/cargo-patch/)
+- [Linking Rust Crates](https://blog.pnkfx.org/blog/2022/05/12/linking-rust-crates/)
 
 - [Rust and Valgrind](https://nnethercote.github.io/2022/01/05/rust-and-valgrind.html)
 - [A tour of the Rust and C++ interoperability ecosystem](https://blog.tetrane.com/2022/Rust-Cxx-interop.html)

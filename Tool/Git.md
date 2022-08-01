@@ -118,6 +118,7 @@ git pull origin master
 git branch --set-upstream-to=origin/master master
 git push --set-upstream origin master
 git push [remote_name local_branch:remote_branch]
+git push --force
 git fetch [remote_name]
 git pull [remote_name local_branch:remote_branch]
 git pull --rebase origin master

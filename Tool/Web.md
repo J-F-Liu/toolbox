@@ -59,6 +59,7 @@
 - [The best HTTP Static File Server](https://github.com/codeskyblue/gohttpserver)
 - [DevDocs: API Documentation Browser](http://devdocs.io/)
 - [Text encoder decoder, format converter](https://toolkit.site/)
+- [The Front-End Developer's Guide to the Terminal](https://www.joshwcomeau.com/javascript/terminal-for-js-devs/)
 
 ## Open Source
 
