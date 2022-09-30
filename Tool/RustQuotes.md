@@ -74,6 +74,19 @@
 > The hype is real. After writing Rust code for sometime I felt like I want to rewrite everything in Rust.
 > [creator of Rust Explorer](https://www.rustexplorer.com/b/about)
 
+
+### 458
+
+We reached a tipping point. We decided to move our entire codebase to Rust... We all expect[ed] performance and dev processes to improve. Those indeed happened. What we didn’t expect was the extent to which dev velocity increased and operational incidents decreased. Dev velocity ... improved dramatically with Rust.
+
+### 456
+
+Rust is attempting to raise the abstraction in the programming language and ultimately to join computer science and software engineering into one single discipline, an ambition that has been around since these disciplines were created.
+
+## 453
+
+If there’s one lesson from decades of software engineering, it is the failure of “just be careful” as a strategy. C/C++ programmers still experience memory corruption constantly, no matter how careful they are. Java programmers still frequently see NullPointerExceptions, no matter how careful they are. And so on. One of the reasons that Rust is so successful is that it adds automated checks to prevent many common mistakes.
+
 ### 442
 
 Rust limits severity of the damage an inexperienced programmer can cause. Once they manage to get the code to compile, it already has lots of correctness guarantees. “Bad” Rust code may just clone more than strictly necessary, or write 10 lines of code for something that has a helper method in the stdlib, but it won’t corrupt memory or blindly run the happy path without checking for errors.

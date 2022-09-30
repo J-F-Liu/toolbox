@@ -20,6 +20,9 @@ git config --global --list
 git config --global user.email "china.liujunfeng@gmail.com"
 git config --global user.name "Junfeng Liu"
 git config --global push.default simple
+git config --global pull.rebase false
+git config --global core.autocrlf false
+git config --global core.safecrlf false
 git config branch.master.rebase true
 ```
 
@@ -113,7 +116,8 @@ set GIT_INDEX_FILE=%REPOROOT%\.git\index
 ```
 git remote -v
 git remote remove origin
-git remote add origin https://github.com/J-F-Liu/toolbox.git
+git remote add origin https://github.com/J-F-Liu/repo.git
+git remote add origin git@gitee.com:j-f-liu/repo.git
 git pull origin master
 git branch --set-upstream-to=origin/master master
 git push --set-upstream origin master

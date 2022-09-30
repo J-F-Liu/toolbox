@@ -77,6 +77,11 @@ cargo install --list
 cargo install --force --locked --registry crates-io
 cargo owner --add rust-bus-owner
 cargo package --list --allow-dirty # check which files are included when publish a crate
+
+cargo install cargo-pgo
+$ cargo pgo build        # build with instrumentation
+$ ./target/.../<binary>  # run your binary on some workload
+$ cargo pgo optimize     # build an optimized binary
 ```
 
 - Cross Compile
@@ -309,6 +314,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [A tour of the Rust and C++ interoperability ecosystem](https://blog.tetrane.com/2022/Rust-Cxx-interop.html)
 
 - [A Rust web server / frontend setup like it's 2022 (with axum and yew)](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
+- [Rust and WebAssembly without a Bundler](https://tung.github.io/posts/rust-and-webassembly-without-a-bundler/)
 
 ## crates
 

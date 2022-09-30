@@ -41,7 +41,6 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 ## 插件
 
 - Align
-- Bracket Pair Colorizer 2
 - Color Highlight
 - Date & Time
 - Duplicate action
@@ -56,7 +55,7 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 - One Dark Syntax Theme
 - REST Client
 - SVG Viewer
-- C#, Ruby, TOML, Docker
+- C#, Ruby, Docker
 - TabNine
 - Unicode code point of current character
 - change-case
@@ -73,7 +72,7 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 
 - rust-analyzer (ext install matklad.rust-analyzer)
 - CodeLLDB (ext install vadimcn.vscode-lldb)
-- BetterToml (ext install bungcip.better-toml)
+- Better Toml (ext install bungcip.better-toml)
 - Crates (ext install serayuzgur.crates)
 
 ### Font

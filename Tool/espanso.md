@@ -13,6 +13,8 @@ espanso restart
 espanso help
 ```
 
+Config file: ~\AppData\Roaming\espanso\config\default.yml
+
 - Toggle Key
   可以通过连续按两次 ALT(macOS 下为 Option) 按键来临时禁用 espanso。可以看到通知 Espanso disabled。 再按两次可以开启。
 - Backspace Undo
