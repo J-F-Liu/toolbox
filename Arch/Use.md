@@ -253,6 +253,12 @@ systemctl reload iptables
 curl url -o file
 ```
 
+Show ARP(Address Resolution Protocol) cache
+
+```
+cat /proc/net/arp
+```
+
 ## 4、进程管理
 
 ```

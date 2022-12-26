@@ -46,7 +46,8 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 - Duplicate action
 - EditorConfig
 - Excel Viewer
-- GitLens
+- Git Graph
+- Hex Editor
 - Image Tile Viewer
 - Markdown All in One
 - Markdown Preview Enchanced

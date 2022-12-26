@@ -72,6 +72,31 @@ React introduced a way to write the UI as a function of its state.
 
 view = render(state)
 
+React keeps the application UI in sync with the React state.
+Every re-render in React starts with a state change.
+When a component re-renders, it also re-renders all of its descendants.
+React doesn't re-render the entire app, only re-render the components which need update.
+
+Each render is a snapshot, React plays a “find the differences” game to figure out what's changed between these two snapshots.
+
+A pure component is one that always produces the same UI when given the same props.
+In the real world, many of our components are impure.
+When a component re-renders, it tries to re-render all descendants, regardless of whether they're being passed a particular state variable through props or not.
+So props have nothing to do with re-renders.
+
+React.memo and React.PureComponent are two tools to allow us to ignore certain re-render requests.
+The idea of “memorization” is that React will remember the previous snapshot. If none of the props have changed, React will re-use that stale snapshot.
+
+Why isn't “memorization” the default behaviour?
+
+We tend to overestimate how expensive re-renders are. For simple components, re-renders are lightning quick.
+If a component has a bunch of props and not a lot of descendants, it can actually be slower to check if any of the props have changed compared to re-rendering the component.
+
+The React team is actively investigating whether it's possible to “auto-memoize” code during the compile step.
+
+context is sorta like “invisible props”, or maybe “internal props”.
+
+
 ## 组件分类
 
 - 纯展示型的组件，数据进，DOM 出，直观明了

@@ -60,9 +60,9 @@ cargo run
 RUST_BACKTRACE=full cargo run --example json
 cargo build --release
 cargo build --release --target x86_64-unknown-linux-musl
-cargo rustc --release -- -O -C target-feature=+avx
+cargo rustc --release -- -O -C target-feature=+avx -Csplit-debuginfo=packed
 RUSTFLAGS="-C target-cpu=native" cargo build --release
-cargo build --features "feat1 feat2"
+cargo build --features "feat1 feat2" --offline
 cargo update
 cargo doc --open
 cargo test
@@ -196,6 +196,24 @@ NLL - Non-lexical lifetime
 HIR - high-level intermediate representation
 MIR - mid-level intermediate representation
 
+OBRM - Ownership-Based Resource Management
+
+C-style manual memory management – “just call free when you’re done with the allocation” – is error prone.
+Garbage collection is not necessarily slow, but it does have performance implications that are often unacceptable.
+Instead of addressing the problem at run-time, OBRM automates memory management at compile-time.
+
+The key assumption is that every allocation has one owner at any given time. Allocations can own each other (forming a tree of allocations), or a scope can own an allocation (forming the root of such a tree). OBRM then can make sure the allocation ends when its owner does – by the scope exiting, or when the owning object is destroyed.
+
+If you want a value to outlast the function scope where it is created, You need to be able to move the value from the scope into the caller’s scope. The allocation is “moved” because the previous scope no longer has responsibility for destroying the allocation, and the new scope gains the responsibility.
+
+Move and borrow semantics are essential improvement to OBRM.
+
+Between OBRM, moves, reference counting, and the borrow checker, we now have the memory management system of safe Rust. Safe Rust is a powerful programming language, and in it, you can write programs almost as easily as in a traditionally GC’d programming language like Java, but get the performance of manually written, manually memory managed C.
+
+Some types don’t use an allocation, and “copying” them is just a simple memory copy.
+Some types do use an allocation, and “cloning” them requires allocating.
+This distinction is important and fundamental to how computers work.
+
 Enums: Closed Set of Types
 Trait Objects: Open Set of Types
 
@@ -233,6 +251,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Convenient and idiomatic conversions in Rust](https://ricardomartins.cc/2016/08/03/convenient_and_idiomatic_conversions_in_rust)
 - [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
 - [A new impl Trait](https://davidkoloski.me/blog/a-new-impl-trait-1/)
+- https://santiagopastorino.com/2022/10/20/what-rpits-rpitits-and-afits-and-their-relationship/
 
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
@@ -312,9 +331,11 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 
 - [Rust and Valgrind](https://nnethercote.github.io/2022/01/05/rust-and-valgrind.html)
 - [A tour of the Rust and C++ interoperability ecosystem](https://blog.tetrane.com/2022/Rust-Cxx-interop.html)
+- [Rust and C++ Interoperability](https://slint-ui.com/blog/rust-and-cpp.html)
 
 - [A Rust web server / frontend setup like it's 2022 (with axum and yew)](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
 - [Rust and WebAssembly without a Bundler](https://tung.github.io/posts/rust-and-webassembly-without-a-bundler/)
+- [使用 Macroquad 在 Android 设备上发布游戏](https://rustmagazine.github.io/rust_magazine_2021/chapter_7/macroquad_game.html)
 
 ## crates
 
@@ -347,6 +368,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
   https://blog.logrocket.com/rust-compression-libraries/
   https://blog.logrocket.com/rust-cryptography-libraries-a-comprehensive-list/
   https://blog.logrocket.com/the-current-state-of-rust-web-frameworks/
+  https://morestina.net/blog/1843/the-stable-hashmap-trap
 
 Unless you need something from chrono, use time. chrono hasn't been updated in a while and depends on an ancient version of time.
 
@@ -767,6 +789,10 @@ error: aborting due to previous error
 For more information about this error, try rustc --explain E0703.
 ```
 
+## What is a build script?
+
+Most Rust projects use build scripts to deal with native dependencies, configure platform-specific options, or generate some source code. Let’s recall the build script functionality in Cargo. Whenever you put the build.rs file into the root folder of your package (the actual path can be configured), Cargo compiles it (and its dependencies, if any) to an executable and runs that executable before trying to build the package itself. Build script behavior can be configured via environment variables. Build scripts communicate with Cargo by printing lines prefixed with cargo:, thus influencing the rest of the building process.
+
 ## Async Programming
 
 A lock gives you mutable access to some data from a shared reference. In most cases, you just pick the `Mutex<T>` primitive from `std`.
@@ -785,6 +811,11 @@ If we look at a typical data critical section, they’re usually rather short an
 
 Compared to data critical sections, logic criticals have vastly different characteristics. You’ll usually see them perform I/O or make OS syscalls. These operations always have unpredictable execution times and overall the lock is held for much longer than in a data critical section. This means that there is usually moments in time that our task is idle and waiting on some action to complete such as waiting for a database query to come back. This means that you should choose an asynchronous lock such as the `Mutex<T>` provided by `tokio::sync` since it allows tokio to better schedule tasks to take advantage of the idle waiting times during the critical section.
 
+## Macros
+
+Macros come in two flavors: declarative and procedural.
+There are three kinds of procedural macros: derive, function-like, and attribute.
+
 ## Self-referencing struct
 
 When you have a lifetime <'a> on a struct, that lifetime denotes references to values stored outside of the struct. If you try to store a reference that points inside the struct rather than outside, you will run into a compiler error when the compiler notices you lied to it.
@@ -796,6 +827,21 @@ In Rust self-referencing structs are a thing that many people want. However, as 
 You can write fantastically effective code with Rust, but you don't have to! In a lot of cases, you'll be fine using .clone(). A lot of the time it's entirely fine to just write code that works with minimal effort.
 
 Just because Rust allows you to write super cool non-allocating zero-copy algorithms safely, doesn’t mean every algorithm you write should be super cool, zero-copy and non-allocating.
+
+### rlib
+
+An rlib is an archive file, which is similar to a tar file. This file format is specific to rustc, and may change over time. This file contains:
+
+- Object code, which is the result of code generation. This is used during regular linking. There is a separate .o file for each codegen unit. The codegen step can be skipped with the -C linker-plugin-lto CLI option, which means each .o file will only contain LLVM bitcode.
+
+- LLVM bitcode, which is a binary representation of LLVM's intermediate representation, which is embedded as a section in the .o files. This can be used for Link Time Optimization (LTO). This can be removed with the -C embed-bitcode=no CLI option to improve compile times and reduce disk space if LTO is not needed.
+
+- rustc metadata, in a file named lib.rmeta.
+
+- A symbol table, which is generally a list of symbols with offsets to the object file that contain that symbol. This is pretty standard for archive files.
+
+Rust doesn't have a stable ABI, so you can't use rlib with Cargo.
+To link a crate to rlib file, you may use rustc's --extern flag.
 
 ## Notes
 

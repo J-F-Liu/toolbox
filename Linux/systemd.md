@@ -90,6 +90,12 @@ pacman -S polkit
 systemctl reboot
 ```
 
+重启后进入 UEFI 设置：
+
+```
+systemctl reboot --firmware-setup
+```
+
 关机：
 
 ```

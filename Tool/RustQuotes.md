@@ -74,6 +74,19 @@
 > The hype is real. After writing Rust code for sometime I felt like I want to rewrite everything in Rust.
 > [creator of Rust Explorer](https://www.rustexplorer.com/b/about)
 
+> The soul of Rust, to my mind, is definitely not being explicit about allocation. Rather, it’s about the struggle between a few key values — especially productivity and versatility1 in tension with transparency. Rust’s goal has always been to feel like a high-level but with the performance and control of a low-level one. Oftentimes, we are able to find a “third way” that removes the tradeoff, solving both goals pretty well.
+> https://smallcultfollowing.com/babysteps/blog/2022/09/19/what-i-meant-by-the-soul-of-rust/
+
+> There’s something about Rust that makes it uniquely fun to write. It feels like a wooden jigsaw puzzle: sometimes tedious, sometimes frustrating, but always immensely satisfying when the last piece drops into place. Other languages can feel more like soggy cardboard puzzles where the pieces need to be forcibly smooshed together and you’re never 100% sure if you got it right.
+> https://medium.com/source-and-buggy/data-driven-performance-optimization-with-rust-and-miri-70cb6dde0d35
+
+### 471
+
+After many years of writing bugs, and then discovering Rust, I learned to appreciate explicitness in code, and hope you eventually will too.
+
+### 464
+
+All the concurrency bugs just vanish with Rust! Memory gets freed when it needs to be freed! Once you learn to make Rust work with you, I feel like it guides you into writing correct code, even beyond the language's safety promises. It's seriously magic! ✨
 
 ### 458
 
