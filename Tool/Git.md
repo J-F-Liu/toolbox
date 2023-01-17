@@ -269,3 +269,22 @@ WantedBy=multi-user.target
 ```
 systemctl enable gogs.service
 ```
+
+Git is a beautiful work of engineering. It's blazingly fast even on massive repositories, and it efficiently manages vast numbers of branches.
+These qualities have made git the dominant source control system, but it's hard for humans to use.
+
+Git commands are too many, too low-level and hard to understand.
+Git commands are low-level operations, so they don't map exactly to things you want to do.
+
+Git tracks 4 versions of files:
+
+- working folder
+- staging area (index)
+- local repository
+- remote upstream repository
+
+Clearly, the 4-version internal git model complicates most common tasks.
+
+Git lacks "undo", "--dryrun", and safeguards against you deleting your own code.
+
+In summary, git forces you to convert commands that make sense to you into commands that make sense to git, and it punishes you for any mistake you make.

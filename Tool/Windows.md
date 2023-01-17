@@ -1,3 +1,8 @@
+# Windows 系统
+
+winget install lapce
+winget install --id=lencx.ChatGPT -e
+
 卸载 OneDrive
 
 ### 注册表设置
@@ -115,6 +120,7 @@ scoop install lux
 scoop install fd
 scoop install kalker
 scoop install just
+scoop install lapce
 
 scoop bucket add extras
 scoop install wezterm
@@ -127,10 +133,14 @@ cargo-binstall zellij
 
 iwr https://cdn.jsdelivr.net/gh/cask-pkg/cask.rs/install.ps1 -useb | iex
 
-MobaXterm.ini
-Wechat Files
 Email
 便签
+浏览器收藏夹
+微信聊天记录
+Wechat Files
+Zotero
+MobaXterm.ini
+~\AppData\Roaming\nushell\config.nu
 
 ### WSL
 
@@ -183,3 +193,10 @@ Run PowerShell or Windows Command Prompt as Administrator
 ```
 启用Windows子系统
   > dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
+
+How does Windows decide whether your computer has limited or full Internet access?
+
+Windows attempts to download a file from a dedicated Web server. Windows 10 or later versions: http://www.msftconnecttest.com/connecttest.txt.
+If the download is successful and contains the correct contents, then Windows concludes that you have full Internet access.
+If something goes wrong, Windows will report either limited or no Internet access, depending on what exactly went wrong.

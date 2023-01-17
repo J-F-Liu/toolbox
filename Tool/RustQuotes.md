@@ -80,6 +80,9 @@
 > There’s something about Rust that makes it uniquely fun to write. It feels like a wooden jigsaw puzzle: sometimes tedious, sometimes frustrating, but always immensely satisfying when the last piece drops into place. Other languages can feel more like soggy cardboard puzzles where the pieces need to be forcibly smooshed together and you’re never 100% sure if you got it right.
 > https://medium.com/source-and-buggy/data-driven-performance-optimization-with-rust-and-miri-70cb6dde0d35
 
+> Rust makes it possible for a small team to build a complex product quickly, and Zed wouldn't have been possible without it. In the past, to write software this performant, you would need to use C++. Rust, for the first time, enables us to write software at that level as a very small team.
+> https://zed.dev/tech
+
 ### 471
 
 After many years of writing bugs, and then discovering Rust, I learned to appreciate explicitness in code, and hope you eventually will too.

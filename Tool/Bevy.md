@@ -114,25 +114,37 @@ Bevy's Default Plugins adds the features most people expect from an engine, such
 
 Default Plugins:
 
-```rust
-bevy_type_registry::TypeRegistryPlugin
-bevy_core::CorePlugin // time, timer, labels
-bevy_transform::TransformPlugin
-bevy_diagnostic::DiagnosticsPlugin
-bevy_input::InputPlugin
-bevy_window::WindowPlugin
-bevy_asset::AssetPlugin
-bevy_scene::ScenePlugin
-bevy_render::RenderPlugin
-bevy_sprite::SpritePlugin
-bevy_pbr::PbrPlugin
-bevy_ui::UiPlugin
-bevy_text::TextPlugin
-bevy_audio::AudioPlugin
-bevy_gltf::GltfPlugin // load glTF and glb files
-bevy_winit::WinitPlugin
-bevy_wgpu::WgpuPlugin
-```
+- LogPlugin: set log filter and level
+- CorePlugin: setup task pools, register types, `Res<FrameCount>`
+- TimePlugin: update time, `Res<Time>`,`Res<TimeUpdateStrategy>`,`Res<FixedTimesteps>`
+- TransformPlugin
+- HierarchyPlugin
+- DiagnosticsPlugin
+- InputPlugin
+- WindowPlugin
+- AssetPlugin: load assets, AssetServer
+- ScenePlugin
+- RenderPlugin - with feature bevy_render
+  - RenderApp
+  - WindowRenderPlugin
+  - CameraPlugin
+    - CameraProjectionPlugin
+  - ViewPlugin: `Res<Msaa>`
+    - VisibilityPlugin
+  - MeshPlugin: `Assets<Mesh>`,`RenderAssetPlugin<Mesh>`
+  - GlobalsPlugin
+  - FrameCountPlugin: update_frame_count
+  - ImagePlugin: `Assets<Image>`
+- SpritePlugin - with feature bevy_sprite
+  - Mesh2dRenderPlugin
+  - ColorMaterialPlugin: `Assets<ColorMaterial>`
+- PbrPlugin - with feature bevy_pbr
+- UiPlugin - with feature bevy_ui
+- TextPlugin - with feature bevy_text
+- AudioPlugin - with feature bevy_audio
+- GilrsPlugin - with feature bevy_gilrs
+- GltfPlugin - with feature bevy_gltf
+- WinitPlugin - with feature bevy_winit
 
 Stages after add_default_plugins
 
