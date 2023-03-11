@@ -77,6 +77,7 @@ cargo install --list
 cargo install --force --locked --registry crates-io
 cargo owner --add rust-bus-owner
 cargo package --list --allow-dirty # check which files are included when publish a crate
+cargo build --timings
 
 cargo install cargo-pgo
 $ cargo pgo build        # build with instrumentation
@@ -116,6 +117,7 @@ cargo install -f cargo-audit
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 cargo install --git https://github.com/ogham/dog.git dog
+cargo install --list
 rustup update nightly # update RLS and its dependencies
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.config/Code\ -\ OSS/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux
 C:\Users\Liu\AppData\Roaming\Code\User\globalStorage\matklad.rust-analyzer\rust-analyzer-windows.exe --version
@@ -228,6 +230,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 
 ## Articles
 
+- [How Rust went from a side project to the world’s most-loved programming language](https://www.technologyreview.com/2023/02/14/1067869/rust-worlds-fastest-growing-programming-language/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [A half-hour to learn Rust](https://fasterthanli.me/blog/2020/a-half-hour-to-learn-rust/)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
@@ -320,6 +323,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Implementing RAII guards in Rust](https://aloso.github.io/2021/03/18/raii-guards.html)
 - [A zero-overhead linked list in Rust](https://aloso.github.io/2021/04/12/linked-list.html)
 - [Arenas in Rust](https://manishearth.github.io/blog/2021/03/15/arenas-in-rust/)
+- [Statefulness in GUIs](https://samsartor.dev/guis-1/)
 
 - [Rust Packages vs Crates](https://jeffa.io/rust_packages_vs_crates)
 - [Good Practices for Writing Rust Libraries](https://pascalhertleif.de/artikel/good-practices-for-writing-rust-libraries/)
@@ -335,6 +339,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 
 - [A Rust web server / frontend setup like it's 2022 (with axum and yew)](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
 - [Rust and WebAssembly without a Bundler](https://tung.github.io/posts/rust-and-webassembly-without-a-bundler/)
+- [Rust to WebAssembly the hard way](https://surma.dev/things/rust-to-webassembly/index.html)
 - [使用 Macroquad 在 Android 设备上发布游戏](https://rustmagazine.github.io/rust_magazine_2021/chapter_7/macroquad_game.html)
 
 ## crates
@@ -575,6 +580,11 @@ It usually isn’t necessary to apply #[inline] to private functions — wit
 Apply #[inline] reactively when profiling shows that a particular small function is a bottleneck. Consider using lto for releases.
 
 Inlining can also make code slower, because inlining increases the code size, blowing the instruction cache size and causing cache misses.
+
+## Option and Result
+
+First of all, don't use `unwrap()` unless you are completely sure that the value will never panic.
+In some cases, you actually want the program to panic. You can use `expect("foo")` to add a message to the panic, so the user actually knows what went wrong.
 
 ## Iterator
 

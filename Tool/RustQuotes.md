@@ -1,3 +1,21 @@
+            +----------------+
+            | blub blub blub |
+            +----------------+
+            /
+    ≽(◕ ᴗ ◕)≼
+
+# Who "owns" Rust ?
+
+From: https://www.reddit.com/r/rust/comments/10z6qnu/comment/j826t4r/
+
+1. The Rust foundation, which is a nonprofit general (delaware) corporation with bylaws, employees, a normal legal existence. It owns the trademarks and domain names, acts as a legal and administrative point of contact when one is needed, and has I think operational and funding responsibility for infrastructure (crates.io, CI, etc.) The foundation has members which are almost all corporate sponsors who donate money (and sometimes people) to further its mandate. There's a fairly broad set of companies involved here: Microsoft, Google, Amazon, Meta, Huawei, etc. etc.
+
+2. The Rust project which is an informal (not a legal entity) collection of people (some employed by companies, some volunteers) who self-organize into teams (that mostly select their own future membership) who collaborate over the internet, each with their own area of responsibility. They have their own processes and governance system (which they're currently in the process of fairly significantly overhauling after the previous generation of processes .. encountered some problems). The project is in practice responsible for all technical decision-making, in terms of what goes into the language, how the tools and processes work, what content is in the docs, what features to change and when, etc. etc. It's where a decision like "we should put telemetry in the compiler" would be made, not the foundation.
+
+The project does not take direction from the foundation, nor does the foundation take direction from the project. They exist in parallel and are mostly-separate entities with mostly-separate areas of responsibility, though there are several people who have roles in both. So far, as far as I know, there has not been any serious conflict between them, and it's not entirely clear to me what would happen if there was. But the foundation's mandate is to support the project, so it'd be a somewhat odd situation if they do find themselves in conflict.
+
+See also: https://www.rust-lang.org/governance
+
 # What people say about Rust
 
 > Rust is the first programming language I've encountered in years that makes me excited. And not just normal excited: irrationally excited. Like the kind of excitement you have for something when you are naive about its limitations and don't know any better (like many blockchain/cryptocurrency advocates). I feel like the discovery of Rust is transporting me back to my younger self, before I discovered the ugly realities of how computers and software work, and is giving me hope that better tools, better ways of building software could actually exist. To channel my inner Marie Kondo: Rust sparks joy.
@@ -82,6 +100,15 @@
 
 > Rust makes it possible for a small team to build a complex product quickly, and Zed wouldn't have been possible without it. In the past, to write software this performant, you would need to use C++. Rust, for the first time, enables us to write software at that level as a very small team.
 > https://zed.dev/tech
+
+> Rust is in a sweet spot in the language design space. It allows us to build efficient and memory-safe programs with concise, portable, and sometimes even pretty code.
+> It is almost always a bug to modify the contents of an object if some other part of the program references that object.
+> The value of Rust that I like the most is its focus on local reasoning. Looking at the function's type signature often gives you a solid understanding of what the function can do. State mutations are explicit thanks to mutability and lifetime annotations. Error handling is explicit and intuitive thanks to the ubiquitous Result type. When used correctly, these features often lead to the mystical if it compiles—it works effect.
+> https://mmapped.blog/posts/15-when-rust-hurts.html
+
+### 483
+
+It’s enjoyable to write Rust, which is maybe kind of weird to say, but it’s just the language is fantastic. It’s fun. You feel like a magician, and that never happens in other languages.
 
 ### 471
 

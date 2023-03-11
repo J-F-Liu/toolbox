@@ -70,6 +70,7 @@ Path of PowerShell profile: "C:\Users\Liu\Documents\WindowsPowerShell\Microsoft.
 
 https://win.rustup.rs/x86_64
 
+cargo install --list
 cargo install procs
 cargo install fd-find
 cargo install --locked bat

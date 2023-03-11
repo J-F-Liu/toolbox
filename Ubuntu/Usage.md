@@ -1,3 +1,5 @@
+# Ubuntu Server
+
 Update System
 
 ```
@@ -68,6 +70,39 @@ Install MongoDB
 ```
 apt install mongodb
 systemctl status mongodb
+```
+
+安装 Nginx
+
+```
+sudo apt install nginx
+systemctl status nginx
+sudo systemctl reload nginx
+sudo systemctl restart nginx
+
+sudo mkdir -p /var/www/example.com/
+sudo chown -R $USER:$USER /var/www/example.com
+sudo nano /etc/nginx/sites-available/example.com
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+```
+
+安装 Node.js
+
+```
+sudo apt install nodejs npm
+nodejs -v
+```
+
+用 nvm 安装 Node.js
+
+```
+sudo apt purge nodejs
+curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh
+bash install_nvm.sh
+source ~/.profile
+nvm install 8.11.1
+nvm use 8.11.1
+node -v
 ```
 
 Other

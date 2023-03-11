@@ -38,3 +38,11 @@ tmux kill-session -t session-name
 在分割的两个块中跳转 : Ctrl + b --> 方向键<br />
 关闭某个分屏 : Ctrl + b --> x<br />
 让这个会话断开连接，回到原始 Shell : Ctrl + b --> d
+
+Move a running process into a tmux session:
+
+1. Suspend the respective process with Ctrl-Z
+2. Send the job to background using `bg`
+3. Take away the ownership from the shell using `disown`
+4. Start or enter your tmux/screen session
+5. Run `reptyr PID` to attach the process to the current shell

@@ -42,7 +42,7 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 
 - Align
 - Color Highlight
-- Date & Time
+- Date Time & Calendar
 - Duplicate action
 - EditorConfig
 - Excel Viewer

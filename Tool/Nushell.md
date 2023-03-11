@@ -10,13 +10,25 @@ Nushell is designed to use a single compile step for all the source you send it,
 scoop install nu
 ```
 
-VSCode extension: vscode-nushell-lang
-
 Install dataframe functionality and plugins
 
 ```
 cargo install nu --features=dataframe
 cargo install nu_plugin_<plugin name>
+```
+
+VSCode extension: vscode-nushell-lang
+VSCode config:
+
+```
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "NuShell": {
+            "path": "${env:USERPROFILE}\\scoop\\shims\\nu.exe",
+        },
 ```
 
 ## Configuration
