@@ -23,6 +23,7 @@ git config --global push.default simple
 git config --global pull.rebase false
 git config --global core.autocrlf false
 git config --global core.safecrlf false
+git config --global init.defaultBranch main
 git config branch.master.rebase true
 ```
 
@@ -52,6 +53,7 @@ git commit --amend --reset-author
 git log
 git show --quiet --oneline <commit>
 git blame file_name
+git revert <commit> --no-commit
 
 git stash list
 git stash save

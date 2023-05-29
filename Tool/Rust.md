@@ -276,6 +276,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Iteration patterns for Result & Option](http://xion.io/post/code/rust-iter-patterns.html)
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Abstracting over mutability in Rust](https://lab.whitequark.org/notes/2016-12-13/abstracting-over-mutability-in-rust/)
+- [BUILD A NON-BINARY TREE THAT IS THREAD SAFE USING RUST](https://developerlife.com/2022/02/24/rust-non-binary-tree/)
 
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Closures: Magic Functions](https://rustyyato.github.io/rust/syntactic/sugar/2019/01/17/Closures-Magic-Functions.html)
@@ -286,6 +287,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [time_it: a Case Study in Rust Macros](https://notes.iveselov.info/programming/time_it-a-case-study-in-rust-macros)
 - [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
 - [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
+- [GUIDE TO RUST PROCEDURAL MACROS](https://developerlife.com/2022/03/30/rust-proc-macro/)
 
 - [Three Kinds of Polymorphism in Rust](https://www.brandons.me/blog/polymorphism-in-rust)
 - [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
@@ -313,6 +315,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
 - [Structuring and handling errors in 2020](https://nick.groenen.me/posts/rust-error-handling/)
 - [More than you've ever wanted to know about errors in Rust](https://www.shuttle.rs/blog/2022/06/30/error-handling)
+- [The Importance of Logging](https://www.thecodedmessage.com/posts/logging/)
 
 - [feature(slice_patterns)](<https://thomashartmann.dev/blog/feature(slice_patterns)>)
 - [On Generics and Associated Types](https://thomashartmann.dev/blog/on-generics-and-associated-types/)
@@ -670,6 +673,14 @@ If we insert a value with the key that is present in the hashmap, the previous v
 If the key does not exist, the value that you have given in the or_insert() method will be associated with the key.
 If the key already exists, then the new value will be dumped, and the previous value will persist.
 
+## lifetime
+
+Why does Rust need humans to tell it how long a variable’s lifetime is?
+
+The compiler doesn't care about the body of the function when it is determining lifetime elision, it only looks at the function signature. This is intentional, and is because function signatures should (in principle) tell you everything that the function does.
+
+Whole system validation is technically possible but has a different set of trade offs: you can't rely on it for dynamic things and you generally have to stop at module boundaries. Even worse it creates spooky action at a distance where a seemingly unrelated change can cause a compilation failure elsewhere in the program.
+
 ## Environment variables
 
 Get the directory containing the manifest of your package during `cargo run`.
@@ -820,6 +831,11 @@ The other kind of critical section is called a logic critical. These protect not
 If we look at a typical data critical section, they’re usually rather short and execute very quickly, we’re only copying some data after all. They’re also very predictable, we know that copying data is always fast and we know that the execution time isn’t reliant upon some unpredictable factor such as external APIs or disk I/O. In these cases, a synchronous lock such as the `Mutex<T>` from `parking_lot` is preferable.
 
 Compared to data critical sections, logic criticals have vastly different characteristics. You’ll usually see them perform I/O or make OS syscalls. These operations always have unpredictable execution times and overall the lock is held for much longer than in a data critical section. This means that there is usually moments in time that our task is idle and waiting on some action to complete such as waiting for a database query to come back. This means that you should choose an asynchronous lock such as the `Mutex<T>` provided by `tokio::sync` since it allows tokio to better schedule tasks to take advantage of the idle waiting times during the critical section.
+
+A type is `Send` if it is safe to transfer it across thread boundaries. It is "thread safe" in that it can be sent between threads, but it cannot be shared between threads.
+A type `T` is `Sync` if and only if `&T` is `Send`. This means that it must be safe to share immutable references of `T` between threads. It is safe to have multiple immutable references of type T being read from in parallel from multiple threads.
+
+`Mutex` holds a lock for both reads and writes, whereas `RwLock` treats reads and writes differently, allowing for multiple read locks to be taken in parallel but requiring exclusive access for write locks. The way that `RwLock` enforces single writer, multiple reader rules is the same as the single `&mut`, multiple `&` reference rules for single-threaded code.
 
 ## Macros
 

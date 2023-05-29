@@ -38,6 +38,7 @@ Show configuration file path:
 ```
 echo $nu.env-path
 echo $nu.config-path
+C:\Users\cs\AppData\Roaming\nushell\config.nu
 ```
 
 ## Environment

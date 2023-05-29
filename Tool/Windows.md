@@ -1,7 +1,7 @@
 # Windows 系统
 
 winget install lapce
-winget install --id=lencx.ChatGPT -e
+winget install zoxide
 
 卸载 OneDrive
 
@@ -74,7 +74,7 @@ cargo install --list
 cargo install procs
 cargo install fd-find
 cargo install --locked bat
-cargo install broot
+cargo install --locked --features clipboard broot
 cargo install kalker # 'Windows MSVC target is not supported (linking would fail)'
 cargo install zellij
 cargo install ripgrep
@@ -121,27 +121,45 @@ scoop install lux
 scoop install fd
 scoop install kalker
 scoop install just
-scoop install lapce
+scoop install gitui
+scoop install nnn
+scoop install hyperfine
 
 scoop bucket add extras
 scoop install wezterm
 scoop install nu
-scoop install mpv
 cargo-binstall zellij
 ```
+
+### mpv
+
+"C:\Users\cs\AppData\Roaming\mpv\input.conf"
 
 ### Cask
 
 iwr https://cdn.jsdelivr.net/gh/cask-pkg/cask.rs/install.ps1 -useb | iex
 
-Email
-便签
-浏览器收藏夹
-微信聊天记录
-Wechat Files
-Zotero
-MobaXterm.ini
-~\AppData\Roaming\nushell\config.nu
+- Email
+- 便签
+
+* 浏览器收藏夹
+* 微信聊天记录
+* Wechat Files
+* Zotero
+* MobaXterm.ini
+* ~\AppData\Roaming\nushell\config.nu
+
+### Check system file corruption
+
+The sfc /scannow command (System File Check) scans the integrity of all protected operating system files and replaces incorrect, corrupted, changed, or damaged versions with the correct versions where possible.
+
+1. Go to start>Type CMD, Right click and run as Administrator
+2. Run `sfc /scannow` You may have to run this up to 3 times to fix all the problems until it reports "Windows did not find any integrity violations".
+
+If you are on win 8 (and up) you should also run DISM whether SFC found errors or not!!
+
+1. Run `DISM /Online /Cleanup-Image /RestoreHealth` to scan the image for component store corruption, perform repair operations automatically, and records that corruption to the log file. This generally takes 15-30 minutes depending on the corruption and size of the partition.
+2. After running DISM it is a good idea to re-run `SFC /scannow` to make sure all the issues were fixed.
 
 ### WSL
 

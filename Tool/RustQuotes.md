@@ -106,6 +106,35 @@ See also: https://www.rust-lang.org/governance
 > The value of Rust that I like the most is its focus on local reasoning. Looking at the function's type signature often gives you a solid understanding of what the function can do. State mutations are explicit thanks to mutability and lifetime annotations. Error handling is explicit and intuitive thanks to the ubiquitous Result type. When used correctly, these features often lead to the mystical if it compiles—it works effect.
 > https://mmapped.blog/posts/15-when-rust-hurts.html
 
+> It is true that Rust is designed to replace C++, and that Rust has a borrow checker, and that the borrow checker is necessary in order to safely perform the kind of memory management people are used to in C++. However, that doesn’t mean that the borrow checker is only useful or necessary when doing C++, or that it isn’t useful in a GC’ed language. Memory management is the least interesting application of borrow checking.
+> https://blog.polybdenum.com/2023/03/05/fixing-the-next-10-000-aliasing-bugs.html
+
+> Rust is vertically scalable, in that you can write all kinds of software in it. You can write an advanced zero-alloc image compression library, build a web server exposing the library to the world as an HTTP SAAS, and cobble together a “script” for building, testing, and deploying it to wherever people deploy software these days. And you would only need Rust — while it excels in the lowest half of the stack, it’s pretty ok everywhere else too.
+> https://matklad.github.io/2023/03/28/rust-is-a-scalable-language.html
+
+### 496
+
+I guess the nicest example of this phenomenon is shared mutability. Programmers have been arguing for decades whether it is sharing xor mutability that causes memory safety bugs:
+
+> "It's threads!" – shouted JavaScript and Python, and JS remained single-threaded, and Python introduced the GIL.
+> "It's mutability!" – screamed Haskell and Erlang, and they made (almost) everything immutable.
+
+And then along came Rust, and said: "you are fools! You can have both sharing and mutability in the same language, as long as you isolate them from each other."
+
+– H2CO3 on rust-users
+
+### 493
+
+It's as if you've spent an entire career writing assembly, and one day you hear something or other about a brand-new programming language claiming to be a "portable assembler" called C. It sounds too good to be true. And then the years pass, and all of the mystery and disbelief gives way to obviousness and precision engineering. That's sort of how it is when going from C to Rust.
+
+– Jay Oster
+
+### 492
+
+That said, I really like the language. It’s as if someone set out to design a programming language, and just picked all the right answers. Great ecosystem, flawless cross platform, built-in build tools, no “magic”, static binaries, performance-focused, built-in concurrency checks. Maybe these “correct” choices are just laser-targeted at my soul, but in my experience, once you leap over the initial hurdles, it all just works™️, without much fanfare.
+
+– John Austin on his blog
+
 ### 483
 
 It’s enjoyable to write Rust, which is maybe kind of weird to say, but it’s just the language is fantastic. It’s fun. You feel like a magician, and that never happens in other languages.

@@ -4,6 +4,11 @@
 [First Read](https://github.com/jamadazi/bevy-cheatsheet/blob/master/bevy-cheatsheet.md)
 [learn-bevy](https://dev.to/ethanyidong/the-bevy-engine-1-4k4k)
 
+## Tutorials
+
+https://mbuffett.com/posts/bevy-snake-tutorial/
+https://whoisryosuke.com/blog/2023/making-galaga-in-rust-with-bevy-part-1/
+
 ## ECS
 
 All app logic in Bevy uses the Entity Component System paradigm, which is often shortened to ECS.

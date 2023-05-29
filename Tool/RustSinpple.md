@@ -705,3 +705,154 @@ let x: i32 = stream.read()?;
 let y: i32 = stream.read()?;
 let depth: u8 = stream.read()?;
 ```
+
+Expressions, initial style
+
+```rs
+enum Expr {
+    Lit(i32),                   // integer literal
+    Neg(Box<Expr>),             // negation
+    Add(Box<Expr>, Box<Expr>),  // addition
+}
+impl Expr {
+    fn lit(i: i32) -> Expr {
+        Expr::Lit(i)
+    }
+
+    fn neg(r: Expr) -> Expr {
+        Expr::Neg(Box::new(r))
+    }
+
+    fn add(r1: Expr, r2: Expr) -> Expr {
+        Expr::Add(Box::new(r1), Box::new(r2))
+    }
+}
+impl Expr {
+    fn eval(&self) -> i32 {
+        match self {
+            Expr::Lit(i) => *i,
+            Expr::Neg(r) => -r.eval(),
+            Expr::Add(r1, r2) => r1.eval() + r2.eval(),
+        }
+    }
+}
+impl Expr {
+    fn view(&self) -> String {
+        match self {
+            Expr::Lit(i) => i.to_string(),
+            Expr::Neg(r) => format!("(-{})", r.view()),
+            Expr::Add(r1, r2) => format!("({} + {})", r1.view(), r2.view()),
+        }
+    }
+}
+fn main() {
+    let expr = Expr::add(
+        Expr::lit(8),
+        Expr::neg(Expr::add(Expr::lit(1), Expr::lit(2))),
+    );
+    println!("{}={}", expr.view(), expr.eval());
+}
+```
+
+Expressions, final style
+https://getcode.substack.com/p/efficient-extensible-expressive-typed
+
+```rs
+trait ExprSym {
+    type Repr;
+
+    fn lit(i: i32) -> Self::Repr;
+    fn neg(r: Self::Repr) -> Self::Repr;
+    fn add(r1: Self::Repr, r2: Self::Repr) -> Self::Repr;
+}
+
+struct Eval;
+impl ExprSym for Eval {
+    type Repr = i32;
+
+    fn lit(i: i32) -> Self::Repr {
+        i
+    }
+
+    fn neg(r: Self::Repr) -> Self::Repr {
+        -r
+    }
+
+    fn add(r1: Self::Repr, r2: Self::Repr) -> Self::Repr {
+        r1 + r2
+    }
+}
+
+struct View;
+impl ExprSym for View {
+    type Repr = String;
+
+    fn lit(i: i32) -> Self::Repr {
+        i.to_string()
+    }
+
+    fn neg(r: Self::Repr) -> Self::Repr {
+        format!("(-{})", r)
+    }
+
+    fn add(r1: Self::Repr, r2: Self::Repr) -> Self::Repr {
+        format!("({} + {})", r1, r2)
+    }
+}
+
+fn main() {
+    fn expr<E: ExprSym>() -> E::Repr {
+        E::add(E::lit(8), E::neg(E::add(E::lit(1), E::lit(2))))
+    }
+    println!("{}={}", expr::<View>(), expr::<Eval>());
+}
+
+// Adding multiplication can be done without changing existing code, and in a type-safe way.
+trait MulExprSym: ExprSym {
+    fn mul(r1: Self::Repr, r2: Self::Repr) -> Self::Repr;
+}
+
+impl MulExprSym for Eval {
+    fn mul(r1: Self::Repr, r2: Self::Repr) -> Self::Repr {
+        r1 * r2
+    }
+}
+
+// Do type checking at compile time using the host language Rust
+type Fun<A, B> = Box<dyn Fn(A) -> B>;
+
+trait ExprSym {
+    type Repr<T>;
+
+    fn int(i: i32) -> Self::Repr<i32>;
+    fn add(a: &Self::Repr<i32>, b: &Self::Repr<i32>) -> Self::Repr<i32>;
+    fn lam<A, B, F: Fn(Self::Repr<A>) -> Self::Repr<B>>(f: F) -> Self::Repr<Fun<A, B>>
+    where
+        for<'a> F: 'a;
+    fn app<F: Fn(A) -> B, A, B>(f: Self::Repr<F>, arg: Self::Repr<A>) -> Self::Repr<B>;
+}
+
+struct Eval;
+impl ExprSym for Eval {
+    type Repr<T> = T;
+
+    fn int(i: i32) -> Self::Repr<i32> {
+        i
+    }
+
+    fn add(a: &Self::Repr<i32>, b: &Self::Repr<i32>) -> Self::Repr<i32> {
+        a + b
+    }
+
+    fn lam<A, B, F: Fn(Self::Repr<A>) -> Self::Repr<B>>(f: F) -> Self::Repr<Box<dyn Fn(A) -> B>>
+    where
+        for<'a> F: 'a,
+    {
+        Box::new(f)
+    }
+
+    fn app<F: Fn(A) -> B, A, B>(f: Self::Repr<F>, arg: Self::Repr<A>) -> Self::Repr<B> {
+        f(arg)
+    }
+}
+```
