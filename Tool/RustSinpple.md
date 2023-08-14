@@ -1,3 +1,8 @@
+```rust
+/// An allocation-optimized string.
+pub type SharedString = std::borrow::Cow<'static, str>;
+```
+
 - FizzBuzz
 
 ```rust

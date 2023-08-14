@@ -53,7 +53,7 @@ $env.Path
 set environment variables for the duration of a Nushell session
 
 ```
-let-env FOO = 'BAR'
+let-env RUST_BACKTRACE = 'full' # 必须加空格和引号
 let-env PATH = ($env.PATH | append '/some/path')
 ```
 

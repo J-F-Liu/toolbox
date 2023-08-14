@@ -79,6 +79,7 @@ cargo install kalker # 'Windows MSVC target is not supported (linking would fail
 cargo install zellij
 cargo install ripgrep
 cargo install dufs
+cargo install projectable
 
 ### Git
 

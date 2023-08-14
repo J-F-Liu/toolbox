@@ -17,6 +17,7 @@ rustup default nightly
 rustup update nightly
 rustup override set nightly
 rustup override unset
+rustup override set 1.69.0
 rustup self update
 rustup set profile minimal
 rustup set profile complete
@@ -68,7 +69,6 @@ cargo doc --open
 cargo test
 cargo test -- --nocapture --test-threads=1 TEST_CASE
 cargo bench
-CARGO_INCREMENTAL=1 cargo build
 rustc +beta --version
 cargo +beta build
 cargo +stable fmt
@@ -117,6 +117,7 @@ cargo install -f cargo-audit
 cargo install wasm-pack
 cargo install --git https://github.com/murarth/rusti
 cargo install --git https://github.com/ogham/dog.git dog
+cargo +nightly install motus
 cargo install --list
 rustup update nightly # update RLS and its dependencies
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.config/Code\ -\ OSS/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux
@@ -288,6 +289,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Why Rust Has Macros](https://kasma1990.gitlab.io/2018/03/04/why-rust-has-macros/)
 - [Why doesn't Rust have properties?](https://www.reddit.com/r/rust/comments/2uvfic/why_doesnt_rust_have_properties/)
 - [GUIDE TO RUST PROCEDURAL MACROS](https://developerlife.com/2022/03/30/rust-proc-macro/)
+- [Rust's cfg Attribute](https://blog.parker-codes.dev/posts/rusts-cfg-attribute)
 
 - [Three Kinds of Polymorphism in Rust](https://www.brandons.me/blog/polymorphism-in-rust)
 - [The Typestate Pattern in Rust](http://cliffle.com/blog/rust-typestate/)
@@ -344,6 +346,8 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Rust and WebAssembly without a Bundler](https://tung.github.io/posts/rust-and-webassembly-without-a-bundler/)
 - [Rust to WebAssembly the hard way](https://surma.dev/things/rust-to-webassembly/index.html)
 - [使用 Macroquad 在 Android 设备上发布游戏](https://rustmagazine.github.io/rust_magazine_2021/chapter_7/macroquad_game.html)
+
+- [{n} times faster than C, where n = 128](https://ipthomas.com/blog/2023/07/n-times-faster-than-c-where-n-128/)
 
 ## crates
 
