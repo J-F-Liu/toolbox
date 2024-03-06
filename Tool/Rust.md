@@ -232,6 +232,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 ## Articles
 
 - [How Rust went from a side project to the world’s most-loved programming language](https://www.technologyreview.com/2023/02/14/1067869/rust-worlds-fastest-growing-programming-language/)
+- [My path to becoming a Rustacean](https://thedataquarry.com/posts/path-to-becoming-a-rustacean/)
 - [Rust: first impressions](http://xion.io/post/code/rust-first-impressions.html)
 - [A half-hour to learn Rust](https://fasterthanli.me/blog/2020/a-half-hour-to-learn-rust/)
 - [Setting up a Rust Development Environment](http://asquera.de/blog/2017-03-03/setting-up-a-rust-devenv/)
@@ -256,6 +257,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Non-lexical lifetimes: introduction](http://smallcultfollowing.com/babysteps/blog/2016/04/27/non-lexical-lifetimes-introduction/)
 - [A new impl Trait](https://davidkoloski.me/blog/a-new-impl-trait-1/)
 - https://santiagopastorino.com/2022/10/20/what-rpits-rpitits-and-afits-and-their-relationship/
+- [Choosing a more optimal `String` type](https://swatinem.de/blog/optimized-strings/)
 
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
@@ -312,6 +314,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Async Rust: What is a runtime? Here is how tokio works under the hood](https://kerkour.com/rust-async-await-what-is-a-runtime/)
 - [ASYNC CANCELLATION I](https://blog.yoshuawuyts.com/async-cancellation-1/)
 - [Let's talk about this async](https://conradludgate.com/posts/async)
+- [Async Rust vs RTOS showdown!](https://tweedegolf.nl/en/blog/65/async-rust-vs-rtos-showdown)
 
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
@@ -343,6 +346,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Rust and C++ Interoperability](https://slint-ui.com/blog/rust-and-cpp.html)
 
 - [A Rust web server / frontend setup like it's 2022 (with axum and yew)](https://robert.kra.hn/posts/2022-04-03_rust-web-wasm/)
+- [Writing a Web Scraper in Rust using Reqwest](https://www.shuttle.rs/blog/2023/09/13/web-scraping-rust-reqwest)
 - [Rust and WebAssembly without a Bundler](https://tung.github.io/posts/rust-and-webassembly-without-a-bundler/)
 - [Rust to WebAssembly the hard way](https://surma.dev/things/rust-to-webassembly/index.html)
 - [使用 Macroquad 在 Android 设备上发布游戏](https://rustmagazine.github.io/rust_magazine_2021/chapter_7/macroquad_game.html)
@@ -797,6 +801,24 @@ impl std::ops::Deref for Wrapper {
 ```
 
 implement std::fmt::Display also enables std::string::ToString.
+
+## Borrow Checker
+
+The borrow checker works by verifying a set of rules at compile time, restricting unsafe practices. These are the rules and what they solve:
+
+Ownership: Only a single variable can own a value at a time, with the value being freed after this variable goes out of scope.
+
+- Solves: Compiler can deterministically define when to free a value, allowing for safe implicit freeing without a garbage collector.
+  Borrowing: A value may be referenced (borrowed) many times as immutable, but only one time if referenced as mutable.
+- Solves: If a value is referenced as immutable, it is guaranteed that it won't be modified by another entity while still borrowed.
+  Lifetimes: A value can only be referenced (borrowed) if it lives at least as long as the variable that references it.
+- Solves: References are guaranteed to always be valid (no dangling pointers).
+
+## unsafe
+
+The code inside the `unsafe {}` block breaks some rules, but this is something that can only be checked by a human, so the code could be potentially unsafe.
+
+An `unsafe` prefix in the function signature means that the function contains some unsafe code that breaks some rules, but it is safe if you uphold some contract documented by the author, and it is the caller’s responsibility to uphold the contract.
 
 ## extern keyword
 

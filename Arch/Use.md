@@ -148,6 +148,12 @@ time dd if=/dev/zero bs=1024 count=1000000 of=~/1Gb.file
 time dd if=~/1Gb.file bs=64k of=/dev/null
 ```
 
+coreutils shred 功能是重复覆盖文件，用来安全地擦除数据
+
+```
+shred -v -n 1 /dev/sdb
+```
+
 ## 2、帐号管理
 
 查看帐号 id 及所在的用户组

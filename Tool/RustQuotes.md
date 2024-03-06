@@ -112,6 +112,28 @@ See also: https://www.rust-lang.org/governance
 > Rust is vertically scalable, in that you can write all kinds of software in it. You can write an advanced zero-alloc image compression library, build a web server exposing the library to the world as an HTTP SAAS, and cobble together a “script” for building, testing, and deploying it to wherever people deploy software these days. And you would only need Rust — while it excels in the lowest half of the stack, it’s pretty ok everywhere else too.
 > https://matklad.github.io/2023/03/28/rust-is-a-scalable-language.html
 
+[developer’s praises for Rust](https://brson.github.io/fireflowers/)
+
+### 516
+
+The Rust mission -- let you write software that's fast and correct, productively -- has never been more alive. So next Rustconf, I plan to celebrate:
+
+- All the buffer overflows I didn't create, thanks to Rust
+- All the unit tests I didn't have to write, thanks to its type system
+- All the null checks I didn't have to write thanks to Option and Result
+- All the JS I didn't have to write thanks to WebAssembly
+- All the impossible states I didn't have to assert "This can never actually happen"
+- All the JSON field keys I didn't have to manually type in thanks to Serde
+- All the missing SQL column bugs I caught at compiletime thanks to Diesel
+- All the race conditions I never had to worry about thanks to the borrow checker
+- All the connections I can accept concurrently thanks to Tokio
+- All the formatting comments I didn't have to leave on PRs thanks to Rustfmt
+- All the performance footguns I didn't create thanks to Clippy
+
+### 510
+
+In [other languages], I could end up chasing silly bugs and waste time debugging and tracing to find that I made a typo or ran into a language quirk that gave me an unexpected nil pointer. That situation is almost non-existent in Rust, it's just me and the problem. Rust is honest and upfront about its quirks and will yell at you about it before you have a hard to find bug in production.
+
 ### 496
 
 I guess the nicest example of this phenomenon is shared mutability. Programmers have been arguing for decades whether it is sharing xor mutability that causes memory safety bugs:

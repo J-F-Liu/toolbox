@@ -17,6 +17,7 @@ pacman -Rs package_name
 升级系统，同步所有软件到最新状态
 
 ```
+pacman -Sy archlinux-keyring
 pacman -Syu
 sudo pacman-mirrors --geoip && sudo pacman -Syyu
 ```
@@ -118,5 +119,17 @@ pacman -Sc
 yay -S pacman-static
 ```
 
-解决HTTP server doesn't seem to support byte ranges. Cannot resume
+解决 HTTP server doesn't seem to support byte ranges. Cannot resume
 rm -r ~/.cache/paru/clone/PACKAGE
+
+查看系统的安装时间
+
+```
+stat / | awk '/Birth: /{print $2 " " substr($3,1,5)}'
+```
+
+显示日志文件的第一行
+
+```
+head -n1 /var/log/pacman.log
+```

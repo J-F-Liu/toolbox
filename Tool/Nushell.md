@@ -53,8 +53,9 @@ $env.Path
 set environment variables for the duration of a Nushell session
 
 ```
-let-env RUST_BACKTRACE = 'full' # 必须加空格和引号
-let-env PATH = ($env.PATH | append '/some/path')
+$env.RUST_BACKTRACE = 'full' # 必须加空格和引号
+$env.PATH = ($env.PATH | append '/some/path')
+$env.HTTPS_PROXY = http://172.0.0.1:7890
 ```
 
 set an environment variable once per command

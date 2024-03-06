@@ -861,3 +861,82 @@ impl ExprSym for Eval {
     }
 }
 ```
+
+```rust
+pub struct Post {
+    pub title: String,
+    pub slug: String,
+    pub excerpt: Option<String>,
+    pub content: String,
+    pub toc: Option<String>,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
+    pub published: bool,
+    pub preview: bool,
+    pub links: Option<String>,
+    pub tags: Vec<String>,
+}
+```
+
+```rust
+use std::sync::OnceLock;
+use regex::Regex;
+
+static LOG_FILE: Mutex<String> = Mutex::new(String::new());
+static SHOULD_LOG: AtomicBool = AtomicBool::new(true);
+
+pub fn log_file_regex() -> &'static Regex {
+    static LOG_FILE_REGEX: OnceLock<Regex> = OnceLock::new();
+    LOG_FILE_REGEX.get_or_init(|| Regex::new(r#"^\d+-[[:xdigit:]]{8}$"#).unwrap())
+}
+```
+
+Default arguments for functions in Rust using macros
+```rust
+fn prompt(text: &str, count: u8) {
+    println!("prompt '{}' {} times", text, count);
+}
+
+macro_rules! prompt {
+    ($text: expr, $count: expr) => {
+        prompt($text, $count);
+    };
+
+    ($text: expr) => {
+        prompt($text, 5);
+    };
+}
+
+fn main() {
+    prompt("What is your secret?", 3);
+
+    prompt!("Still with me?", 4);
+    prompt!("What is the default?");
+}
+```
+
+prompt with read_line
+```rust
+use std::io::Write;
+
+fn main() {
+    let result = prompt("What is your name?");
+    match result {
+        Ok(name) => println!("Your name is '{}'", name),
+        Err(err) => {
+            eprintln!("There was an error '{}'", err);
+            std::process::exit(1);
+        }
+    };
+}
+
+fn prompt(text: &str) -> Result<String, std::io::Error> {
+    print!("{} ", text);
+    std::io::stdout().flush()?;
+
+    let mut response = String::new();
+    std::io::stdin().read_line(&mut response)?;
+
+    Ok(response.trim_end().to_string())
+}
+```
