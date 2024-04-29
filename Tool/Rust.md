@@ -108,6 +108,9 @@ cargo install clippy
 cargo install cargo-edit # modifying Cargo.toml by `cargo add`, `cargo rm`, and `cargo upgrade` commands.
 cargo install cargo-expand # prints out the result of macro expansion
 cargo install cargo-outdated
+cargo install cargo-machete  # cutting out unused dependencies
+cargo install cargo-audit  # detecting vulnerable Rust crates
+cargo install flamegraph # see a visual representation of the call stack
 cargo install cargo-src # exploring code in web browser: cargo src --open
 cargo tree --duplicates -e=no-dev
 cargo install cargo-watch
@@ -340,6 +343,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Writing Documentation in Rust](https://facility9.com/2016/05/writing-documentation-in-rust/)
 - [Patching Cargo Dependencies](https://gatowololo.github.io/blog/cargo-patch/)
 - [Linking Rust Crates](https://blog.pnkfx.org/blog/2022/05/12/linking-rust-crates/)
+- [Rust Multi-crate project in a monorepo](https://rust.code-maven.com/multi-crate-project)
 
 - [Rust and Valgrind](https://nnethercote.github.io/2022/01/05/rust-and-valgrind.html)
 - [A tour of the Rust and C++ interoperability ecosystem](https://blog.tetrane.com/2022/Rust-Cxx-interop.html)

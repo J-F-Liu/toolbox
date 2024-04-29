@@ -940,3 +940,75 @@ fn prompt(text: &str) -> Result<String, std::io::Error> {
     Ok(response.trim_end().to_string())
 }
 ```
+
+[Vector space](https://mmapped.blog/posts/25-domain-types.html)
+```rust
+trait DomainType {
+  /// The primitive type representing the domain value.
+  type Representation; 
+
+  /// Creates a domain value from its representation value.
+  fn from_repr(repr: Representation) -> Self;
+
+  /// Extracts the representation value from the domain value.
+  fn to_repr(self) -> Representation;
+}
+
+trait Eq {
+  /// Returns true if two values are equal.
+  fn eq(&self, other: &Self) -> bool;
+}
+
+trait IdentifierLike: DomainType + Eq {}
+
+trait Ord: Eq {
+  /// Compares two values.
+  fn cmp(&self, other: &Self) -> Ordering;
+}
+
+trait VectorSpace {
+  /// The scalar type is usually the same as the Representation type.
+  type Scalar;
+
+  /// Returns the additive inverse of the value.
+  fn neg(self) -> Self;
+  
+  /// Adds two vectors.
+  fn add(self, other: Self) -> Self;
+
+  /// Subtracts the other vector from self.
+  fn sub(self, other: Self) -> Self;
+
+  /// Multiplies the vector by a scalar.
+  fn mul(self, factor: Scalar) -> Self;
+
+  /// Divides the vector by a scalar.
+  fn div(self, factor: Scalar) -> Self;
+}
+
+trait AmountLike: IdentifierLike + VectorSpace + Ord {}
+
+trait LocusLike: IdentifierLike + Ord {
+  /// The type representing the distance between two positions.
+  type Distance: AmountLike;
+
+  /// The origin for the absolute coordinate system.
+  const ORIGIN: Self;
+
+  /// Moves the point away from the origin by the specified distance.
+  fn add(self, other: Distance) -> Self;
+
+  /// Returns the distance between two points.
+  fn sub(self, other: Self) -> Distance;
+}
+
+trait QuantityLike<DimA>: AmountLike {
+  /// Multiplies two quantities.
+  fn mul<O: QuantityLike<DimB>>(self, other: O)
+    -> impl QuantityLike<AddUnitPowers<DimA, DimB>>;
+
+  /// Divides self by the specified quantity.
+  fn div<O: QuantityLike<DimB>>(self, other: O)
+    -> impl QuantityLike<SubUnitPowers<DimA, DimB>>;
+}
+```

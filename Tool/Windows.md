@@ -1,6 +1,7 @@
 # Windows 系统
 
 winget install lapce
+winget install trippy
 winget install zoxide
 
 卸载 OneDrive

@@ -114,6 +114,13 @@ See also: https://www.rust-lang.org/governance
 
 [developer’s praises for Rust](https://brson.github.io/fireflowers/)
 
+### 537
+My experience with C++ is that, as I’ve become more of an expert in the language, I’ve become more disillusioned with it. It’s incredibly hard to do things that you should be able to do in software. And, it’s a huge problem for me to constantly be helping other engineers debug the same bugs over and over. It’s always another use after free. I’ve probably debugged 300 of those. [...]
+
+In our experience using the Rust ecosystem for almost three years now, I don't think we found a bug in a single Rust crate that we've pulled off the shelf. We found a bug in one of them and that was a Rust crate wrapping a C library and the bug was in the C library. The software quality that you kind of get for free is amazing.
+
+– Carter Schultz interviewed on the filtra blog
+
 ### 516
 
 The Rust mission -- let you write software that's fast and correct, productively -- has never been more alive. So next Rustconf, I plan to celebrate:

@@ -169,6 +169,10 @@ delete all untracked and ignored files and folders
 git clean -xdf
 ```
 
+Cleanup unnecessary files and optimize the local repository
+```
+git gc --aggressive
+```
 Archive
 
 ```

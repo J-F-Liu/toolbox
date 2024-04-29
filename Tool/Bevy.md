@@ -8,6 +8,7 @@
 
 https://mbuffett.com/posts/bevy-snake-tutorial/
 https://whoisryosuke.com/blog/2023/making-galaga-in-rust-with-bevy-part-1/
+[A Short Introduction to Rust and the Bevy Game Engine](https://wiki.wptcsu.com/en/cpt/howto/game-dev/rust-bevy-workshop)
 
 ## ECS
 
