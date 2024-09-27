@@ -114,6 +114,11 @@ See also: https://www.rust-lang.org/governance
 
 [developer’s praises for Rust](https://brson.github.io/fireflowers/)
 
+> I used to believe the differences between popular programming languages are mostly aesthetic, but learning Rust convinced me it represents something new in a way that will have a meaningful impact on how technology affects everyone in the digital age. —— Jon Bauman
+
+> Building web services in Rust is pleasant (I've been doing it since a pretty long time now) because they are just so much more robust than the ones in any other programming language. The other thing that I really enjoy is when you come back to your code 6+ months later, you can directly understand the intents behind each line of code thanks to Rust's expressiveness: Option, mut and the ownership rules, which is not true in languages that use pointers to express both references and possible nullity.
+> https://kerkour.com/rust-http-ecosystem-2024
+
 ### 537
 My experience with C++ is that, as I’ve become more of an expert in the language, I’ve become more disillusioned with it. It’s incredibly hard to do things that you should be able to do in software. And, it’s a huge problem for me to constantly be helping other engineers debug the same bugs over and over. It’s always another use after free. I’ve probably debugged 300 of those. [...]
 

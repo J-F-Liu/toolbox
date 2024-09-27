@@ -1,5 +1,5 @@
 # Windows 系统
-
+winget install gitui
 winget install lapce
 winget install trippy
 winget install zoxide
@@ -80,6 +80,7 @@ cargo install kalker # 'Windows MSVC target is not supported (linking would fail
 cargo install zellij
 cargo install ripgrep
 cargo install dufs
+cargo install diskonaut
 cargo install projectable
 
 ### Git
@@ -131,6 +132,7 @@ scoop bucket add extras
 scoop install wezterm
 scoop install nu
 cargo-binstall zellij
+scoop install file yazi
 ```
 
 ### mpv

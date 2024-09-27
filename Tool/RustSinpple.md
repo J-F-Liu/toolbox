@@ -1012,3 +1012,95 @@ trait QuantityLike<DimA>: AmountLike {
     -> impl QuantityLike<SubUnitPowers<DimA, DimB>>;
 }
 ```
+
+iterate over the Fibonacci numbers
+```rust
+#[derive(Debug)]
+struct Fibonacci {
+    current: u8,
+    previous: u8,
+}
+
+impl Fibonacci {
+    fn new() -> Self {
+        Self {
+            current: 0,
+            previous: 0,
+        }
+    }
+}
+
+impl Iterator for Fibonacci {
+    type Item = u8;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.current == 0 {
+            self.current = 1;
+            return Some(self.current);
+        }
+
+        let next_value = self.previous.checked_add(self.current)?;
+        self.previous = self.current;
+        self.current = next_value;
+        Some(self.current)
+    }
+}
+```
+
+Given two sorted, singly linked lists, merge them in sorted order, and return the sorted list.
+```rust
+#[derive(PartialEq, Eq, Clone, Debug)]  
+pub struct ListNode {  
+    pub val: i32,  
+    pub next: Option<Box<ListNode>>,  
+}
+
+pub fn merge(  
+    mut list1: Option<Box<ListNode>>,  
+    mut list2: Option<Box<ListNode>>,  
+) -> Option<Box<ListNode>> {  
+    let mut head = None;  
+    let mut next_tail = &mut head;
+  
+    while list1.is_some() && list2.is_some() {
+        let head1 = &mut list1;  
+        let head2 = &mut list2;
+
+        let input_head = if head1.as_ref().unwrap().val < head2.as_ref().unwrap().val { 
+            head1  
+        } else {
+            head2  
+        };  
+  
+        std::mem::swap(input_head, next_tail);
+                
+        let next_tail_next = &mut next_tail.as_mut().unwrap().next;
+        std::mem::swap(input_head, next_tail_next);
+        next_tail = next_tail_next;
+    }  
+  
+    *next_tail = if list1.is_some() { list1 } else { list2 };
+  
+    head  
+}
+
+// solve this problem recursively
+pub fn merge(  
+    mut list1: Option<Box<ListNode>>,  
+    mut list2: Option<Box<ListNode>>,  
+) -> Option<Box<ListNode>> {  
+    match (list1, list2) {
+        (None, None) => None,
+        (Some(node), None) | (None, Some(node)) => Some(node),
+        (Some(mut node1), Some(mut node2)) => {
+            if node1.val < node2.val {  
+                node1.next = merge(node1.next, Some(node2));
+                Some(node1)  
+            } else {  
+                node2.next = merge(Some(node1), node2.next);
+                Some(node2)  
+            }  
+        }  
+    }  
+}
+```

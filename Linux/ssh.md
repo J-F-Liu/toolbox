@@ -49,7 +49,7 @@ Host server1
 ssh username@server.address
 ```
 
-免密码登录其他的 SSH 服务器
+免密码登录其他的 SSH 服务器，ssh-copy-id 会将你的公钥添加到远程主机上的 ~/.ssh/authorized_keys 文件中
 
 ```
 ssh-keygen

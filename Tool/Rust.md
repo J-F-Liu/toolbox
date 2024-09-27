@@ -245,6 +245,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Rust memory safety revolution](https://anixe.pl/news/rust_memory_safety_revolution/)
 - [Rust has a small standard library (and that's ok)](https://blog.nindalf.com/posts/rust-stdlib/)
 - [Modeling Finite State Machines with Rust](https://www.ramnivas.com/blog/2022/05/09/fsm-model-rust)
+- [Rust through the ages](https://www.ncameron.org/blog/rust-through-the-ages/)
 
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
@@ -261,6 +262,8 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [A new impl Trait](https://davidkoloski.me/blog/a-new-impl-trait-1/)
 - https://santiagopastorino.com/2022/10/20/what-rpits-rpitits-and-afits-and-their-relationship/
 - [Choosing a more optimal `String` type](https://swatinem.de/blog/optimized-strings/)
+- [Taming Floating-Point Sums](https://orlp.net/blog/taming-float-sums/)
+- [Once Upon a Lazy Init](https://codeandbitters.com/once-upon-a-lazy-init/)
 
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
@@ -275,6 +278,10 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Strategies for Returning References in Rust](https://bryce.fisher-fleig.org/blog/strategies-for-returning-references-in-rust/)
 - [Rust data structures with circular references](https://eli.thegreenplace.net/2021/rust-data-structures-with-circular-references/)
 - [Do we really need language support for self-references?](https://robinmoussu.gitlab.io/blog/post/2022-03-16_do_we_really_need_language_support_for_self_references/)
+- [Borrow checking, RC, GC, and the Eleven (!) Other Memory Safety Approaches](https://verdagon.dev/grimoire/grimoire)
+- [Don't Worry About Lifetimes](https://corrode.dev/blog/lifetimes/)
+- [Rust’s spirit is mutation xor sharing](https://smallcultfollowing.com/babysteps/blog/2024/06/02/the-borrow-checker-within/)
+- [IN-PLACE CONSTRUCTION](https://blog.yoshuawuyts.com/in-place-construction-seems-surprisingly-simple/)
 
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
 - [Optional parameters in Rust](https://vidify.org/blog/rust-parameters/)
@@ -283,6 +290,8 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Interior mutability in Rust: what, why, how?](https://ricardomartins.cc/2016/06/08/interior-mutability)
 - [Abstracting over mutability in Rust](https://lab.whitequark.org/notes/2016-12-13/abstracting-over-mutability-in-rust/)
 - [BUILD A NON-BINARY TREE THAT IS THREAD SAFE USING RUST](https://developerlife.com/2022/02/24/rust-non-binary-tree/)
+- [The ultimate guide to Rust newtypes](https://www.howtocodeit.com/articles/ultimate-guide-rust-newtypes)
+- [The definitive guide to error handling in Rust](https://www.howtocodeit.com/articles/the-definitive-guide-to-rust-error-handling)
 
 - [Finding Closure in Rust](http://huonw.github.io/blog/2015/05/finding-closure-in-rust/)
 - [Closures: Magic Functions](https://rustyyato.github.io/rust/syntactic/sugar/2019/01/17/Closures-Magic-Functions.html)
@@ -305,6 +314,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Creating web-server .deb binary with rust](https://gill.net.in/posts/creating-web-server-deb-binary-with-rust/)
 - [Writing Python inside your Rust code](https://blog.m-ou.se/writing-python-inside-rust-1/)
 - [Calling WebAssembly from Rust](https://paulbutler.org/2021/calling-webassembly-from-rust/)
+- [The Minimal Rust-Wasm Setup for 2024](https://dzfrias.dev/blog/rust-wasm-minimal-setup/)
 
 - [Rust futures at a glance](https://daiheitan.github.io/blog/2016/12/07/Rust-futures-at-a-glance/)
 - [Exploring lock-free Rust](https://morestina.net/blog/742/exploring-lock-free-rust-1-locks)
@@ -318,6 +328,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [ASYNC CANCELLATION I](https://blog.yoshuawuyts.com/async-cancellation-1/)
 - [Let's talk about this async](https://conradludgate.com/posts/async)
 - [Async Rust vs RTOS showdown!](https://tweedegolf.nl/en/blog/65/async-rust-vs-rtos-showdown)
+- [Rust's concurrency model vs Go's concurrency model](https://kerkour.com/rust-vs-go-concurrency-models-stackfull-vs-stackless-coroutines)
 
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)
@@ -456,6 +467,8 @@ Tokio runs tasks which sometimes need to be paused in order to wait for asynchro
 - no two closures, even if identical, have the same type
 - 在列表中查找某个元素，找到则返回这个元素，否则先插入再返回
 - error[E0605]: non-primitive cast: `(u32, u32)` as `(i32, i32)`
+- 函数的定义不区分是否为异步函数，调用函数时指定是否为异步调用，类似于Go语言的go语法
+  Avoid function coloring where sync function can't call async function and vice versa
 
 had two different Clone traits - one for reference cloning and one for deep value cloning
 
@@ -805,6 +818,21 @@ impl std::ops::Deref for Wrapper {
 ```
 
 implement std::fmt::Display also enables std::string::ToString.
+
+## "static mut" alternative
+`OnceCell` - not suitable for statics.
+
+`OnceLock` - use if you need lazily-initialized data, you should have pretty much never use static mut for this anyway.
+
+`UnsafeCell`, `SyncUnsafeCell` - the best alternative to static mut in cases there is really no alternative. static mut with addr_of[_mut]!() can also work and with the 2024 enforcement has pretty much the same level of safety, but I still prefer UnsafeCell.
+
+`RefCell` - not suitable for statics.
+
+`Arc<Mutex>` - you don't need Arc in statics, but `Mutex` or `RwLock` are pretty much the alternative for static mut. Sometimes they also need to be lazily initialized, so `OnceLock<Mutex>`.
+
+`Rc<RefCell>` - not suitable for statics.
+
+`SyncUnsafeCell` -  It's still unstable.
 
 ## Borrow Checker
 
