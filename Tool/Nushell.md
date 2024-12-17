@@ -38,7 +38,7 @@ Show configuration file path:
 ```
 echo $nu.env-path
 echo $nu.config-path
-C:\Users\cs\AppData\Roaming\nushell\config.nu
+cat ~/AppData/Roaming/nushell/config.nu
 ```
 
 ## Environment
@@ -55,7 +55,8 @@ set environment variables for the duration of a Nushell session
 ```
 $env.RUST_BACKTRACE = 'full' # 必须加空格和引号
 $env.PATH = ($env.PATH | append '/some/path')
-$env.HTTPS_PROXY = http://172.0.0.1:7890
+$env.HTTP_PROXY = "http://172.0.0.1:7890"
+$env.HTTPS_PROXY = "http://172.0.0.1:7890"
 ```
 
 set an environment variable once per command
@@ -85,6 +86,7 @@ Create aliases
 ```
 alias ll = ls -l
 alias lt = (ls | sort-by modified -r | sort-by type)
+alias test = cargo test -- --nocapture --test-threads=1 
 ```
 
 To make your alias persistent the commands must be added to the root level your config.nu file.

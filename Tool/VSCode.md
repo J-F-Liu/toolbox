@@ -38,6 +38,22 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 | F5               | Start debugging                            |
 | F9               | Toggle Breakpoint                          |
 
+## 设置
+
+```
+{
+    "window.zoomLevel": 1,
+    "editor.formatOnSave": true,
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "files.eol": "\n",
+    "workbench.colorTheme": "Atom One Dark",
+    "window.titleBarStyle": "custom",
+    "terminal.integrated.copyOnSelection": true
+}
+```
+
+
 ## 插件
 
 - Align
@@ -81,16 +97,3 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 - [Cousine](https://fonts.google.com/specimen/Cousine)
 - [Consolas](https://docs.microsoft.com/en-us/typography/font-list/consolas)
 
-## 设置
-
-```
-{
-    "editor.formatOnSave": true,
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "files.eol": "\n",
-    "workbench.colorTheme": "Atom One Dark",
-    "window.titleBarStyle": "custom",
-    "terminal.integrated.copyOnSelection": true
-}
-```

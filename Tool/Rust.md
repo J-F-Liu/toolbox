@@ -73,6 +73,7 @@ rustc +beta --version
 cargo +beta build
 cargo +stable fmt
 cargo list
+cargo info
 cargo install --list
 cargo install --force --locked --registry crates-io
 cargo owner --add rust-bus-owner
@@ -246,6 +247,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Rust has a small standard library (and that's ok)](https://blog.nindalf.com/posts/rust-stdlib/)
 - [Modeling Finite State Machines with Rust](https://www.ramnivas.com/blog/2022/05/09/fsm-model-rust)
 - [Rust through the ages](https://www.ncameron.org/blog/rust-through-the-ages/)
+- [How to Learn Rust in 2024: A Complete Beginner’s Guide to Mastering Rust Programming](https://blog.jetbrains.com/rust/2024/09/20/how-to-learn-rust/)
 
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)
@@ -264,6 +266,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Choosing a more optimal `String` type](https://swatinem.de/blog/optimized-strings/)
 - [Taming Floating-Point Sums](https://orlp.net/blog/taming-float-sums/)
 - [Once Upon a Lazy Init](https://codeandbitters.com/once-upon-a-lazy-init/)
+- [Understanding Memory Ordering in Rust](https://emschwartz.me/understanding-memory-ordering-in-rust/)
 
 - [& vs. ref in Rust patterns](http://xion.io/post/code/rust-patterns-ref.html)
 - [Rust Tidbits: Box Is Special](https://manishearth.github.io/blog/2017/01/10/rust-tidbits-box-is-special/)
@@ -282,6 +285,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Don't Worry About Lifetimes](https://corrode.dev/blog/lifetimes/)
 - [Rust’s spirit is mutation xor sharing](https://smallcultfollowing.com/babysteps/blog/2024/06/02/the-borrow-checker-within/)
 - [IN-PLACE CONSTRUCTION](https://blog.yoshuawuyts.com/in-place-construction-seems-surprisingly-simple/)
+- [Missing Iterable Traits](https://orxfun.github.io/orxfun-notes/#/missing-iterable-traits-2024-12-13)
 
 - [Optional arguments in Rust 1.12](http://xion.io/post/code/rust-optional-args.html)
 - [Optional parameters in Rust](https://vidify.org/blog/rust-parameters/)
@@ -329,6 +333,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Let's talk about this async](https://conradludgate.com/posts/async)
 - [Async Rust vs RTOS showdown!](https://tweedegolf.nl/en/blog/65/async-rust-vs-rtos-showdown)
 - [Rust's concurrency model vs Go's concurrency model](https://kerkour.com/rust-vs-go-concurrency-models-stackfull-vs-stackless-coroutines)
+- [Building Async I/O in Rust: How Futures, Wakers, and Thread Pools Work Together](https://www.spaghetti-coder.com/building-async-io-in-rust-how-futures-wakers-and-thread-pools-work-together)
 
 - [Error Handling is Hard](https://www.fpcomplete.com/blog/error-handling-is-hard/)
 - [Wrapping errors in Rust](https://edgarluque.com/blog/wrapping-errors-in-rust)

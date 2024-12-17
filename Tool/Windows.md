@@ -122,7 +122,7 @@ $env:LIBCLANG_PATH=C:\Users\Jefferey\scoop\apps\llvm\current\bin
 
 scoop install lux
 scoop install fd
-scoop install kalker
+scoop install helix
 scoop install just
 scoop install gitui
 scoop install nnn
@@ -134,6 +134,10 @@ scoop install nu
 cargo-binstall zellij
 scoop install file yazi
 ```
+
+### NeatDM
+scoop install wget
+wget https://www.neatdownloadmanager.com/file/NeatDM_setup.exe
 
 ### mpv
 

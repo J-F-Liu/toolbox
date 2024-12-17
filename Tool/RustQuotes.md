@@ -119,6 +119,16 @@ See also: https://www.rust-lang.org/governance
 > Building web services in Rust is pleasant (I've been doing it since a pretty long time now) because they are just so much more robust than the ones in any other programming language. The other thing that I really enjoy is when you come back to your code 6+ months later, you can directly understand the intents behind each line of code thanks to Rust's expressiveness: Option, mut and the ownership rules, which is not true in languages that use pointers to express both references and possible nullity.
 > https://kerkour.com/rust-http-ecosystem-2024
 
+> There is a certain spectrum of Rust:
+    - Sloppy Rust, which allocates and clones left-and-right.
+    - Normal Rust, which opportunistically uses pretzels and avoids gratuitous allocations but otherwise doesn’t try to optimize anything specifically.
+    - DoD Rust, which thinks a bit about cache-lines, packs things into arenas, uses indexes instead of pointers with an occasional SoA and SIMD.
+    - Crazy here-be-dragons Rust with untagged unions, unsafe, inline assembly and other wizardry.
+> [On Ousterhout’s Dichotomy](https://matklad.github.io/2024/10/06/ousterhouts-dichotomy.html)
+
+### 568
+Writing Rust is pure joy. I can go from an idea to a working, tested, robust, published and packaged implementation in the time it would take me to even begin the first few lines of a C version. The tooling is beautiful, makes programming fun, and the end result usually outperforms the equivalent C.
+
 ### 537
 My experience with C++ is that, as I’ve become more of an expert in the language, I’ve become more disillusioned with it. It’s incredibly hard to do things that you should be able to do in software. And, it’s a huge problem for me to constantly be helping other engineers debug the same bugs over and over. It’s always another use after free. I’ve probably debugged 300 of those. [...]
 
