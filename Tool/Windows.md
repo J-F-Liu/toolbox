@@ -65,7 +65,13 @@ Get-WindowsOptionalFeature -Online
 设置环境变量 $env:VAR_NAME="value"
 搜索命令历史：Ctrl+R
 
-Path of PowerShell profile: "C:\Users\Liu\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+Path of PowerShell profile: "C:\Users\liujf\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+
+Set-Alias -Name "test" -Value "cargo test -- --nocapture --test-threads=1" -Option "AllScope"
+
+function test([string]$name) {
+    cargo test -- --nocapture --test-threads=1 $name
+}
 
 ### Rust
 
@@ -82,6 +88,8 @@ cargo install ripgrep
 cargo install dufs
 cargo install diskonaut
 cargo install projectable
+cargo install --git https://github.com/huss-a/rust-passgen.git
+passgen -l 8
 
 ### Git
 
@@ -133,6 +141,8 @@ scoop install wezterm
 scoop install nu
 cargo-binstall zellij
 scoop install file yazi
+scoop install wasmer
+wasmer run kherrick/pwgen -- -sy 20 1
 ```
 
 ### NeatDM

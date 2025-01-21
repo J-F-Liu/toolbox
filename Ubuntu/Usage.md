@@ -27,6 +27,17 @@ apt-file search FILENAME
 apt-file list PACKAGE
 ```
 
+Install tools
+```
+apt install git git-gui meld
+apt install ripgrep fd-find
+apt install binutils build-essential pkg-config
+apt install fontconfig libfontconfig1-dev libclang-dev libssl-dev libglib2.0-dev libwayland-dev
+```
+
+fdfind -g cc
+
+
 Add User
 
 ```

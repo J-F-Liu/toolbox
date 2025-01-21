@@ -248,6 +248,7 @@ For these, references are "fat": whereas &u8 is physically just a *const u8 poin
 - [Modeling Finite State Machines with Rust](https://www.ramnivas.com/blog/2022/05/09/fsm-model-rust)
 - [Rust through the ages](https://www.ncameron.org/blog/rust-through-the-ages/)
 - [How to Learn Rust in 2024: A Complete Beginner’s Guide to Mastering Rust Programming](https://blog.jetbrains.com/rust/2024/09/20/how-to-learn-rust/)
+- [Four limitations of Rust's borrow checker](https://blog.polybdenum.com/2024/12/21/four-limitations-of-rust-s-borrow-checker.html)
 
 - [On integer types in Rust](https://medium.com/@marcinbaraniecki/on-integer-types-in-rust-b3dc1b0a23d3)
 - [str vs String](http://www.ameyalokare.com/rust/2017/10/12/rust-str-vs-String.html)

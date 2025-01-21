@@ -126,6 +126,16 @@ See also: https://www.rust-lang.org/governance
     - Crazy here-be-dragons Rust with untagged unions, unsafe, inline assembly and other wizardry.
 > [On Ousterhout’s Dichotomy](https://matklad.github.io/2024/10/06/ousterhouts-dichotomy.html)
 
+### 574
+The whole point of Rust is that before there were two worlds:
+
+- Inefficient, garbage collected, reliable languages
+- Efficient, manually allocated, dangerous languages
+
+And the mark of being a good developer in the first was mitigating the inefficiency well, and for the second it was it didn't crash, corrupt memory, or be riddled with security issues. Rust makes the trade-off instead that being good means understanding how to avoid the compiler yelling at you.
+
+– Simon Buchan on rust-users 
+
 ### 568
 Writing Rust is pure joy. I can go from an idea to a working, tested, robust, published and packaged implementation in the time it would take me to even begin the first few lines of a C version. The tooling is beautiful, makes programming fun, and the end result usually outperforms the equivalent C.
 

@@ -38,6 +38,8 @@ Replacing text using regex groups, the captured groups can be recalled as $1, $2
 | F5               | Start debugging                            |
 | F9               | Toggle Breakpoint                          |
 
+注意将微软拼音输入法繁简切换的热键(Ctrl+Shift+F)关掉
+
 ## 设置
 
 ```

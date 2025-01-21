@@ -301,6 +301,7 @@ If you recently upgraded you kernel, the modules of your currently running kerne
 查看系统信息
 
 ```
+inxi -SGI
 uname -a
 lscpu; lsmem; lsblk; lspci
 cat /proc/cpuinfo
@@ -346,6 +347,17 @@ alias ssh="TERM=xterm ssh"
 ```
 source /etc/profile
 ```
+
+启用透明大页，提高Rust编译速度
+```
+cat /sys/kernel/mm/transparent_hugepage/enabled
+sudo echo madvise > /sys/kernel/mm/transparent_hugepage/enabled
+export MALLOC_CONF="thp:always,metadata_thp:always"
+cargo build
+```
+always 表示系统总是尝试使用大页
+madvise 表示只有在应用程序明确请求时才使用大页
+never 表示禁用大页
 
 识别命令
 

@@ -277,7 +277,7 @@ Shift + Space 全角、半角切换<br />
 左 Shift 切换中英文<br />
 -/= ↑↓ 向前/向后翻页
 
-如果输入法不能激活，则`nano ~/.xprofile`，输入以下内容保存并重启电脑。
+如果输入法不能激活，则在`~/.xprofile`，输入以下内容保存并重启电脑。
 
 ```
 export GTK_IM_MODULE=fcitx
@@ -285,13 +285,12 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 ```
 
-Define the following environment variables in `~/.pam_environment`.
+Define the following environment variables in `~/.pam_environment` or `/etc/environment`.
 This file will be read by the pam_env module for all logins, including both X11 and Wayland sessions.
 
 ```
-GTK_IM_MODULE DEFAULT=fcitx
-QT_IM_MODULE  DEFAULT=fcitx
-XMODIFIERS    DEFAULT=\@im=fcitx
+XMODIFIERS=@im=fcitx
+QT_IM_MODULE=fcitx
 ```
 
 安装 GTK 界面风格，我比较喜欢 Arc Theme。
