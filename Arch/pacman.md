@@ -133,3 +133,8 @@ stat / | awk '/Birth: /{print $2 " " substr($3,1,5)}'
 ```
 head -n1 /var/log/pacman.log
 ```
+
+安装Manjaro的pacman图形界面程序
+```
+yay -S pamac-aur
+```

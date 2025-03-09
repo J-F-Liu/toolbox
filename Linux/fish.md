@@ -20,7 +20,7 @@ Alt →  逐词补全
 
 ## 配置
 
-fish starts by executing commands in ~/.config/fish/config.fish, you define your aliases here.
+fish starts by executing commands in ~/.config/fish/config.fish, you define your abbrs and aliases here.
 
 ```
 nano ~/.config/fish/config.fish

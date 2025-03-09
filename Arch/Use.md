@@ -7,6 +7,7 @@ pwd 查看当前工作目录的路径
 cd  更改当前工作目录
 ls 列出当前目录中的文件
 ls -ltr --time-style=long-iso 显示详细信息并按时间排序
+stat file 显示文件的详细信息
 ```
 
 > drwxr-xr-x 7 root root 4096 Aug 11 01:22 app
@@ -119,10 +120,12 @@ unzip -o test.zip -d tmp/
 unzip -v test.zip
 ```
 
-计算 MD5 校验码
+计算校验码
 
 ```
-md5sum /path/to/file
+md5sum -b /path/to/file
+sha1sum /path/to/file
+sha256sum /path/to/file
 ```
 
 切分文件
@@ -228,7 +231,9 @@ nano /etc/sudoers
 ```
 netstat -an | grep 8080
 sudo netstat -tnlp
-sudo ss -tnlp
+sudo ss -lnpt 显示TCP监听端口和进程信息
+sudo ss -lnpu 显示UDP监听端口和进程信息
+lsof -i
 ```
 
 启动防火墙
@@ -401,4 +406,12 @@ dig +trace DOMAIN_NAME
 tail -f /var/log/syslog /var/log/dmesg
 journalctl -f
 pacman -S lnav
+```
+
+远程桌面
+```
+paru -S rustdesk-bin
+paru -S rustdesk-server-bin
+systemctl start rustdesk-server-hbbs
+systemctl start rustdesk-server-hbbr
 ```
