@@ -270,10 +270,15 @@ makepkg -si
 安装输入法
 
 ```
+# X11 环境
 pacman -S fcitx fcitx-im fcitx-ui-light fcitx-libpinyin fcitx-configtool
 yay -S fcitx-sogoupinyin
 fcitx -r 安装搜狗拼音后重启动fcitx
 fcitx-config-gtk3
+
+# Wayland 环境
+pacman -S fcitx5 fcitx5-gtk fcitx5-qt
+pacman -S fcitx5-configtool libplasma
 ```
 
 配置界面中，取消 Only Show Current Language 复选框，添加中文输入法。

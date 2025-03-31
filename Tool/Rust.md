@@ -12,7 +12,7 @@ cargo -V
 
 ```
 pacman -S rustup
-rustup install nightly
+rustup install nightly --profile minimal
 rustup default nightly
 rustup update nightly
 rustup override set nightly

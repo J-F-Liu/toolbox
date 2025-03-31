@@ -122,7 +122,7 @@ systemctl hybrid-sleep
 
 ### 单元文件
 
-systemd 单元文件可以从两个地方加载，优先级从低到高分别是：
+systemd 单元文件是以.service 为后缀的配置文件，可以从两个地方加载，优先级从低到高分别是：
 
 /usr/lib/systemd/system/: 软件包安装的单元<br />
 /etc/systemd/system/: 系统管理员安装的单元
@@ -143,7 +143,8 @@ Description=Nginx
 After=syslog.target network.target
 
 [Service]
-Type=forking
+Type=simple
+User=nginx
 Environment="VAR=VAL"
 ExecStart=/opt/nginx/sbin/nginx
 ExecReload=/opt/nginx/sbin/nginx -s reload

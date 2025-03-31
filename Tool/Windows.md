@@ -237,3 +237,16 @@ How does Windows decide whether your computer has limited or full Internet acces
 Windows attempts to download a file from a dedicated Web server. Windows 10 or later versions: http://www.msftconnecttest.com/connecttest.txt.
 If the download is successful and contains the correct contents, then Windows concludes that you have full Internet access.
 If something goes wrong, Windows will report either limited or no Internet access, depending on what exactly went wrong.
+
+创建服务
+```
+sc create MyService binPath= "C:\path\to\your\executable.exe -args" DisplayName= "My Service" obj= "NT AUTHORITY\LocalService" --ErrorControl=ignore
+sc start MyService
+sc delete MyService
+```
+
+https://nssm.cc/
+```
+nssm install <servicename>
+nssm remove <servicename>
+```
