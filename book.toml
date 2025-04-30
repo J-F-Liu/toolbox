@@ -1,0 +1,12 @@
+[book]
+title = "程序员的工具箱"
+lang = "zh-cn"
+author = "J-F-Liu"
+
+plugins = ["github"]
+
+[pluginsConfig.theme-default]
+showLevel = false
+
+[pluginsConfig.github]
+url = "https://github.com/J-F-Liu/toolbox"

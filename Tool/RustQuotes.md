@@ -126,6 +126,9 @@ See also: https://www.rust-lang.org/governance
     - Crazy here-be-dragons Rust with untagged unions, unsafe, inline assembly and other wizardry.
 > [On Ousterhout’s Dichotomy](https://matklad.github.io/2024/10/06/ousterhouts-dichotomy.html)
 
+> I’ve talked to a number of people who expected just to use Rust for one thing, say a tail-latency-sensitive data plane service, but they wound up using it for everything. Why? Because it turned out that, once they learned it, Rust was quite productive and using one language meant they could share libraries and support code. 
+> https://smallcultfollowing.com/babysteps/blog/2025/03/10/rust-2025-intro/
+
 ### 574
 The whole point of Rust is that before there were two worlds:
 

@@ -146,6 +146,7 @@ After=syslog.target network.target
 Type=simple
 User=nginx
 Environment="VAR=VAL"
+WorkingDirectory=/opt/nginx
 ExecStart=/opt/nginx/sbin/nginx
 ExecReload=/opt/nginx/sbin/nginx -s reload
 

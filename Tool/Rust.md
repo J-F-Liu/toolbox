@@ -32,7 +32,7 @@ rustup toolchain help
 
 - 国内镜像，每小时更新一次
 
-> nano ~/.cargo/config
+> micro ~/.cargo/config.toml
 
 ```
 [source.crates-io]

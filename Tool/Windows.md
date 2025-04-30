@@ -73,6 +73,51 @@ function test([string]$name) {
     cargo test -- --nocapture --test-threads=1 $name
 }
 
+### [msys2](https://www.msys2.org/)
+
+After install, add `C:\msys64\usr\bin` to system `Path` environment variable.
+
+```
+pacman -Syuu
+pacman -S git make cmake
+pacman -S fish
+
+```
+
+### Scoop
+
+```
+irm get.scoop.sh | iex
+
+iwr https://gitee.com/scoop-bucket/scoop/raw/master/bin/install.ps1 -useb | iex
+scoop config SCOOP_REPO https://gitee.com/scoop-bucket/scoop
+scoop bucket add main https://gitee.com/scoop-bucket/main
+scoop bucket add extras https://gitee.com/scoop-bucket/extras
+
+scoop install starship
+Invoke-Expression (&starship init powershell)
+
+scoop install nodejs yarn python
+scoop install llvm cmake
+$env:LIBCLANG_PATH=C:\Users\Jefferey\scoop\apps\llvm\current\bin
+
+scoop install lux
+scoop install fd
+scoop install helix
+scoop install just
+scoop install gitui
+scoop install nnn
+scoop install hyperfine
+
+scoop bucket add extras
+scoop install wezterm
+scoop install nu
+cargo-binstall zellij
+scoop install file yazi
+scoop install wasmer
+wasmer run kherrick/pwgen -- -sy 20 1
+```
+
 ### Rust
 
 https://win.rustup.rs/x86_64
@@ -110,40 +155,6 @@ ssh -T git@gitee.com
 
 git config --global user.email "china.liujunfeng@gmail.com"
 git config --global user.name "Junfeng Liu"
-
-### Scoop
-
-```
-irm get.scoop.sh | iex
-
-iwr https://gitee.com/scoop-bucket/scoop/raw/master/bin/install.ps1 -useb | iex
-scoop config SCOOP_REPO https://gitee.com/scoop-bucket/scoop
-scoop bucket add main https://gitee.com/scoop-bucket/main
-scoop bucket add extras https://gitee.com/scoop-bucket/extras
-
-scoop install starship
-Invoke-Expression (&starship init powershell)
-
-scoop install nodejs yarn python
-scoop install llvm cmake
-$env:LIBCLANG_PATH=C:\Users\Jefferey\scoop\apps\llvm\current\bin
-
-scoop install lux
-scoop install fd
-scoop install helix
-scoop install just
-scoop install gitui
-scoop install nnn
-scoop install hyperfine
-
-scoop bucket add extras
-scoop install wezterm
-scoop install nu
-cargo-binstall zellij
-scoop install file yazi
-scoop install wasmer
-wasmer run kherrick/pwgen -- -sy 20 1
-```
 
 ### NeatDM
 scoop install wget
@@ -250,3 +261,7 @@ https://nssm.cc/
 nssm install <servicename>
 nssm remove <servicename>
 ```
+
+
+查看端口占用情况	netstat -ano | findstr "8080"
+终止进程及其子进程 taskkill /F /T /PID 2668

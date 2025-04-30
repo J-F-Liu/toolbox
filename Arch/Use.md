@@ -234,8 +234,6 @@ nano /etc/sudoers
 查看端口
 
 ```
-netstat -an | grep 8080
-sudo netstat -tnlp
 sudo ss -lnpt 显示TCP监听端口和进程信息
 sudo ss -lnpu 显示UDP监听端口和进程信息
 lsof -i
