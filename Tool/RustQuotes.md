@@ -129,6 +129,13 @@ See also: https://www.rust-lang.org/governance
 > I’ve talked to a number of people who expected just to use Rust for one thing, say a tail-latency-sensitive data plane service, but they wound up using it for everything. Why? Because it turned out that, once they learned it, Rust was quite productive and using one language meant they could share libraries and support code. 
 > https://smallcultfollowing.com/babysteps/blog/2025/03/10/rust-2025-intro/
 
+### 604
+But after a few weeks, it compiled and the results surprised us. The code was 10x faster than our carefully tuned Kotlin implementation – despite no attempt to make it faster. To put this in perspective, we had spent years incrementally improving the Kotlin version from 2,000 to 3,000 transactions per second (TPS). The Rust version, written by Java developers who were new to the language, clocked 30,000 TPS.
+
+This was one of those moments that fundamentally shifts your thinking. Suddenly, the couple of weeks spent learning Rust no longer looked like a big deal, when compared with how long it’d have taken us to get the same results on the JVM. We stopped asking, “Should we be using Rust?” and started asking “Where else could Rust help us solve our problems?”
+
+– Dr. Werner Vogels on his blog
+
 ### 574
 The whole point of Rust is that before there were two worlds:
 

@@ -53,6 +53,7 @@ ssh username@server.address
 
 ```
 ssh-keygen
+cat ~/.ssh/id_rsa.pub
 ssh-copy-id username@server.address
 ```
 

@@ -37,13 +37,16 @@ rustup toolchain help
 ```
 [source.crates-io]
 registry = "https://github.com/rust-lang/crates.io-index"
-replace-with = "ustc"
+replace-with = "rsproxy"
 
 [source.ustc]
-registry = "git://mirrors.ustc.edu.cn/crates.io-index"
+registry = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"
 
-[source.rustcc]
-registry = "https://code.aliyun.com/rustcc/crates.io-index.git"
+[source.rsproxy]
+registry = "sparse+https://rsproxy.cn/index/"
+
+[net]
+git-fetch-with-cli = true
 ```
 
 - rustup 国内镜像
@@ -524,6 +527,13 @@ fn g2(thing: &Thing) -> &String {
 format := '{' [ argument ] [ ':' format_spec ] '}'
 argument := integer | identifier
 format_spec := [[fill]align][sign]['#']['0'][width]['.' precision][type]
+
+The default fill/alignment for non-numerics is a space and left-aligned.
+The default for numeric formatters is also a space character but with right-alignment.
+If the 0 flag (see below) is specified for numerics, then the implicit fill character is 0.
+[fill]< - the argument is left-aligned in width columns
+[fill]^ - the argument is center-aligned in width columns
+[fill]> - the argument is right-aligned in width columns
 sign := '+'
 type := identifier | '?' | ''
 width := number | name$ | index$
@@ -531,6 +541,7 @@ precision := number | name$ | index$
 {:#?} pretty-prints a structure with newlines and indentation
 
 sign indicates that the sign should always be printed.
+For floating-point types, width includes both the integer and fractional parts.
 
 The current mapping of types to traits is:
 

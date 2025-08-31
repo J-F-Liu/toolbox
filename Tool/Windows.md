@@ -192,6 +192,8 @@ If you are on win 8 (and up) you should also run DISM whether SFC found errors o
 
 ### WSL
 
+WSL 2 需 BIOS/UEFI 中开启虚拟化（如 Intel VT-x/AMD - V）。
+
 Run PowerShell or Windows Command Prompt as Administrator
 
 ```
@@ -211,8 +213,8 @@ Run PowerShell or Windows Command Prompt as Administrator
   Ubuntu-18.04    Ubuntu 18.04 LTS
   Ubuntu-20.04    Ubuntu 20.04 LTS
 
-> wsl --install -d Ubuntu
-
+> wsl --install archlinux
+> wsl -d archlinux
 > wsl --shutdown
 ```
 
