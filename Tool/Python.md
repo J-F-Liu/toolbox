@@ -5,6 +5,11 @@ pip –version
 conda –version
 ```
 
+- 安装
+```
+pacman -S python python-pip
+```
+
 - 查看pip支持的文件名和版本
 ```
 pip debug --verbose

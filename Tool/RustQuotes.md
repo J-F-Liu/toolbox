@@ -129,6 +129,11 @@ See also: https://www.rust-lang.org/governance
 > I’ve talked to a number of people who expected just to use Rust for one thing, say a tail-latency-sensitive data plane service, but they wound up using it for everything. Why? Because it turned out that, once they learned it, Rust was quite productive and using one language meant they could share libraries and support code. 
 > https://smallcultfollowing.com/babysteps/blog/2025/03/10/rust-2025-intro/
 
+### 626
+We adopted Rust for its security and are seeing a 1000x reduction in memory safety vulnerability density compared to Android’s C and C++ code. But the biggest surprise was Rust's impact on software delivery. With Rust changes having a 4x lower rollback rate and spending 25% less time in code review, the safer path is now also the faster one.
+
+– Jeff Vander Stoep on the Google Android blog
+
 ### 604
 But after a few weeks, it compiled and the results surprised us. The code was 10x faster than our carefully tuned Kotlin implementation – despite no attempt to make it faster. To put this in perspective, we had spent years incrementally improving the Kotlin version from 2,000 to 3,000 transactions per second (TPS). The Rust version, written by Java developers who were new to the language, clocked 30,000 TPS.
 

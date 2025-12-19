@@ -50,7 +50,7 @@ git status
 git commit
 git commit --amend
 git commit --amend --reset-author
-git log
+git log --oneline -10
 git show --quiet --oneline <commit>
 git blame file_name
 git revert <commit> --no-commit

@@ -1,4 +1,27 @@
 ```rust
+// all 48 keywords in 300 characters
+mod x {
+    pub(super) struct X;
+    use Ok;
+    impl X {
+        pub(in crate) async fn x(self: Self, x: &'static &'_ dyn for<> Fn()) where {
+            unsafe extern { safe fn x(); }
+            macro_rules! x { () => {}; }
+            if 'x: loop {
+                return match while let true = break 'x false { continue } {
+                    ref x => { &raw mut x; async { const { enum A {} } }.await as () },
+                };
+            } { type x = X; } else { move || { trait x { } union B { x: () } }; }
+        }
+    }
+}
+
+fn main() {}
+```
+
+
+
+```rust
 /// An allocation-optimized string.
 pub type SharedString = std::borrow::Cow<'static, str>;
 ```

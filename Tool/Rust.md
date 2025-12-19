@@ -87,6 +87,10 @@ cargo install cargo-pgo
 $ cargo pgo build        # build with instrumentation
 $ ./target/.../<binary>  # run your binary on some workload
 $ cargo pgo optimize     # build an optimized binary
+
+cargo tree	显示整个依赖树
+cargo tree -i <crate_name>	反向依赖：查看哪些包依赖了该 crate
+cargo tree -p <crate_name>	只查看某个特定 crate 及其版本
 ```
 
 - Cross Compile
@@ -1557,3 +1561,23 @@ fn main() {
 ```
 
 Immutable data structures are inherently tree-like. It is a pain to work with graph-like structures and you have to give up some guarantees the languages give you.
+
+
+## GUI
+
+响应式模型本质差异（一句话点破）：
+
+iced 的更新路径：Message -> update() -> state change -> view() -> diff
+dioxus 的更新路径：signal change -> 自动依赖追踪 -> 触发相关组件重渲染
+
+iced 把 “粒度控制权” 交给开发者
+dioxus 把 “粒度控制权” 交给框架
+
+iced 是 “拉模型（pull）”，我决定什么时候拉 UI
+dioxus 是 “推模型（push）”，数据变了，UI 自动推
+
+iced 强在 “可控性、可审计性和长期工程稳定性”
+dioxus 强在 “表达能力、开发效率和动态 UI”
+
+iced 像写设计系统，更可靠地管理样式，适合长期维护
+dioxus 像写 CSS，更方便写样式，适合快速迭代

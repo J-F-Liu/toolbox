@@ -213,9 +213,11 @@ Run PowerShell or Windows Command Prompt as Administrator
   Ubuntu-18.04    Ubuntu 18.04 LTS
   Ubuntu-20.04    Ubuntu 20.04 LTS
 
-> wsl --install archlinux
-> wsl -d archlinux
-> wsl --shutdown
+> wsl --help
+> wsl --list --online
+> wsl --install archlinux  安装适用于 Linux 的 Windows 子系统分发版
+> wsl -d archlinux  运行指定的分发版
+> wsl --shutdown    立即终止所有正在运行的分发版和 WSL 2
 ```
 
 ### ArchWSL

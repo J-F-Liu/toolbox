@@ -35,6 +35,9 @@ apt install binutils build-essential pkg-config
 apt install fontconfig libfontconfig1-dev libclang-dev libssl-dev libglib2.0-dev libwayland-dev
 ```
 
+## 检查是否需要重启
+cat /var/run/reboot-required  # 如果有这个文件就需要重启
+
 fdfind -g cc
 
 
