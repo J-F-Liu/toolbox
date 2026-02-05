@@ -142,6 +142,7 @@ echo -e "target/\n/dist/" > .gitignore
 git init
 ```
 
+cargo publish --registry crates-io
 uses cargo publish --allow-dirty, which according to the cargo documentation, will cause the .cargo_vcs_info.json file to be omitted.
 
 Recommanded:

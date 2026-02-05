@@ -175,6 +175,8 @@ location /api/ {
 ### 配置 MIME 类型
 
 nano /etc/nginx/mime.types
+nginx -t          # 测试配置
+nginx -s reload   # 重载配置
 
 ```
 application/vnd.google-earth.kmz   kmz;

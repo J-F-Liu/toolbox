@@ -129,6 +129,10 @@ See also: https://www.rust-lang.org/governance
 > I’ve talked to a number of people who expected just to use Rust for one thing, say a tail-latency-sensitive data plane service, but they wound up using it for everything. Why? Because it turned out that, once they learned it, Rust was quite productive and using one language meant they could share libraries and support code. 
 > https://smallcultfollowing.com/babysteps/blog/2025/03/10/rust-2025-intro/
 
+
+> Rust has been named Stack Overflow's Most Loved (now called Most Admired) language every year since our 1.0 release in 2015. That means people who use Rust want to keep using Rust1--and not just for performance-heavy stuff or embedded development, but for shell scripts, web apps, and all kinds of things you wouldn't expect. One of our participants captured it well when they said, "At this point, I don't want to write code in any other language but Rust."
+> [What do people love about Rust?](https://blog.rust-lang.org/2025/12/19/what-do-people-love-about-rust/)
+
 ### 626
 We adopted Rust for its security and are seeing a 1000x reduction in memory safety vulnerability density compared to Android’s C and C++ code. But the biggest surprise was Rust's impact on software delivery. With Rust changes having a 4x lower rollback rate and spending 25% less time in code review, the safer path is now also the faster one.
 

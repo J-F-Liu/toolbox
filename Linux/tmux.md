@@ -28,6 +28,11 @@ tmux a
 tmux a -t session-name
 ```
 
+退出 tmux 会话：
+```
+exit
+```
+
 从原始 Shell 把某个会话彻底关闭：
 
 ```
