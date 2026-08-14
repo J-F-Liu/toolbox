@@ -7,6 +7,24 @@
 - [聊聊 HTTPS 和 SSL/TLS 协议](http://mp.weixin.qq.com/s?__biz=MjM5ODE0MTM1MA==&mid=204884896&idx=1&sn=039ecac06ffc7e57e3d38f6d54480492#rd)
 - [webim 如何保证消息的可靠投递](http://www.habadog.com/2015/04/29/webim-msg-send-ack/)
 
+| 状态码      | 场景                              |
+| ----------- | --------------------------------- |
+| **200**     | GET 请求成功                      |
+| **201**     | POST 创建资源成功                 |
+| **204**     | DELETE 删除成功                   |
+| **301/308** | 网址永久变更                      |
+| **302/307** | 临时跳转                          |
+| **400**     | 参数传错了                        |
+| **401**     | 没登录                            |
+| **403**     | 没权限                            |
+| **404**     | 页面/接口不存在                   |
+| **413**     | 请求体过大                        |
+| **429**     | 请求过于频繁，被限流              |
+| **500**     | 服务器挂了                        |
+| **502**     | 网关挂了（常见于 Nginx 反向代理） |
+| **503**     | 服务维护或宕机                    |
+
+
 ## HTML
 
 HTML（Hyper Text Markup Language），超文本标记语言。
@@ -34,6 +52,68 @@ Entity names are case-senstive. For example, Ç is `&Ccedil;` and ç is `&ccedil
 Entity numbers are base 10. For example, & is `&#38;` € is `&#8364;`.
 
 - [HTML5 定稿：手机 App 三年内将彻底消失？](http://mp.weixin.qq.com/s?__biz=MzAxODIwNzc4NQ==&mid=204304446&idx=1&sn=aec247fc38409da7b2c5cea0ace35f6d)
+
+
+Browsers handle unrecognized tags as a custom element, with no effect beyond what's specified in the CSS. This isn't just a weird quirk, it is standardized behavior If you include hyphens in the name, you can guarantee your tag won't appear in any future versions of HTML.
+
+Instead of writing HTML like this:
+```html
+<div class=cool-thing>
+Hello, World!
+</div>
+```
+
+you can write HTML like this:
+```html
+<cool-thing>
+Hello, World!
+</cool-thing>
+```
+
+and CSS like this:
+
+```css
+cool-thing {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    filter: drop-shadow(0 0 0.5em #ff0);
+    color: #ff0;
+}
+```
+
+While you should use descriptive built-in tags if they exist, making up your own tag provides better readability than using a bunch of class names.
+
+As an example, if you have a bunch of nested tags:
+
+
+```html
+<div class=article>
+<div class=article-header>
+<div class=article-quote>
+<div class=quote-body>
+... a bunch more HTML ...
+</div>
+</div>
+</div>
+</div>
+```
+
+Good luck trying to insert something inside of "article-header" but after "article-quote" on the first try. This problem vanishes if you use descriptive tag names — no `</div>` counting required:
+
+
+```html
+<main-article>
+<article-header>
+<article-quote>
+<quote-body>
+... a bunch more HTML ...
+</quote-body>
+</article-quote>
+<!-- here! -->
+</article-header>
+</main-article>
+```
 
 ## CSS
 

@@ -9,8 +9,7 @@
 ## Install
 
 ```
-pacman -S git
-yay -S gitkraken
+pacman -S git less gitui
 ```
 
 ## Configuration
@@ -25,6 +24,7 @@ git config --global core.autocrlf false
 git config --global core.safecrlf false
 git config --global init.defaultBranch main
 git config branch.master.rebase true
+git config pull.rebase false
 ```
 
 ## Setup SSH Keys
@@ -63,7 +63,7 @@ git log HEAD..origin --simplify-merges --reverse --format="%h %s %an %cr"
 
 git reflog 查看所有分支的操作记录，包括已经被删除的commit记录
 git fsck --lost-found
-git cherry-pick 从不同的分支中捡出一个单独的commit，并把它和你当前的分支合并
+git cherry-pick --no-commit <commit-hash> 从不同的分支中捡出一个单独的commit，加--no-commit保持在staged
 ```
 
 Undo the last commit and keep the changes:

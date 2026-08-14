@@ -54,6 +54,7 @@ ssh username@server.address
 ```
 ssh-keygen
 cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_ed25519.pub
 ssh-copy-id username@server.address
 ```
 
@@ -83,6 +84,15 @@ scp -P 2222 user@host:directory/SourceFile TargetFile
 
 ```
 ssh user@host 'ps ax | grep [h]ttpd'
+```
+
+
+本地电脑（Client）和远程电脑（Server）上都安装 waypipe，本地电脑必须正在运行 Wayland 会话。
+它会通过 SSH 自动在远程服务器上拉起一个临时的 waypipe 进程，任务结束后该进程会自动退出。
+```
+sudo pacman -S waypipe
+waypipe ssh user@remote_ip weston
+waypipe --compress lz4 ssh user@remote_ip application_name
 ```
 
 本地端口转发（Local forwarding）

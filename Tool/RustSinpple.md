@@ -1127,3 +1127,68 @@ pub fn merge(
     }  
 }
 ```
+
+My code has many things that are structurally identical but I want the type system to treat them as completely different things so I get free compile-time protection against mixing them up.
+```rust
+struct Id <T> {
+ value: u64,
+ _marker: PhantomData<T>,
+}
+
+//omitting derive attributes
+pub struct Player;
+//omitting derive attributes
+pub struct Entity;
+
+pub type PlayerId = Id<Player>;
+pub type EntityId = Id<Entity>;
+```
+
+Instead of producing a single element per call, batched iterators produce arrays of elements, enabling high performance SIMD vectorization.
+```rust
+fn scan(keys: &[Vec<u64>]) -> u64 {
+    let mut merge_tree = Merge::build(keys);
+    let mut sum = 0u64;
+
+    // next_batch() recurses down, but produces a batch (N=512) of KV pairs
+    while let Some(batch) = merge_tree.next_batch() {
+        // process the array
+        for val in batch {
+            let x = val + 1;
+            if x % 2 == 0 { sum += x; }
+        }
+    }
+    sum
+}
+```
+
+
+在 match 表达式中，HM_DEVICE_STATUS_UPDATE => 作为一个 pattern 有两种可能的解释：
+
+如果 HM_DEVICE_STATUS_UPDATE 是已定义的常量，它会匹配等于该常量值的情况
+如果 HM_DEVICE_STATUS_UPDATE 未定义，Rust 会把它当作绑定变量，绑定任何 match 的值
+
+```rust
+match message {
+    // 设备IP连接或者断开相关
+    HM_DEVICE_STATUS_UPDATE => {
+        let status_update = DeviceStatusUpdate::decode(message.payload)?;
+        println!("Device status update: {:?}", status_update);
+    }
+    _ => DefWindowProcA(hwnd, message, wparam, lparam),
+}
+```
+
+为什么 hypot 不利于 SIMD？
+f32::hypot(x, y) 是标准库提供的用于计算 $\sqrt{x^2 + y^2}$ 的函数，但它不仅仅是做简单的乘法、加法和开方： 为了符合 IEEE-754 标准，hypot 内部包含了极其复杂的逻辑来防止计算中途发生 上溢出 (Overflow) 或 下溢出 (Underflow)（例如，当 $x$ 和 $y$ 很大时，$x^2+y^2$ 会超出 f32 表示范围，然后再开方其实结果是在 f32 范围内的，hypot 必须正确处理这种情况）。这个防护机制引入了多个条件控制流（分支 if/else），甚至在某些平台上会退化成软件仿真，从而彻底打破了连续指令流，使编译器完全放弃向量化。
+
+浮点数加法不满足结合律，而大量浮点数累加时，不同的加法顺序会导致不同的中间舍入误差，最终结果在小数点后若干位出现差异。
+对于绝大多数科学计算、图形学、机器学习应用，这种微小差异（相对误差通常在 10e-6 量级）是可以接受的，不影响后续分析。
+Kahan 求和算法是一种用于减少浮点数累加中舍入误差的技术。它通过维护一个单独的 “补偿变量” 来记录每次加法中丢失的低位部分，从而在后续加法中把误差补偿回来。
+Kahan 求和在处理符号相反且数量级差异巨大的数值时最有效。
+```rust
+let y = x - comp;   // 补偿上次的误差
+let t = sum + y;    // 临时和
+let comp = (t - sum) - y; // 计算本次舍入损失的误差
+sum = t;
+```

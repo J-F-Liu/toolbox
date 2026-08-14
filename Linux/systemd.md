@@ -186,6 +186,11 @@ nano /etc/systemd/journald.conf
 systemctl restart systemd-journald
 ```
 
+### TUI
+```
+yay -S systemd-manager-tui
+```
+
 ### GUI
 
 ```

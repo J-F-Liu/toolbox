@@ -315,6 +315,11 @@ echo fs.inotify.max_user_watches=524288 | sudo tee /etc/sysctl.d/40-max-user-wat
 
 ## 5、常用软件
 
+智能体，可以协助完成一些系统配置
+```
+pacman -S opencode
+```
+
 编程语言
 
 ```
@@ -343,7 +348,7 @@ pacman -S code medit clipit ripgrep
 
 ```
 pacman -S chromium
-yay -S chromium-pepper-flash
+yay -S google-chrome
 chromium --proxy-server="socks5://127.0.0.1:1080"
 chromium --proxy-server="http://127.0.0.1:8080"
 ```

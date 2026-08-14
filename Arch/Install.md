@@ -71,7 +71,7 @@ wifi-menu -o wlp3s0
 用`ping`命令检测是否能连上因特网，按 Ctrl+C 结束命令。
 
 ```
-ping baidu.com
+ping ping.archlinux.org
 ```
 
 或
@@ -125,11 +125,11 @@ EFI 分区 (sda1) 须使用 FAT32 格式，分区类型设成**EFI System**。
 mkfs.fat -F32 /dev/sda1
 ```
 
-其他分区格式化为 Ext4
+其他分区格式化为 Ext4 或 Btrfs
 
 ```
 mkfs.ext4 /dev/sda2
-mkfs.ext4 /dev/sda3
+mkfs.btrfs /dev/sda3
 ```
 
 3.4 挂载硬盘分区
@@ -197,27 +197,24 @@ nano /boot/loader/loader.conf
 >   default  arch.conf
 > ```
 
-```
+timeout: How long the boot menu should be shown before the default entry is booted, in seconds. 
+If set to "menu-disabled" or "menu-hidden" or "0" (the default), no menu is shown and the default entry will be booted immediately (the menu can still be shown by pressing and holding a key during boot).
 
 查看硬盘分区的UUID
 ```
-
 blkid -s PARTUUID -o value /dev/sda2
-
 ```
 
 编辑引导项的配置文件，参照/usr/share/systemd/bootctl/中的示例
 ```
-
 nano /boot/loader/entries/arch.conf
-
-````
-> ```
-  title          Arch Linux
-  linux          /vmlinuz-linux
-  initrd         /initramfs-linux.img
-  options        root=PARTUUID=14420948-2cea-4de7-b042-40f67c618660 rw
-````
+```
+>```
+>  title          Arch Linux
+>  linux          /vmlinuz-linux
+>  initrd         /initramfs-linux.img
+>  options        root=PARTUUID=14420948-2cea-4de7-b042-40f67c618660 rw
+>```
 
 - BIOS 启动
 

@@ -60,6 +60,7 @@ git-fetch-with-cli = true
 ```
 cargo new <project> --bin
 cargo check
+cargo check --tests
 cargo run
 RUST_BACKTRACE=full cargo run --example json
 cargo build --release
@@ -70,7 +71,7 @@ cargo build --features "feat1 feat2" --offline
 cargo update
 cargo doc --open
 cargo test
-cargo test -- --nocapture --test-threads=1 TEST_CASE
+cargo test --tests -- --nocapture --test-threads=1 TEST_CASE
 cargo bench
 rustc +beta --version
 cargo +beta build
@@ -130,6 +131,8 @@ cargo install --git https://github.com/murarth/rusti
 cargo install --git https://github.com/ogham/dog.git dog
 cargo +nightly install motus
 cargo install --list
+cargo install cargo-bloat
+cargo bloat --release --crates
 rustup update nightly # update RLS and its dependencies
 curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o ~/.config/Code\ -\ OSS/User/globalStorage/matklad.rust-analyzer/rust-analyzer-linux
 C:\Users\Liu\AppData\Roaming\Code\User\globalStorage\matklad.rust-analyzer\rust-analyzer-windows.exe --version
@@ -154,6 +157,8 @@ Recommanded:
 #### Tools developed using Rust
 
 ```
+cargo install cargo-binstall
+cargo binstall cargo-binstall
 cargo install ripgrep
 cargo install tokei
 cargo install loc
@@ -168,7 +173,7 @@ cargo install xsv # a suite of CSV command line utilities
 cargo install --git https://github.com/sharkdp/fd
 cargo install simple-http-server
 cargo install microserver
-cargo install rural # curl replacement, HTTPie like API
+cargo install just
 cargo install jsonpp
 ```
 

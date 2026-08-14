@@ -3,8 +3,23 @@ winget install gitui
 winget install lapce
 winget install trippy
 winget install zoxide
+winget install Microsoft.Coreutils
 
 卸载 OneDrive
+
+更改盘符，管理员运行 CMD
+```
+diskpart
+list volume              ← 列出盘符
+select volume X          ← 选定盘符X
+assign letter=Z          ← 改为 Z 盘
+exit
+```
+
+删除nul文件：
+```
+del /f /q "\\?\D:\Rust\video-player\nul"
+```
 
 ### 注册表设置
 
@@ -67,10 +82,20 @@ Get-WindowsOptionalFeature -Online
 
 Path of PowerShell profile: "C:\Users\liujf\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
 
-Set-Alias -Name "test" -Value "cargo test -- --nocapture --test-threads=1" -Option "AllScope"
+function bd {
+    cargo build --debug
+}
+
+function br {
+    cargo build --release
+}
 
 function test([string]$name) {
-    cargo test -- --nocapture --test-threads=1 $name
+    cargo test --release -- --nocapture --test-threads=1 $name
+}
+
+function tests([string]$name) {
+    cargo test --lib --release -- --nocapture --test-threads=1 $name
 }
 
 ### [msys2](https://www.msys2.org/)
@@ -155,6 +180,17 @@ ssh -T git@gitee.com
 
 git config --global user.email "china.liujunfeng@gmail.com"
 git config --global user.name "Junfeng Liu"
+
+### Nodejs
+
+cargo binstall fnm
+fnm install --latest --fnm-dir C:/Dev/fnm
+setx /M PATH "%PATH%;C:\Dev\fnm\aliases\default"
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "Machine") + ";C:\Dev\fnm\aliases\default", "Machine")
+[Environment]::SetEnvironmentVariable("Path", [Environment]::GetEnvironmentVariable("Path", "User") + ";C:\Users\liujf\.bun\bin", "User")
+echo %PATH%
+npm install -g pnpm
+pnpm setup
 
 ### NeatDM
 scoop install wget
@@ -253,14 +289,14 @@ Windows attempts to download a file from a dedicated Web server. Windows 10 or l
 If the download is successful and contains the correct contents, then Windows concludes that you have full Internet access.
 If something goes wrong, Windows will report either limited or no Internet access, depending on what exactly went wrong.
 
-创建服务
+创建服务，sc只能管理已实现 Windows Service API 的标准服务程序
 ```
 sc create MyService binPath= "C:\path\to\your\executable.exe -args" DisplayName= "My Service" obj= "NT AUTHORITY\LocalService" --ErrorControl=ignore
 sc start MyService
 sc delete MyService
 ```
 
-https://nssm.cc/
+NSSM - the Non-Sucking Service Manager https://nssm.cc/
 ```
 nssm install <servicename>
 nssm remove <servicename>

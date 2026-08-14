@@ -79,6 +79,7 @@ g 跳到开头，G 跳到结尾，输入行号再按 g 跳到指定行，b 上�
 
 ```
 less /path/to/text/file
+tail /path/to/text/file
 ```
 
 用十六进制方式查看或编辑文件
@@ -238,6 +239,7 @@ nano /etc/sudoers
 sudo ss -lnpt 显示TCP监听端口和进程信息
 sudo ss -lnpu 显示UDP监听端口和进程信息
 lsof -i
+sudo pacman -S rustnet
 ```
 
 启动防火墙
@@ -262,7 +264,25 @@ iptables -A OUTPUT -p tcp --sport 587 -m state --state ESTABLISHED,RELATED -j AC
 systemctl reload iptables
 ```
 
-下载文件
+### 使用 ufw 防火墙
+‌安装 ufw‌（如果你还没有安装）：sudo pacman -S ufw
+
+‌启动 ufw 服务‌（并设置开机启动）：
+sudo systemctl start ufw
+sudo systemctl enable ufw
+
+允许端口21118‌传入和传出的流量：
+sudo ufw allow 21118/tcp
+
+启用规则：sudo ufw enable
+
+### 其他
+
+流量监控：sudo pacman -S sniffnet rustnet
+
+远程桌面：sudo pacman -S freerdp krdc
+
+### 下载文件
 
 ```
 curl url -o file
@@ -287,6 +307,12 @@ kill pid 停止进程
 time cmd 执行命令，并计算执行时间
 top      显示进程列表
 shutdown 关机
+```
+
+```
+pacman -S bottom procs
+btm
+procs
 ```
 
 ## 5、内核模块
@@ -316,6 +342,7 @@ lscpu; lsmem; lsblk; lspci
 cat /proc/cpuinfo
 cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 cat /proc/meminfo
+cat /etc/localtime
 fdisk -l
 lsblk -f
 free -h 查看内存状态
