@@ -45,6 +45,12 @@ git clone REPOSITORY_URL --depth 10 --branch BRANCH
 git clone REPOSITORY_URL --recursive 克隆嵌套的仓库
 git submodule update --init --recursive  加载嵌套的仓库
 
+# Add an existing branch as a worktree，一个分支名只能被一个 worktree 检出。
+git worktree add ../my-project-feature feature-branch
+
+# Or create a new branch and worktree in one go
+git worktree add -b new-feature ../my-project-new-feature
+
 git add .
 git status
 git commit

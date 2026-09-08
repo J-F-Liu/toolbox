@@ -256,6 +256,14 @@ Run PowerShell or Windows Command Prompt as Administrator
 > wsl --shutdown    立即终止所有正在运行的分发版和 WSL 2
 ```
 
+wsl.exe 在 stdout/stderr 是管道（非控制台）时，输出无 BOM 的 UTF-16LE，设置 `WSL_UTF8=1` 环境变量可强制 UTF-8 输出。
+
+Switched WSL2 to **mirrored networking mode** `~\.wslconfig`:
+  ```
+  [wsl2]
+  networkingMode=mirrored
+  ```
+
 ### ArchWSL
 
 以管理员身份运行 PowerShell，BIOS 中已开启虚拟机功能。

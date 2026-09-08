@@ -83,7 +83,7 @@ yay -Su package_name 同步AUR数据并更新软件包
 
 ```
 pacman -S reflector
-reflector --verbose --latest 5 --protocol http --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose --country CN --protocol http --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
 每周自动运行一次 reflector

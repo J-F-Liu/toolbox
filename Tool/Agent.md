@@ -220,6 +220,14 @@ Agent 给 LLM 提供工具数量：大约 30-50 个工具就开始出现明显�
 - 30 - 50 个工具（严重退化区）：在这个区间，“选择困难症” 全面爆发。行业测试表明，将工具从 4 个增加到 50 个时，很多复杂任务（如跨领域调度）的准确率会从 40% 以上暴跌至 10% 甚至 2%。
 - 100 个以上工具（灾难性失效）：当同时抛给模型 100 甚至数百个工具时，准确率几乎降至个位数（0%~20%），系统处于不可用状态。
 
+Most of the work of reviewing is not simply catching bugs. A great deal of it is deciding whether this direction is a good approach, whether the PR is a good idea at all. In other words, reviewing is made of decisions.
+
+ "AI is a tool, just like other tools we use".
+
+ It's fine to use LLMs to answer questions, analyze, distill, refine, check, suggest, review. But not to create.
+
+ LLM reviews cannot substitute for human review or self-review.
+
 ## Skills Over MCP
 Think about any product you’ve ever used… software or not. Most come with some sort of instruction manual that helps you figure out how to use it.
 
@@ -230,6 +238,11 @@ But now we’re asking our agents to become users of products on our behalf. We 
 Skills already solve the problem of teaching an agent how to do something in a way that avoids context bloat. If we ship MCP servers with accompanying skills, that should give the agent the tools it needs to execute but also the operational knowledge it needs to do it efficiently.
 
 Essentially, ship the manual with the product.
+
+When AI writes more of the code, the tradeoff changes.
+Writing speed matters less. Much of the learning cost can be handled by the agent.
+
+For us, the question stopped being “how fast can a human write this?” and became “how confident can we be that it is correct?”. That reframing is why Rust became the more practical choice.
 
 Coding 是最自然的第一块楔子，因为代码世界已经为 Agent 准备好了半套操作系统：
 - repository 和 filesystem 提供结构化外部记忆；
@@ -242,6 +255,15 @@ Coding 提供了最便宜的行动与验收环境，却只是 Agent 扩张的第
 
 正式版 DeepSeek-V4-Flash使用 DeepSeek Harness 极简模式，并使用max档位，topp=0.95,temperature=1.0
 
-Qwen3.8-Max，总参数2.4万亿，单次激活约95B，100万token上下文
-Kimi K3，2.8万亿参数，
+模型名称 参数量-激活量（推理每个Token时，动态激活的参数量上限）
+Kimi K3，2.8万亿参数，激活参数约104B，100万token上下文
+Qwen3.8-Max，总参数2.4万亿，激活参数约95B，100万token上下文
+Grok 4.7   总参数2.1万亿，
+V4-Pro 总参数1.6万亿，激活参数约49B，100万token上下文，每百万Tokens输入4.5元，输出13.5元，缓存命中 0.15 元
+Hy4 preview    770B-A49B，上下文长度突破 1M，每百万Tokens输入6元，输出18元，缓存命中 0.3 元
+GLM-5.3        743B-A40B，100万token上下文
+GLM-5.3-Flash  320B-A18B，这是GLM-5系列的首个原生多模态模型，100万token上下文
+V4-Flash       284B-A13B，100万token上下文
+Qwen3.8-Flash  125B-A6B，262,144 token 上下文，每百万Tokens输入1元，输出3元
+
 一个供应商最可怕的地方，不是它贵，是你离不开它。而一旦你有了替代方案，哪怕那个替代方案只有八十分，议价权就回来了。

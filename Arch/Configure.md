@@ -133,6 +133,19 @@ systemctl enable NetworkManager
 nm-applet 鼠标右键单击，编辑网络连接，设置WiFi密码，左键单击连接WiFi网络。
 ```
 
+苹果笔记本上交换Fn和Ctrl键
+
+> sudo nano /etc/modprobe.d/hid_apple.conf
+```
+options hid_apple fnmode=2
+options hid_apple swap_fn_leftctrl=1
+```
+> sudo mkinitcpio -P
+> reboot
+
+swap_fn_leftctrl=1：这个参数用来交换Fn和左Control键的
+fnmode=2：将顶行功能键设置为默认作为标准 F1-F12 功能键，按住Fn键时触发媒体功能
+
 # 工作站{#workstation}
 
 ## 1、常用命令
